@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores'
   import { btn } from '$lib/styles/button.css'
+  import { box } from '$lib/styles/box.css'
 
   export let label: string
   export let color: 'blue' | 'cyan' | 'green' | 'pink'
@@ -10,8 +11,8 @@
 </script>
 
 {#if expanded}
-<section>
-  <a href="/" on:click={(e) => {
+<section class={box()}>
+  <a class="close" href="/" on:click={(e) => {
     e.preventDefault()
     expanded = false
 

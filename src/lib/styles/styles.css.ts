@@ -127,6 +127,8 @@ const responsiveProperties = defineProperties({
     display: ['none', 'block', 'flex', 'grid'],
     flexDirection: ['row', 'column'],
     padding: space,
+    columnGap: space,
+    rowGap: space,
     position: ['sticky', 'relative', 'absolute'],
     fontSize: {
       huge: {

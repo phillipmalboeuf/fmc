@@ -6,6 +6,7 @@ export const btn = recipe({
     borderRadius: 6,
     cursor: "pointer",
     textDecoration: 'none',
+    lineHeight: 1,
     border: 'none',
     display: 'inline-block',
     fontFamily: vars.fonts.heading,

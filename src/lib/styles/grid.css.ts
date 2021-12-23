@@ -14,7 +14,7 @@ export const grid = recipe({
     },
     gap: {
       none: { columnGap: 0 },
-      small: { columnGap: vars.space.small },
+      small: fmc({ columnGap: 'small' }),
     },
   },
 
