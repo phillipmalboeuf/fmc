@@ -1,26 +1,19 @@
 <script context="module" lang="ts">
   export interface Lien {
-    titre: string
-    lien: string
-    externe: boolean
-    disabled: boolean
-    sousLiens: Entry<Lien>[]
+    title: string
+    path: string
+    external: boolean
+    // sousLiens: Entry<Lien>[]
   }
 </script>
 
 <script lang="ts">
+  import { page } from '$app/stores'
   import type { Entry } from 'contentful'
-  import I from './icons/I.svelte'
+  // import I from './icons/I.svelte'
   
-  export let lien: Entry<Lien>
-  export let plus = false
+  export let link: Entry<Lien>
+  // export let plus = false
 </script>
 
-<a class:plus class:disabled={lien.fields.disabled} href={lien.fields.lien} target={lien.fields.externe && '_blank'}>{#if plus}<I i='plus' /> {/if}{lien.fields.titre}</a>
-
-<style>
-
-  a.disabled {
-    pointer-events: none;
-  }
-</style>
+<a href={((!link.fields.external && $page.params.locale === 'en') ? "/en" : "") + link.fields.path} target={link.fields.external && '_blank'} rel={link.fields.external && "external"} on:click>{link.fields.title}</a>

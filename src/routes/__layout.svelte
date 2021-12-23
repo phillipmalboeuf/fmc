@@ -1,9 +1,22 @@
-<script lang="ts">
-  import { themeClass } from '$lib/styles/styles.css'
+<script context="module" lang="ts">
+  import { respond } from '$lib/responses'
 
-
+  export async function load({ page, fetch, session, context }) {
+		return respond(fetch, `/layout.json`, page.params.locale)
+	}
 </script>
 
-<main class={themeClass}>
-  <slot />
+<script lang="ts">
+  import type { Entry } from 'contentful'
+  import type { Lien } from '$lib/components/Link.svelte'
+  import { setContext } from 'svelte'
+
+  export let main: Entry<{ links: Entry<Lien>[] }>
+  setContext('navigation', {
+    main
+  })
+</script>
+
+<main>
+  <slot {main}></slot>
 </main>

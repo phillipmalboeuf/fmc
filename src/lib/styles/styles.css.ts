@@ -1,4 +1,4 @@
-import { createTheme, globalStyle } from '@vanilla-extract/css'
+import { createGlobalTheme, globalStyle, globalFontFace } from '@vanilla-extract/css'
 import { defineProperties, createSprinkles } from '@vanilla-extract/sprinkles'
 
 
@@ -13,50 +13,98 @@ const colors = {
   black: '#000',
   blackish: '#0E0E0E',
   white: '#fff',
-  grey: '#F6F7F6',
+  grey: '#95999A',
+  offwhite: '#F6F7F6',
   pink: '#FF0063',
-  blue: '#0000FF'
+  coral: '#7CAAEF',
+  blue: '#0000FF',
+  cyan: '#2BFFF5',
+  marin: '#01044c',
+  violet: '#B3B2FE',
+  green: '#81FF5D',
+  yellow: '#9BEFBE'
 }
 
 const fonts = {
   body: 'Trim, sans-serif',
-  heading: 'Trim Poster Lean, sans-serif'
+  heading: 'Trim Poster, sans-serif'
 }
 
-export const [themeClass, vars] = createTheme({
+const base = 18
+
+export const vars = createGlobalTheme(':root', {
   colors,
   fonts,
   space
+})
+
+globalFontFace('Trim', {
+  src: 'url("/fonts/Trim-Regular.otf") format("opentype")',
+  fontWeight: 'normal',
+  fontDisplay: 'swap'
+})
+
+globalFontFace('Trim Poster', {
+  src: 'url("/fonts/TrimPoster-Lean.otf") format("opentype")',
+  fontWeight: 'bold',
+  fontDisplay: 'swap'
 })
 
 globalStyle('*', {
 	boxSizing: 'border-box'
 })
 
-
 globalStyle('html', {
-  fontFamily: fonts.body,
+  fontFamily: vars.fonts.body,
+  fontSize: `${base}px`,
   scrollBehavior: 'smooth'
 })
 
 globalStyle('body', {
-  margin: 0
+  margin: 0,
+  color: vars.colors.white,
+  background: vars.colors.blackish,
 })
 
 globalStyle('main', {
   padding: vars.space.medium,
-  color: colors.white,
-  background: colors.blackish,
   minHeight: '100vh'
 })
 
 globalStyle('h1, h2, h3', {
-  fontFamily: fonts.heading,
+  fontFamily: vars.fonts.heading,
+  fontSize: `${100/base}rem`,
+  textTransform: 'uppercase',
   lineHeight: 1
+})
+
+globalStyle('h2, .h2, h3', {
+  fontSize: `${60/base}rem`,
 })
 
 globalStyle('h1, h2, h3, h4, h5, h6, p', {
   margin: '0 0 ' + vars.space.small
+})
+
+globalStyle('h4', {
+  fontSize: `${40/base}rem`,
+  fontWeight: 'normal'
+})
+
+globalStyle('h5', {
+  fontSize: `${30/base}rem`,
+  textTransform: 'uppercase',
+  fontWeight: 'normal'
+})
+
+globalStyle('h6', {
+  fontFamily: vars.fonts.heading,
+  fontSize: `1rem`
+})
+
+globalStyle('p', {
+  fontSize: `1rem`,
+  fontWeight: 'normal'
 })
 
 globalStyle('a', {
@@ -64,7 +112,7 @@ globalStyle('a', {
 })
 
 globalStyle('[id]', {
-  scrollMarginTop: space.medium
+  scrollMarginTop: vars.space.medium
 })
 
 
@@ -76,9 +124,21 @@ const responsiveProperties = defineProperties({
   },
   defaultCondition: 'mobile',
   properties: {
-    display: ['none', 'block', 'flex'],
+    display: ['none', 'block', 'flex', 'grid'],
     flexDirection: ['row', 'column'],
-    padding: space
+    padding: space,
+    position: ['sticky', 'relative', 'absolute'],
+    fontSize: {
+      huge: {
+        fontSize: `${100/base}rem`
+      },
+      big: {
+        fontSize: `${60/base}rem`
+      },
+      medium: {
+        fontSize: `${40/base}rem`
+      }
+    }
   }
 });
 

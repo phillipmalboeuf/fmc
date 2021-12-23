@@ -1,7 +1,7 @@
 <script context="module">
 	import { respond } from '$lib/responses'
 	export async function load({ page, fetch, session, context }) {
-		return respond(fetch, `/index.json`)
+		return respond(fetch, `/index.json`, page.params.locale)
 	}
 </script>
 
@@ -12,7 +12,7 @@
 
   import { btn } from '$lib/styles/button.css'
 
-  export let page: Entry<any>
+  export let page: Entry<PageDocument>
 </script>
 
-<Page {page} />
+<Page {page} index />

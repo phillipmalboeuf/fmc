@@ -1,7 +1,7 @@
 import type { LoadInput } from '@sveltejs/kit';
 import json from 'json-complete'
 
-export async function respond(fetch: LoadInput['fetch'], url: string) {
+export async function respond(fetch: LoadInput['fetch'], url: string, locale?: string) {
   const res = await fetch(url)
 
   if (res.ok) {

@@ -14,6 +14,6 @@
 </script>
 
 
-<h4>{entry.fields.subtitle}</h4>
-<h2>{entry.fields.title}</h2>
-<Document body={entry.fields.body} />
+{#if entry.fields.subtitle}<p>{entry.fields.subtitle}</p>{/if}
+{#if entry.fields.title}<h2>{entry.fields.title}</h2>{/if}
+{#if entry.fields.body}<Document body={entry.fields.body} />{/if}
