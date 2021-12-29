@@ -1,0 +1,27 @@
+
+<script lang="ts">
+  import type { Entry } from 'contentful'
+  import type { PageDocument } from './Page.svelte'
+
+  import Document from './document/Document.svelte'
+  
+	export let page: Entry<PageDocument>
+</script>
+
+<header>
+  <center>
+    <h2>{page.fields.title}</h2>
+    {#if page.fields.description}<h4>{page.fields.description}</h4>{/if}
+  </center>
+
+  {#if page.fields.body}
+  <Document body={page.fields.body} />
+  {/if}
+</header>
+
+<style>
+  header {
+    max-width: 55rem;
+    margin: 0 auto;
+  }
+</style>

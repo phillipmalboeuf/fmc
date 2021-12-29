@@ -16,13 +16,14 @@ const colors = {
   grey: '#95999A',
   offwhite: '#F6F7F6',
   pink: '#FF0063',
-  coral: '#7CAAEF',
+  coral: '#FEAAC7',
   blue: '#0000FF',
   cyan: '#2BFFF5',
   marin: '#01044c',
+  moss: '#044554',
   violet: '#B3B2FE',
-  green: '#81FF5D',
-  yellow: '#9BEFBE'
+  green: '#D5FF18',
+  yellow: '#EBFEB9'
 }
 
 const fonts = {
@@ -56,7 +57,8 @@ globalStyle('*', {
 
 globalStyle('html', {
   fontFamily: vars.fonts.body,
-  fontSize: `${base}px`,
+  fontSize: `${base/1.333}px`,
+  lineHeight: 1.2,
   scrollBehavior: 'smooth'
 })
 
@@ -67,7 +69,7 @@ globalStyle('body', {
 })
 
 globalStyle('main', {
-  padding: vars.space.medium,
+  padding: vars.space.small,
   minHeight: '100vh'
 })
 
@@ -78,8 +80,12 @@ globalStyle('h1, h2, h3', {
   lineHeight: 1
 })
 
-globalStyle('h2, .h2, h3', {
+globalStyle('h2, .h2, h3, .h3', {
   fontSize: `${60/base}rem`,
+})
+
+globalStyle('h3, .h3', {
+  textTransform: 'none',
 })
 
 globalStyle('h1, h2, h3, h4, h5, h6, p', {
@@ -103,7 +109,7 @@ globalStyle('h6', {
 })
 
 globalStyle('p', {
-  fontSize: `1rem`,
+  fontSize: `${22/base}rem`,
   fontWeight: 'normal'
 })
 

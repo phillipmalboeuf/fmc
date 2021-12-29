@@ -9,6 +9,7 @@
 <style>
   img,
   video {
+    display: block;
     width: 100%;
     max-width: 100%;
   }

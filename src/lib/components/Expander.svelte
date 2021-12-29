@@ -3,11 +3,11 @@
   import { btn } from '$lib/styles/button.css'
   import { box } from '$lib/styles/box.css'
 
-  export let label: string
-  export let color: 'blue' | 'cyan' | 'green' | 'pink'
+  export let color: any
   export let href: string = undefined
 
   export let expanded = false
+  export let bold = false
 </script>
 
 {#if expanded}
@@ -24,7 +24,7 @@
   <slot></slot>
 </section>
 {:else}
-<a class={btn({ full: true, hover: color })} {href} on:click={(e) => {
+<a class={btn({ full: true, hover: color, color: bold ? 'bold' : 'outline' })} {href} on:click={(e) => {
   e.preventDefault()
   expanded = true
 
@@ -32,6 +32,6 @@
     history.replaceState({}, '', href)
   }
 }}>
-  {label}
+  <slot name="label" />
 </a>
 {/if}

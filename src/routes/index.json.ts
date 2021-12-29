@@ -5,7 +5,7 @@ export async function get({ params }) {
   const locale = params.locale
 
 	const [page] = await Promise.all([
-    entry('78kI7VnA9XhcSdo6nYACIV', locale)
+    entry('78kI7VnA9XhcSdo6nYACIV', locale, {}, 4)
   ])
 
 

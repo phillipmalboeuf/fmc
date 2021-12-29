@@ -4,6 +4,11 @@ import { fmc, vars } from './styles.css'
 export const grid = recipe({
   base: {
     display: 'grid',
+    // '@media': {
+    //   'screen and (max-width: 888px)': {
+    //     gridTemplateColumns: '1fr'
+    //   }
+    // }
   },
 
   variants: {
@@ -13,8 +18,9 @@ export const grid = recipe({
       4: { gridTemplateColumns: '1fr 1fr 1fr 1fr' }
     },
     gap: {
-      none: { columnGap: 0 },
-      small: fmc({ columnGap: 'small' }),
+      tight: fmc({ columnGap: 'small' }),
+      small: fmc({ columnGap: 'small', rowGap: 'small' }),
+      medium: fmc({ columnGap: 'medium', rowGap: 'medium' }),
     },
   },
 

@@ -1,16 +1,16 @@
+import { globalStyle } from '@vanilla-extract/css'
 import { recipe } from '@vanilla-extract/recipes'
 import { fmc, vars } from './styles.css'
 
 export const btn = recipe({
-  base: [fmc({ fontSize: 'big' }), {
+  base: [{
     borderRadius: 6,
     cursor: "pointer",
     textDecoration: 'none',
     lineHeight: 1,
     border: 'none',
     display: 'inline-block',
-    fontFamily: vars.fonts.heading,
-    textTransform: 'uppercase',
+    
     selectors: {
       '&:hover': {
         // background: 'var(--hover-color)',
@@ -21,8 +21,14 @@ export const btn = recipe({
 
   variants: {
     color: {
-      outline: [fmc({ color: 'white' }), { background: 'transparent', border: '1px solid' }],
-      muted: fmc({ background: 'violet', color: 'white' }),
+      outline: [fmc({ fontSize: 'big' }), { fontFamily: vars.fonts.heading, textTransform: 'uppercase', color: 'currentColor', background: 'transparent', border: '1px solid' }],
+      // muted: fmc({ background: 'violet', color: 'white' }),
+      bold: [fmc({ background: 'pink', color: 'white' }), { border: '1px solid transparent',
+       selectors: {
+        '&:hover': {
+          color: vars.colors.black
+        }
+      } }],
     },
     hover: {
       green: { selectors: { '&:hover': { background: vars.colors.green, color: vars.colors.black } } },
@@ -39,25 +45,30 @@ export const btn = recipe({
       true: { borderRadius: 999 }
     },
     full: {
-      true: { width: '100%', textAlign: 'center', marginBottom: vars.space.small }
+      true: { width: '100%', textAlign: 'center', marginBottom: '1rem' }
     }
   },
 
   // Applied when multiple variants are set at once
   compoundVariants: [
-    // {
-    //   variants: {
-    //     color: 'neutral',
-    //     size: 'large'
-    //   },
-    //   style: {
-    //     background: 'ghostwhite'
-    //   }
-    // }
+    {
+      variants: {
+        color: 'bold',
+        hover: 'pink'
+      },
+      style: {
+        selectors: { '&:hover': { background: vars.colors.coral } }
+      }
+    }
   ],
 
   defaultVariants: {
     color: 'outline',
     size: 'small'
   }
+})
+
+globalStyle(`${btn} > div`, {
+  fontSize: '',
+  fontFamily: ''
 })

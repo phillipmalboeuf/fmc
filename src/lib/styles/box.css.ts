@@ -6,13 +6,15 @@ export const box = recipe({
   base: [fmc({ background: 'white', color: 'black' }), {
     borderRadius: 6,
     position: 'relative',
-    marginBottom: vars.space.small,
-    border: '1px solid transparent'
+    marginBottom: '1rem',
+    // border: '1px solid transparent',
+    overflow: 'hidden'
   }],
 
   variants: {
     padding: {
       none: { padding: 0 },
+      tight: { padding: '1rem' },
       small: fmc({ padding: 'small' }),
     },
   },
