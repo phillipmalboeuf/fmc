@@ -12,6 +12,12 @@ export const box = recipe({
   }],
 
   variants: {
+    color: {
+      green: { background: vars.colors.green, color: vars.colors.black },
+      blue: { background: vars.colors.blue },
+      cyan: { background: vars.colors.cyan, color: vars.colors.black },
+      pink: { background: vars.colors.pink },
+    },
     padding: {
       none: { padding: 0 },
       tight: { padding: '1rem' },

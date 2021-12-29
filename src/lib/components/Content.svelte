@@ -1,10 +1,12 @@
 <script lang="ts">
   import type { Entry } from 'contentful'
+
   import Document from './document/Document.svelte'
   import Expander from './Expander.svelte'
   import PageArticles from './PageArticles.svelte'
   import PageIntro from './PageIntro.svelte'
   import Text from './Text.svelte'
+  import Columns from './Columns.svelte'
 
   export let content: Entry<any>[]
   export let path: string = undefined
@@ -25,6 +27,8 @@
   </Expander>
   {:else if entry.sys.contentType.sys.id === 'text'}
   <Text {entry} />
+  {:else if entry.sys.contentType.sys.id === 'columns'}
+  <Columns {entry} />
   {/if}
 </div>
 {/each}

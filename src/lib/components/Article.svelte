@@ -42,62 +42,64 @@
 
 
 {#key article.fields.id}
-<header class="{grid({ columns: 2 })}" style="background: {{
-  'pink': vars.colors.coral,
-  'green': vars.colors.yellow,
-  'blue': vars.colors.marin,
-  'cyan': vars.colors.moss
-}[color]}; --text-decoration-color: {vars.colors[color]}">
-  {#if article.fields.image}
-  <figure class="{col({ span: 2 })}">
-    <Picture media={article.fields.image} />
-  </figure>
-  {/if}
+<section style="--decoration-color: {vars.colors[color]}">
+  <header class="{grid({ columns: 2 })}" style="background: {{
+    'pink': vars.colors.coral,
+    'green': vars.colors.yellow,
+    'blue': vars.colors.marin,
+    'cyan': vars.colors.moss
+  }[color]}">
+    {#if article.fields.image}
+    <figure class="{col({ span: 2 })}">
+      <Picture media={article.fields.image} />
+    </figure>
+    {/if}
 
-  <h1 class="h3">
-    {article.fields.title}
-  </h1>
+    <h1 class="h3">
+      {article.fields.title}
+    </h1>
 
-  {#if article.fields.description}
-  <Document body={article.fields.description} />
-  {/if}
+    {#if article.fields.description}
+    <Document body={article.fields.description} />
+    {/if}
 
-  {#if article.fields.tags}
-  <div style={article.fields.description && "grid-column-start: 1; grid-row-start: 3"}>
-    <Tags tags={article.fields.tags} />
-  </div>
-  {/if}
-
-  {#if article.fields.contributors}
-  <div class="{grid({ columns: 2, gap: 'tight' })} {col({ span: 2 })}">
-    <h3 class="{col({ span: 2 })}">Contributors</h3>
-    {#each article.fields.contributors as contributor}
-    <div class="contributor {box({ padding: 'tight' })} {grid({ columns: 2, gap: 'tight' })}">
-      <figure class="">
-        <Picture media={contributor.fields.image} small ar={1} />
-      </figure>
-
-      <div>
-        <p>{contributor.fields.job}</p>
-        <h2>{contributor.fields.title}</h2>
-        <p>{contributor.fields.description}</p>
-
-        {#if contributor.fields.contactLink}
-        <a href={contributor.fields.contactLink} target="_blank" rel="external">Contact {contributor.fields.title} →</a>
-        {/if}
-      </div>
+    {#if article.fields.tags}
+    <div style={article.fields.description && "grid-column-start: 1; grid-row-start: 3"}>
+      <Tags tags={article.fields.tags} />
     </div>
-    {/each}
-  </div>
-  {/if}
-</header>
+    {/if}
 
-<Content content={article.fields.content} />
+    {#if article.fields.contributors}
+    <div class="{grid({ columns: 2, gap: 'tight' })} {col({ span: 2 })}">
+      <h3 class="{col({ span: 2 })}">Contributors</h3>
+      {#each article.fields.contributors as contributor}
+      <div class="contributor {box({ padding: 'tight' })} {grid({ columns: 2, gap: 'tight' })}">
+        <figure class="">
+          <Picture media={contributor.fields.image} small ar={1} />
+        </figure>
+
+        <div>
+          <p>{contributor.fields.job}</p>
+          <h2>{contributor.fields.title}</h2>
+          <p>{contributor.fields.description}</p>
+
+          {#if contributor.fields.contactLink}
+          <a href={contributor.fields.contactLink} target="_blank" rel="external">Contact {contributor.fields.title} →</a>
+          {/if}
+        </div>
+      </div>
+      {/each}
+    </div>
+    {/if}
+  </header>
+
+  <Content content={article.fields.content} />
+</section>
 {/key}
 
 <style>
   header {
-    margin: calc(-2vw - 1px) calc(-2vw - 1px) 0;
+    margin: calc(-2vw - 1px) calc(-2vw - 1px) 2vw;
     padding: 2vw;
   }
 
@@ -120,6 +122,6 @@
   .contributor a {
     position: absolute;
     bottom: 0.5rem;
-    text-decoration-color: var(--text-decoration-color);
+    text-decoration-color: var(--decoration-color);
   }
 </style>

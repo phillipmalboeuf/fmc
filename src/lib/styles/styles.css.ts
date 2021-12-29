@@ -117,6 +117,10 @@ globalStyle('a', {
   color: 'currentColor'
 })
 
+globalStyle('figure', {
+  margin: 0
+})
+
 globalStyle('[id]', {
   scrollMarginTop: vars.space.medium
 })

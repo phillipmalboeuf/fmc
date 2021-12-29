@@ -13,6 +13,12 @@
     width: 100%;
     max-width: 100%;
   }
+
+  small {
+    display: block;
+    text-align: right;
+    margin-top: 0.5rem;
+  }
 </style>
 
 {#if media.fields.file.contentType.startsWith('video/')}
