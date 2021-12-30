@@ -8,9 +8,8 @@ export const btn = recipe({
     cursor: "pointer",
     textDecoration: 'none',
     lineHeight: 1,
-    border: 'none',
     display: 'inline-block',
-    
+    border: '1px solid transparent',
     selectors: {
       '&:hover': {
         // background: 'var(--hover-color)',
@@ -20,21 +19,27 @@ export const btn = recipe({
   }],
 
   variants: {
-    color: {
-      outline: [fmc({ fontSize: 'big' }), { fontFamily: vars.fonts.heading, textTransform: 'uppercase', color: 'currentColor', background: 'transparent', border: '1px solid' }],
-      // muted: fmc({ background: 'violet', color: 'white' }),
-      bold: [fmc({ background: 'pink', color: 'white' }), { border: '1px solid transparent',
-       selectors: {
-        '&:hover': {
-          color: vars.colors.black
-        }
-      } }],
-    },
     hover: {
       green: { selectors: { '&:hover': { background: vars.colors.green, color: vars.colors.black } } },
       blue: { selectors: { '&:hover': { background: vars.colors.blue } } },
       cyan: { selectors: { '&:hover': { background: vars.colors.cyan, color: vars.colors.black } } },
       pink: { selectors: { '&:hover': { background: vars.colors.pink } } },
+    },
+    color: {
+      outline: [fmc({ fontSize: 'big' }), { fontFamily: vars.fonts.heading, textTransform: 'uppercase', color: 'currentColor', background: 'transparent', border: '1px solid' }],
+      // muted: fmc({ background: 'violet', color: 'white' }),
+      green: [fmc({ background: 'pink', color: 'black' }), { selectors: { 
+        '&:hover': { color: vars.colors.white, background: vars.colors.yellow } 
+      }}],
+      blue: [fmc({ background: 'pink', color: 'white' }), { selectors: { 
+        '&:hover': { color: vars.colors.black, background: vars.colors.marin } 
+      }}],
+      cyan: [fmc({ background: 'cyan', color: 'black' }), { selectors: { 
+        '&:hover': { color: vars.colors.white, background: vars.colors.moss } 
+      }}],
+      pink: [fmc({ background: 'pink', color: 'white' }), { selectors: { 
+        '&:hover': { color: vars.colors.black, background: vars.colors.coral } 
+      }}],
     },
     size: {
       small: fmc({ padding: 'small' }),
@@ -51,15 +56,6 @@ export const btn = recipe({
 
   // Applied when multiple variants are set at once
   compoundVariants: [
-    {
-      variants: {
-        color: 'bold',
-        hover: 'pink'
-      },
-      style: {
-        selectors: { '&:hover': { background: vars.colors.coral } }
-      }
-    }
   ],
 
   defaultVariants: {

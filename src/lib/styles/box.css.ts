@@ -13,10 +13,11 @@ export const box = recipe({
 
   variants: {
     color: {
-      green: { background: vars.colors.green, color: vars.colors.black },
-      blue: { background: vars.colors.blue },
-      cyan: { background: vars.colors.cyan, color: vars.colors.black },
-      pink: { background: vars.colors.pink },
+      muted: fmc({ background: 'offwhite' }),
+      green: fmc({ background: 'green', color: 'black' }),
+      blue: fmc({ background: 'blue' }),
+      cyan: fmc({ background: 'cyan', color: 'black' }),
+      pink: fmc({ background: 'pink' }),
     },
     padding: {
       none: { padding: 0 },
@@ -28,10 +29,4 @@ export const box = recipe({
   defaultVariants: {
     padding: 'small'
   }
-})
-
-globalStyle(`${box} .close`, {
-  position: 'absolute',
-  top: '0.5em',
-  right: '0.5em'
 })

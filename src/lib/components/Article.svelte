@@ -42,12 +42,22 @@
 
 
 {#key article.fields.id}
-<section style="--decoration-color: {vars.colors[color]}">
+<section style="--decoration-color: {vars.colors[color]}; --header-color: {{
+    'pink': vars.colors.white,
+    'green': vars.colors.white,
+    'blue': vars.colors.black,
+    'cyan': vars.colors.black
+  }[color]}">
   <header class="{grid({ columns: 2 })}" style="background: {{
     'pink': vars.colors.coral,
     'green': vars.colors.yellow,
     'blue': vars.colors.marin,
     'cyan': vars.colors.moss
+  }[color]}; color: {{
+    'pink': vars.colors.black,
+    'green': vars.colors.black,
+    'blue': vars.colors.white,
+    'cyan': vars.colors.white
   }[color]}">
     {#if article.fields.image}
     <figure class="{col({ span: 2 })}">

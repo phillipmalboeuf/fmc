@@ -30,7 +30,7 @@
 
 <style>
   .title {
-    color: white;
+    color: var(--header-color);
     background-color: var(--decoration-color);
   }
 

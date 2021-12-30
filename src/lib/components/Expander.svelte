@@ -6,13 +6,13 @@
   export let color: any
   export let href: string = undefined
 
-  export let expanded = false
+  export let expanded = true
   export let bold = false
 </script>
 
 {#if expanded}
-<section class={box()}>
-  <a class="close" href="/" on:click={(e) => {
+<section class={box({ color: bold ? 'muted' : undefined })}>
+  <a class:bold class="close" href="/" on:click={(e) => {
     e.preventDefault()
     expanded = false
 
@@ -24,7 +24,7 @@
   <slot></slot>
 </section>
 {:else}
-<a class={btn({ full: true, hover: color, color: bold ? 'bold' : 'outline' })} {href} on:click={(e) => {
+<a class={btn({ full: true, hover: color, color: bold ? color : 'outline' })} {href} on:click={(e) => {
   e.preventDefault()
   expanded = true
 
@@ -35,3 +35,18 @@
   <slot name="label" />
 </a>
 {/if}
+
+<style>
+  .close {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+  }
+
+  .close.bold {
+    top: auto;
+    bottom: 1em;
+    left: 0.5em;
+    text-align: center;
+  }
+</style>
