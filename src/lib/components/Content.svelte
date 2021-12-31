@@ -7,6 +7,7 @@
   import PageIntro from './PageIntro.svelte'
   import Text from './Text.svelte'
   import Columns from './Columns.svelte'
+  import Chart from './Chart.svelte'
 
   export let content: Entry<any>[]
   export let path: string = undefined
@@ -29,6 +30,8 @@
   <Text {entry} />
   {:else if entry.sys.contentType.sys.id === 'columns'}
   <Columns {entry} />
+  {:else if entry.sys.contentType.sys.id === 'chart'}
+  <Chart {entry} />
   {/if}
 </div>
 {/each}

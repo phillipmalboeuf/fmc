@@ -26,6 +26,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@amcharts/amcharts5": "^5.0.20",
     "contentful": "^9.1.5",
     "json-complete": "^2.0.1"
   }
