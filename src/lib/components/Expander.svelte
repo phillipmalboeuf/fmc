@@ -6,7 +6,7 @@
   export let color: any
   export let href: string = undefined
 
-  export let expanded = true
+  export let expanded = false
   export let bold = false
 </script>
 
