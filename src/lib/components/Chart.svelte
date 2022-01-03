@@ -8,6 +8,7 @@
     data: string
     type: string
     alignment: string
+    stacked: boolean
     minimum: number
     maximum: number
     axeTitle: string
@@ -35,7 +36,7 @@
   export let entry: Entry<ChartDocument>
   export let small: boolean = false
 
-  const { fields: { title, description, type, alignment, data, minimum, maximum, axeTitle } } = entry
+  const { fields: { title, description, type, alignment, data, minimum, maximum, axeTitle, stacked } } = entry
 
   const dataSource = csvToChartData(data)
 
@@ -45,11 +46,13 @@
 
     switch (type) {
       case 'Columns':
-        chart = createColumns(element, dataSource, alignment !== 'Horizontal', minimum, maximum, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
+        chart = createColumns(element, dataSource, alignment !== 'Horizontal', stacked, minimum, maximum, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
+        chart.appear(1000, 100)
         break
 
       case 'Curve':
-        chart = createCurve(element, dataSource, alignment !== 'Horizontal', minimum, maximum, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
+        chart = createCurve(element, dataSource, alignment !== 'Horizontal', stacked, minimum, maximum, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
+        chart.appear(1000, 100)
         break
     
       default:
@@ -98,5 +101,6 @@
   figure {
     width: 100%;
     padding-bottom: 42%;
+    margin-bottom: 5rem;
   }
 </style>

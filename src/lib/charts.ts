@@ -16,11 +16,11 @@ function csvToArray(str: string, delimiter = ",") {
     return el
   })
 
-  return arr;
+  return arr
 }
 
 
-import { Bullet, Circle, Color, color, DataProcessor, Label, Legend, LinearGradient, percent, Root, Theme, Tooltip } from '@amcharts/amcharts5'
+import { Bullet, Circle, Color, color, DataProcessor, Label, Legend, LinearGradient, p100, p50, percent, Root, Theme, Tooltip } from '@amcharts/amcharts5'
 import { XYChart, ValueAxis, CategoryAxis, AxisRendererX, ColumnSeries, AxisRendererY, LineSeries, AxisLabel, XYCursor } from '@amcharts/amcharts5/xy'
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated"
 // import am5themes_Dark from "@amcharts/amcharts5/themes/Dark"
@@ -49,7 +49,7 @@ export function init(element: HTMLElement, locale: string) {
   root.locale = locale === 'fr' ? am5locales_fr : am5locales_en
 
   root.setThemes([
-    // am5themes_Animated.new(root),
+    am5themes_Animated.new(root),
     // am5themes_Dark.new(root),
     myTheme
   ]);
@@ -59,28 +59,33 @@ export function init(element: HTMLElement, locale: string) {
 
 
 
-export function createColumns(element: HTMLElement, seriesData: any[], vertical: boolean, min: number, max: number, title: string, firstColor: string, secondColor: string, locale: string) {
+export function createColumns(element: HTMLElement, seriesData: any[], vertical: boolean, stacked: boolean, min: number, max: number, title: string, firstColor: string, secondColor: string, locale: string) {
+  const keys = Object.keys(seriesData[0]).filter(key => !['Category'].includes(key))
+
   let root = init(element, locale)
   let chart = root.container.children.push(
     XYChart.new(root, {
       panY: false,
-      layout: vertical ? root.verticalLayout : root.horizontalLayout,
+      layout: root.verticalLayout,
       paddingLeft: 0,
-      paddingRight: 0,
+      // paddingRight: 0,
     })
   )
 
+  chart.getNumberFormatter().set("numberFormat", "#.#s")
 
-  let yAxis = chart.yAxes.push(
+  let valueAxis = (vertical ? chart.yAxes : chart.xAxes).push(
     ValueAxis.new(root, {
       min,
       max,
-      renderer: AxisRendererY.new(root, {})
+      renderer: (vertical ? AxisRendererY : AxisRendererX).new(root, {
+        // minGridDistance: 100,
+      })
     })
   )
 
   if (min > 0) {
-    yAxis.labelsContainer.children.push(Label.new(root, {
+    valueAxis.labelsContainer.children.push(Label.new(root, {
       text: 'truncated',
       y: percent(100),
       x: -50,
@@ -88,33 +93,47 @@ export function createColumns(element: HTMLElement, seriesData: any[], vertical:
     }))
   }
   
-  title && chart.leftAxesContainer.children.push(Label.new(root, {
+  title && (vertical ? chart.leftAxesContainer.children.unshift(Label.new(root, {
     text: title,
     rotation: -90,
     y: percent(50),
     centerX: percent(50),
     fontSize: '0.75em'
-  }))
+  })) : chart.bottomAxesContainer.children.push(Label.new(root, {
+    text: title,
+    rotation: 0,
+    x: percent(50),
+    centerX: percent(50),
+    fontSize: '0.75em'
+  })))
 
-  let renderer = AxisRendererX.new(root, {
-    minGridDistance: 30
+  let renderer = (vertical ? AxisRendererX : AxisRendererY).new(root, {
+    minGridDistance: 40,
+    ...seriesData.length > 4 ? {} : {
+      cellStartLocation: 0.1,
+      cellEndLocation: 0.9
+    },
+    inversed: !vertical
   })
   renderer.grid.template.setAll({
     strokeOpacity: 0
   })
   
-  let xAxis = chart.xAxes.push(
+  renderer.labels.template.setAll({
+    rotation: 0,
+    ...seriesData.length > 6 ? {
+      // textAlign: 'right',
+      rotation: -80,
+    } : {}
+  })
+  
+  let categoryAxis = (vertical ? chart.xAxes : chart.yAxes).push(
     CategoryAxis.new(root, {
       renderer,
       categoryField: "Category",
     })
   )
-  xAxis.data.setAll(seriesData)
-
-
-
-  const keys = Object.keys(seriesData[0]).filter(key => !['Category'].includes(key))
-  
+  categoryAxis.data.setAll(seriesData)
 
   keys.forEach((name, i) => {
     // const hsl = color(couleur).toHSL()
@@ -133,53 +152,57 @@ export function createColumns(element: HTMLElement, seriesData: any[], vertical:
 
     let series = chart.series.push(ColumnSeries.new(root, {
       name,
-      xAxis,
-      yAxis,
-      valueYField: name,
-      categoryXField: "Category",
-      // stacked: keys.length > 1,
+      // sequencedInterpolation: true,
+      stacked,
+      ...vertical ? 
+      {
+        xAxis: categoryAxis,
+        yAxis: valueAxis,
+        valueYField: name,
+        categoryXField: "Category",
+      }
+      : {
+        xAxis: valueAxis,
+        yAxis: categoryAxis,
+        valueXField: name,
+        categoryYField: "Category",
+      },
       tooltip: Tooltip.new(root, {}),
     }))
 
     series.columns.template.setAll({
-      // fillGradient: gradient,
       fill,
-      // stroke: Color.fromHSL(hsl.h, hsl.s, hsl.l),
       strokeOpacity: 0,
-      width: percent(88),
-      dx: (100 / keys.length * -i) + 50,
-      cornerRadiusTL: 12,
-      cornerRadiusTR: 12,
-      // ...i > 0 && {
-      //   cornerRadiusBL: 6,
-      //   cornerRadiusBR: 6,
-      // },
-      showTooltipOn: "always",
-      tooltipX: percent(40),
-      tooltipY: percent(0),
-      tooltipText: `{valueY}`
+      ...seriesData.length > 4
+        ? {
+          width: percent(88),
+        }
+        : {
+          width: percent(120),
+        },
+      ...vertical ? {
+        cornerRadiusTL: 12,
+        cornerRadiusTR: 12,
+      } : {
+        cornerRadiusTR: 12,
+        cornerRadiusBR: 12,
+      },
+      showTooltipOn: 'hover',
+      tooltipText: `${keys.length > 1 ? '{name}, ' : ''}${vertical ? `{categoryX}: {valueY}` : `{categoryY}: {valueX}`}`
     })
 
-    series.columns.template.setup = function(target) {
-      const tooltip = Tooltip.new(root, {
-        paddingTop: 0,
-        paddingRight: 3,
-        paddingLeft: 3,
-        paddingBottom: 0,
-        getFillFromSprite: false,
-        autoTextColor: false
-      })
-      tooltip.get("background").setAll({
-        fill: color('#F6F7F6'),
-        strokeOpacity: 0
+    series.bullets.push(function() {
+      return Bullet.new(root, {
+        locationX: vertical ? 0.5 : 1,
+        locationY: vertical ? 1 : 0.5,
+        sprite: Label.new(root, {
+          centerX: vertical ? percent(50) : percent(10),
+          centerY: vertical ? percent(88) : percent(50),
+          text: vertical ? "{valueY}" : "{valueX}",
+          populateText: true,
+        })
       });
-
-      tooltip.label.setAll({
-        fill: color("#0E0E0E")
-      });
-
-      target.set("tooltip", tooltip);
-    }
+    });
 
     series.data.processor = DataProcessor.new(root, {
       numericFields: [name]
@@ -196,7 +219,7 @@ export function createColumns(element: HTMLElement, seriesData: any[], vertical:
   return chart
 }
 
-export function createCurve(element: HTMLElement, seriesData: any[], vertical: boolean, min: number, max: number, title: string, firstColor: string, secondColor: string, locale: string) {
+export function createCurve(element: HTMLElement, seriesData: any[], vertical: boolean, stacked: boolean, min: number, max: number, title: string, firstColor: string, secondColor: string, locale: string) {
   let root = init(element, locale)
   let chart = root.container.children.push(
     XYChart.new(root, {
@@ -208,7 +231,7 @@ export function createCurve(element: HTMLElement, seriesData: any[], vertical: b
     })
   )
 
-  let yAxis = chart.yAxes.push(
+  let valueAxis = chart.yAxes.push(
     ValueAxis.new(root, {
       min,
       max,
@@ -217,7 +240,7 @@ export function createCurve(element: HTMLElement, seriesData: any[], vertical: b
   )
 
   if (min > 0) {
-    yAxis.labelsContainer.children.push(Label.new(root, {
+    valueAxis.labelsContainer.children.push(Label.new(root, {
       text: 'tronqué',
       y: percent(100),
       x: -50,
@@ -225,7 +248,7 @@ export function createCurve(element: HTMLElement, seriesData: any[], vertical: b
     }))
   }
   
-  title && chart.leftAxesContainer.children.push(Label.new(root, {
+  title && chart.leftAxesContainer.children.unshift(Label.new(root, {
     text: title,
     rotation: -90,
     y: percent(50),
@@ -233,15 +256,21 @@ export function createCurve(element: HTMLElement, seriesData: any[], vertical: b
     fontSize: '0.75em'
   }))
 
-  let xAxis = chart.xAxes.push(
+  let renderer = AxisRendererX.new(root, {
+    minGridDistance: 30,
+    // inversed: !vertical
+  })
+  renderer.grid.template.setAll({
+    strokeOpacity: 0
+  })
+
+  let categoryAxis = chart.xAxes.push(
     CategoryAxis.new(root, {
-      renderer: AxisRendererX.new(root, {
-        minGridDistance: 30
-      }),
-      categoryField: "Date",
+      renderer,
+      categoryField: "Category",
     })
   )
-  xAxis.data.setAll(seriesData)
+  categoryAxis.data.setAll(seriesData)
 
 
   const keys = Object.keys(seriesData[0]).filter(key => !['Category', 'Date'].includes(key))
@@ -253,10 +282,10 @@ export function createCurve(element: HTMLElement, seriesData: any[], vertical: b
     
     let series = chart.series.push(LineSeries.new(root, {
       name,
-      xAxis,
-      yAxis,
+      xAxis: categoryAxis,
+      yAxis: valueAxis,
       valueYField: name,
-      categoryXField: "Date",
+      categoryXField: "Category",
       fill,
       stroke: fill,
       tooltip: Tooltip.new(root, {
