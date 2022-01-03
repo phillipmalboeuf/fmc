@@ -12,8 +12,11 @@
   import { setContext } from 'svelte'
 
   export let main: Entry<{ links: Entry<Lien>[] }>
+  export let secondary: Entry<{ links: Entry<Lien>[] }>
+  export let social: Entry<{ links: Entry<Lien>[] }>
+  export let tertiary: Entry<{ links: Entry<Lien>[] }>
   setContext('navigation', {
-    main
+    main, secondary, social, tertiary
   })
 </script>
 

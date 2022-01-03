@@ -13,9 +13,11 @@ export const grid = recipe({
 
   variants: {
     columns: {
+      1: { gridTemplateColumns: '1fr' },
       2: { gridTemplateColumns: '1fr 1fr' },
       3: { gridTemplateColumns: '1fr 1fr 1fr' },
-      4: { gridTemplateColumns: '1fr 1fr 1fr 1fr' }
+      4: { gridTemplateColumns: '1fr 1fr 1fr 1fr' },
+      'auto': { gridTemplateColumns: '1fr' },
     },
     gap: {
       tight: fmc({ columnGap: 'small' }),
@@ -46,6 +48,9 @@ export const col = recipe({
       3: { gridColumnStart: '3' },
       4: { gridColumnStart: '4' }
     },
+    top: {
+      true: { alignSelf: 'flex-start' }
+    }
   },
 
   defaultVariants: {

@@ -6,11 +6,12 @@
   import Document from './document/Document.svelte'
   
 	export let page: Entry<PageDocument>
+  export let h1 = false
 </script>
 
 <header>
   <center>
-    <h2>{page.fields.title}</h2>
+    {#if h1}<h1>{page.fields.title}</h1>{:else}<h2>{page.fields.title}</h2>{/if}
     {#if page.fields.description}<h4>{page.fields.description}</h4>{/if}
   </center>
 

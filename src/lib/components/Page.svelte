@@ -23,6 +23,7 @@
   import Content from './Content.svelte'
   import Document from './document/Document.svelte'
   import Expander from './Expander.svelte'
+  import Footer from './Footer.svelte'
   import type { Lien } from './Link.svelte'
   import Link from './Link.svelte'
   import PageArticles from './PageArticles.svelte'
@@ -80,7 +81,7 @@
 
 <section class={grid({ columns: 4 })}>
   <nav>
-    <h5>Canada Media Fund</h5>
+    <h5><a href="/">Canada Media Fund</a></h5>
 
     {#if main}
     {#each main.fields.links as link}
@@ -112,13 +113,15 @@
     {#key page.fields.id}
 
     {#if !index}
-    <PageIntro {page} />
+    <PageIntro {page} h1 />
     {/if}
 
     <Content content={page.fields.content} {path} />
 
     <PageArticles {page} />
     {/key}
+
+    <Footer />
   </section>
 </section>
 
