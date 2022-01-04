@@ -1,6 +1,6 @@
 import { globalStyle } from '@vanilla-extract/css'
 import { recipe } from '@vanilla-extract/recipes'
-import { fmc, vars } from './styles.css'
+import { backs, fmc, texts, vars } from './styles.css'
 
 export const btn = recipe({
   base: [{
@@ -20,25 +20,25 @@ export const btn = recipe({
 
   variants: {
     hover: {
-      green: { selectors: { '&:hover': { background: vars.colors.green, color: vars.colors.black } } },
-      blue: { selectors: { '&:hover': { background: vars.colors.blue } } },
-      cyan: { selectors: { '&:hover': { background: vars.colors.cyan, color: vars.colors.black } } },
-      pink: { selectors: { '&:hover': { background: vars.colors.pink } } },
+      green: { selectors: { '&:hover': { background: vars.colors['green'], color: vars.colors[texts('green')] } } },
+      blue: { selectors: { '&:hover': { background: vars.colors['blue'], color: vars.colors[texts('blue')] } } },
+      cyan: { selectors: { '&:hover': { background: vars.colors['cyan'], color: vars.colors[texts('cyan')]} } },
+      pink: { selectors: { '&:hover': { background: vars.colors['pink'], color: vars.colors[texts('pink')] } } },
     },
     color: {
       outline: [fmc({ fontSize: 'big' }), { fontFamily: vars.fonts.heading, textTransform: 'uppercase', color: 'currentColor', background: 'transparent', border: '1px solid' }],
       // muted: fmc({ background: 'violet', color: 'white' }),
-      green: [fmc({ background: 'pink', color: 'black' }), { selectors: { 
-        '&:hover': { color: vars.colors.white, background: vars.colors.yellow } 
+      green: [{ background: vars.colors['green'], color: vars.colors[texts('green')] }, { selectors: { 
+        '&:hover': { color: vars.colors[texts(backs('green'))], background: vars.colors[backs('green')] } 
       }}],
-      blue: [fmc({ background: 'pink', color: 'white' }), { selectors: { 
-        '&:hover': { color: vars.colors.black, background: vars.colors.marin } 
+      blue: [{ background: vars.colors['blue'], color: vars.colors[texts('blue')] }, { selectors: { 
+        '&:hover': { color: vars.colors[texts(backs('blue'))], background: vars.colors[backs('blue')] } 
       }}],
-      cyan: [fmc({ background: 'cyan', color: 'black' }), { selectors: { 
-        '&:hover': { color: vars.colors.white, background: vars.colors.moss } 
+      cyan: [{ background: vars.colors['cyan'], color: vars.colors[texts('cyan')] }, { selectors: { 
+        '&:hover': { color: vars.colors[texts(backs('cyan'))], background: vars.colors[backs('cyan')] } 
       }}],
-      pink: [fmc({ background: 'pink', color: 'white' }), { selectors: { 
-        '&:hover': { color: vars.colors.black, background: vars.colors.coral } 
+      pink: [{ background: vars.colors['pink'], color: vars.colors[texts('pink')] }, { selectors: { 
+        '&:hover': { color: vars.colors[texts(backs('pink'))], background: vars.colors[backs('pink')] } 
       }}],
     },
     size: {

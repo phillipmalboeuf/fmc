@@ -108,7 +108,7 @@
     {/if}
   </nav>
 
-  <section bind:offsetHeight class={col({ span: 3 })}>
+  <section bind:offsetHeight class="content {col({ span: 3 })}">
 
     {#key page.fields.id}
 
@@ -116,7 +116,7 @@
     <PageIntro {page} h1 />
     {/if}
 
-    <Content content={page.fields.content} {path} />
+    <Content content={page.fields.content} {path} media={page.fields.image} color={page.fields.color.toLowerCase()} />
 
     <PageArticles {page} />
     {/key}
@@ -132,6 +132,7 @@
     top: 2vh;
     left: 0;
     width: 8rem;
+    z-index: 10;
     align-self: flex-start;
   }
 
@@ -157,7 +158,7 @@
 
     transform: translateX(0.66em) rotate(90deg);
     transform-origin: top left;
-    width: 50vh;
+    width: 33vh;
   }
 
   progress[value]::-webkit-progress-bar {

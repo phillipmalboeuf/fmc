@@ -18,6 +18,7 @@ export const box = recipe({
       blue: fmc({ background: 'blue' }),
       cyan: fmc({ background: 'cyan', color: 'black' }),
       pink: fmc({ background: 'pink' }),
+      coral: fmc({ background: 'coral', color: 'black' }),
       grey: fmc({ background: 'grey', color: 'white' }),
     },
     padding: {
