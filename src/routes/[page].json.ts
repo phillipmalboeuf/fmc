@@ -4,8 +4,8 @@ import type { Entry } from 'contentful'
 import json from 'json-complete'
 
 // @ts-ignore
-export const get: RequestHandler = async ({ params, query }) => {
-  const locale = query.get('locale')
+export const get: RequestHandler = async ({ params }) => {
+  const locale = params.locale
 	const [pages] = await Promise.all([
     entries('page', locale, { 'fields.id': params.page }),
     // entries('theme', locale)
