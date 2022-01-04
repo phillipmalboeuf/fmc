@@ -39,24 +39,6 @@ export const vars = createGlobalTheme(':root', {
   space
 })
 
-export const backs = (color: string) => ({
-  'pink': 'coral',
-  'green': 'yellow',
-  'blue': 'marin',
-  'cyan': 'moss',
-}[color])
-
-export const texts = (color: string) => ({
-  'pink': 'white',
-  'coral': 'black',
-  'green': 'black',
-  'yellow': 'black',
-  'blue': 'white',
-  'cyan': 'black',
-  'marin': 'white',
-  'moss': 'white',
-}[color])
-
 globalFontFace('Trim', {
   src: 'url("/fonts/Trim-Regular.otf") format("opentype")',
   fontWeight: 'normal',

@@ -16,3 +16,21 @@ export const date = (value: string | Date, time=false, lang='fr') =>
 
 export const money = (value: number | string) => 
   value !== undefined && value !== null ? `$${parseFloat(value as string).toFixed(2)}` : `–`
+
+export const backs = (color: string) => ({
+  'pink': 'coral',
+  'green': 'yellow',
+  'blue': 'marin',
+  'cyan': 'moss',
+}[color])
+
+export const texts = (color: string) => ({
+  'pink': 'white',
+  'coral': 'black',
+  'green': 'black',
+  'yellow': 'black',
+  'blue': 'white',
+  'cyan': 'black',
+  'marin': 'white',
+  'moss': 'white',
+}[color])

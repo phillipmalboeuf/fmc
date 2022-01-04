@@ -1,6 +1,7 @@
 import { globalStyle } from '@vanilla-extract/css'
 import { recipe } from '@vanilla-extract/recipes'
-import { backs, fmc, texts, vars } from './styles.css'
+import { fmc, vars } from './styles.css'
+import { backs, texts } from '$lib/formatters'
 
 export const btn = recipe({
   base: [{

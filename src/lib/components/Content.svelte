@@ -11,7 +11,8 @@
   import Picture from './Picture.svelte'
 
   import { box } from '$lib/styles/box.css'
-  import { backs, texts, vars } from '$lib/styles/styles.css'
+  import { vars } from '$lib/styles/styles.css'
+  import { backs, texts } from '$lib/formatters'
 
   export let content: Entry<any>[]
   export let path: string = undefined
