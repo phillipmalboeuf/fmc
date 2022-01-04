@@ -20,6 +20,8 @@
   import { col, grid } from '$lib/styles/grid.css'
 
   import { getContext, onMount, setContext } from 'svelte'
+  import { slide } from 'svelte/transition'
+
   import Content from './Content.svelte'
   import Document from './document/Document.svelte'
   import Expander from './Expander.svelte'
@@ -104,7 +106,7 @@
 
     {#if scrollY !== undefined}
     <!-- <progress value={scrollY + 1} max={Math.max(offsetHeight - innerHeight, 1)} /> -->
-    <progress value={scrollY + innerHeight} max={Math.max(offsetHeight, innerHeight)} />
+    <progress transition:slide value={scrollY + innerHeight} max={Math.max(offsetHeight, innerHeight)} />
     {/if}
   </nav>
 
