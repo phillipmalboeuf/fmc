@@ -1,8 +1,9 @@
 <script context="module" lang="ts">
   import { respond } from '$lib/responses'
+  import type { Load } from '@sveltejs/kit'
 
-  export async function load({ page, fetch, session, context }) {
-		return respond(fetch, `/layout.json`, page.params.locale)
+  export const load: Load = async ({ params, fetch, session }) => {
+		return respond(fetch, `/layout.json`, params.locale)
 	}
 </script>
 

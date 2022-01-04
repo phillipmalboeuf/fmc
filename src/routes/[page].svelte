@@ -2,9 +2,9 @@
   import type { Load } from '@sveltejs/kit'
   import { respond } from '$lib/responses'
   
-  export const load: Load = async ({ page, fetch, session, stuff }) => {
-    if (page.params.page === 'fr' || page.params.page === 'en') { return }
-		return respond(fetch, `/${page.params.page}.json`, page.params.locale)
+  export const load: Load = async ({ params, fetch, session, stuff }) => {
+    if (params.page === 'fr' || params.page === 'en') { return }
+		return respond(fetch, `/${params.page}.json`, params.locale)
 	}
 </script>
 
