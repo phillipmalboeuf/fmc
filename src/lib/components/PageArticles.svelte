@@ -15,7 +15,7 @@
 {#each page.fields.articles as article}
 <Expander color={page.fields.color.toLowerCase()} bold>
   <div slot="label">
-    <Tags tags={article.fields.tags} />
+    <Tags tags={[article.fields.type]} />
     <h3>{article.fields.title}</h3>
     <h5>Learn More +</h5>
   </div>

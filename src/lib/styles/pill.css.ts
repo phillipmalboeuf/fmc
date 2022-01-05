@@ -15,7 +15,15 @@ export const pill = recipe({
     borderRadius: 6,
     border: '1px solid',
     margin: '0 0.5em 0.5em 0',
-    textTransform: 'uppercase'
+    textTransform: 'uppercase',
+    textDecoration: 'none',
+    selectors: {
+      '&:hover, &:focus': {
+        background: 'var(--color)',
+        color: 'var(--text-color)',
+        borderColor: 'transparent',
+      }
+    }
   },
 
   variants: {

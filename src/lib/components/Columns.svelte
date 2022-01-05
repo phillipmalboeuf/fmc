@@ -30,8 +30,8 @@
 
 <style>
   .title {
-    color: var(--header-color);
-    background-color: var(--decoration-color);
+    color: var(--text-color);
+    background-color: var(--color);
   }
 
   .title h2 {

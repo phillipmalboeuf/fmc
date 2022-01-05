@@ -5,6 +5,6 @@
 
 <div class="{pills()}">
   {#each tags as tag}
-  <div class="{pill()}">{tag}</div>
+  <a href="/articles?t={tag}" class="{pill()}">{tag}</a>
   {/each}
 </div>

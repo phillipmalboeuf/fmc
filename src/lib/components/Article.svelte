@@ -6,6 +6,7 @@
     title: string
     id: string
     description?: RichTextContent
+    type: string
     tags: string[]
     image: Asset
     contributors: Entry<{
@@ -34,6 +35,7 @@
   import Link from './Link.svelte'
   import Picture from './Picture.svelte'
   import Tags from './Tags.svelte'
+  import { backs, texts } from '$lib/formatters'
 
 	export let article: Entry<ArticleDocument>
   export let color: string
@@ -42,23 +44,8 @@
 
 
 {#key article.fields.id}
-<section style="--decoration-color: {vars.colors[color]}; --header-color: {{
-    'pink': vars.colors.white,
-    'green': vars.colors.white,
-    'blue': vars.colors.black,
-    'cyan': vars.colors.black
-  }[color]}">
-  <header class="{grid({ columns: 2 })}" style="background: {{
-    'pink': vars.colors.coral,
-    'green': vars.colors.yellow,
-    'blue': vars.colors.marin,
-    'cyan': vars.colors.moss
-  }[color]}; color: {{
-    'pink': vars.colors.black,
-    'green': vars.colors.black,
-    'blue': vars.colors.white,
-    'cyan': vars.colors.white
-  }[color]}">
+<section style="--color: {vars.colors[color]}; --text-color: {vars.colors[texts(color)]}">
+  <header class="{grid({ columns: 2 })}" style="background: {vars.colors[backs(color)]}; color: {vars.colors[texts(backs(color))]}">
     {#if article.fields.image}
     <figure class="{col({ span: 2 })}">
       <Picture media={article.fields.image} />
@@ -75,7 +62,7 @@
 
     {#if article.fields.tags}
     <div style={article.fields.description && "grid-column-start: 1; grid-row-start: 3"}>
-      <Tags tags={article.fields.tags} />
+      <Tags tags={[article.fields.type, ...article.fields.tags]} />
     </div>
     {/if}
 
@@ -132,6 +119,6 @@
   .contributor a {
     position: absolute;
     bottom: 0.5rem;
-    text-decoration-color: var(--decoration-color);
+    text-decoration-color: var(--color);
   }
 </style>
