@@ -117,6 +117,11 @@ globalStyle('a', {
   color: 'currentColor'
 })
 
+globalStyle('button', {
+  cursor: 'pointer',
+  color: 'currentColor'
+})
+
 globalStyle('figure', {
   margin: 0
 })

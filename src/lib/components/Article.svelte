@@ -27,6 +27,8 @@
   import { col, grid } from '$lib/styles/grid.css'
   import { box } from '$lib/styles/box.css'
   import { vars } from '$lib/styles/styles.css'
+  import { pill } from '$lib/styles/pill.css'
+  import { backs, texts } from '$lib/formatters'
 
   import { getContext, onMount, setContext } from 'svelte'
   import Content from './Content.svelte'
@@ -35,10 +37,11 @@
   import Link from './Link.svelte'
   import Picture from './Picture.svelte'
   import Tags from './Tags.svelte'
-  import { backs, texts } from '$lib/formatters'
+  import ShareBar from './ShareBar.svelte'
 
 	export let article: Entry<ArticleDocument>
   export let color: string
+  export let onBack: svelte.JSX.MouseEventHandler<HTMLAnchorElement> = undefined
 </script>
 
 
@@ -46,6 +49,8 @@
 {#key article.fields.id}
 <section style="--color: {vars.colors[color]}; --text-color: {vars.colors[texts(color)]}">
   <header class="{grid({ columns: 2 })}" style="background: {vars.colors[backs(color)]}; color: {vars.colors[texts(backs(color))]}">
+    <ShareBar {article} {onBack} />
+
     {#if article.fields.image}
     <figure class="{col({ span: 2 })}">
       <Picture media={article.fields.image} />

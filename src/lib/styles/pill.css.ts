@@ -5,35 +5,45 @@ import { fmc, vars } from './styles.css'
 export const pills = recipe({
   base: {
     display: 'flex',
+    width: '100%',
     flexWrap: 'wrap',
+    alignItems: 'center',
+    gap: '0.5em',
     marginBottom: '1em'
   },
 })
 
 export const pill = recipe({
   base: {
-    borderRadius: 6,
     border: '1px solid',
-    margin: '0 0.5em 0.5em 0',
     textTransform: 'uppercase',
-    textDecoration: 'none',
-    selectors: {
-      '&:hover, &:focus': {
-        background: 'var(--color)',
-        color: 'var(--text-color)',
-        borderColor: 'transparent',
-      }
-    }
+    textDecoration: 'none'
   },
 
   variants: {
+    clickable: {
+      true: {
+        selectors: {
+          '&:hover, &:focus': {
+            background: 'var(--color)',
+            color: 'var(--text-color)',
+            borderColor: 'transparent',
+          }
+        }
+      }
+    },
     padding: {
       none: { padding: 0 },
-      small: { padding: '0.5em' },
+      small: { padding: '0.5em 0.5em 0.35em' },
     },
+    corner: {
+      small: { borderRadius: 6 },
+      thick: { borderRadius: 12 }
+    }
   },
 
   defaultVariants: {
-    padding: 'small'
+    padding: 'small',
+    corner: 'small'
   }
 })
