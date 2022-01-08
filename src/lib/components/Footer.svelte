@@ -14,7 +14,7 @@
   <h5 class="logo">Canada<br>Media Fund</h5>
 
   <div class="{grid({ columns: 4 })}">
-    <nav class="{col({ span: 3, top: true })} {grid({ columns: 3 })}">
+    <nav class="{col({ span: 3, align: 'top' })} {grid({ columns: 3 })}">
       {#each secondary.fields.links as link}
       <Link {link} />
       {/each}

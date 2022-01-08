@@ -8,6 +8,7 @@
   import Text from './Text.svelte'
   import Columns from './Columns.svelte'
   import Chart from './Chart.svelte'
+  import Media from './Media.svelte'
   import Picture from './Picture.svelte'
 
   import { box } from '$lib/styles/box.css'
@@ -44,6 +45,8 @@
     <Text {entry} />
     {:else if entry.sys.contentType.sys.id === 'columns'}
     <Columns {entry} />
+    {:else if entry.sys.contentType.sys.id === 'media'}
+    <Media {entry} />
     {:else if entry.sys.contentType.sys.id === 'chart'}
     <Chart {entry} />
     {/if}

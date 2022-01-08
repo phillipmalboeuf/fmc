@@ -13,7 +13,9 @@ export const box = recipe({
 
   variants: {
     color: {
+      white: fmc({ background: 'white' }),
       muted: fmc({ background: 'offwhite' }),
+      outline: { border: '1px solid var(--color)', background: 'transparent' },
       green: fmc({ background: 'green', color: 'black' }),
       blue: fmc({ background: 'blue' }),
       cyan: fmc({ background: 'cyan', color: 'black' }),

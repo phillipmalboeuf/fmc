@@ -8,7 +8,8 @@
 
 <style>
   img,
-  video {
+  video,
+  audio {
     display: block;
     width: 100%;
     max-width: 100%;
@@ -16,13 +17,30 @@
 
   small {
     display: block;
+    margin-bottom: 1rem;
+  }
+
+  picture + small {
     text-align: right;
     margin-top: 0.5rem;
+    margin-bottom: 0;
+  }
+ 
+  audio {
+    /* background-color: var(--color);
+    color: var(--color); */
   }
 </style>
 
 {#if media.fields.file.contentType.startsWith('video/')}
-<video src="{media.fields.file.url}" autoplay muted loop playsinline />
+<!-- svelte-ignore a11y-media-has-caption -->
+<video src="{media.fields.file.url}" controls />
+{:else if media.fields.file.contentType.startsWith('audio/')}
+{#if !noDescription && media.fields.description}
+<small>{media.fields.description}</small>
+{/if}
+<!-- svelte-ignore a11y-media-has-caption -->
+<audio src="{media.fields.file.url}" controls />
 {:else}
 <picture>
   {#if small}
@@ -40,8 +58,9 @@
 <img style={ar && `aspect-ratio: 1800 / ${Math.round(ar * 1800)}`} src="{media.fields.file.url}?w=1800{ar ? `&h=${Math.round(ar * 1800)}&fit=fill` : ''}" alt="{media.fields.title} {media.fields.description}" loading={eager ? "eager" : "lazy"} />
   {/if}
 </picture>
-{/if}
 
 {#if !noDescription && media.fields.description}
 <small>{media.fields.description}</small>
 {/if}
+{/if}
+
