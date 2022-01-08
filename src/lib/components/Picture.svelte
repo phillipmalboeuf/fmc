@@ -26,9 +26,8 @@
     margin-bottom: 0;
   }
  
-  audio {
-    /* background-color: var(--color);
-    color: var(--color); */
+  audio::-webkit-media-controls-enclosure {
+    background-color: var(--color);
   }
 </style>
 

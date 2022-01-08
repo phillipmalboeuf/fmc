@@ -51,6 +51,7 @@
 
   aside {
     width: 66%;
+    margin-bottom: 2.5rem;
   }
 
   aside :global(h2),

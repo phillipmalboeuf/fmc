@@ -36,5 +36,11 @@
   <blockquote>{#each node.content as code}<svelte:self node={code} />{/each}</blockquote>
 
 {:else if node.nodeType === 'embedded-asset-block'}
-<Picture media={node.data.target} />
+<figure><Picture media={node.data.target} noDescription small /></figure>
 {/if}
+
+<style>
+  figure {
+    margin-bottom: 2em;
+  }
+</style>
