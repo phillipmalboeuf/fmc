@@ -44,7 +44,25 @@
   export let onBack: svelte.JSX.MouseEventHandler<HTMLAnchorElement> = undefined
 </script>
 
+<svelte:head>
+  <title>{article.fields.title} – Canada Media Fund</title>
+  <meta property="og:title" content="{article.fields.title} – Canada Media Fund" />
+  <meta name="twitter:title" content="{article.fields.title} – Canada Media Fund">
 
+  {#if article.fields.title}
+  <meta name="description" content={article.fields.title}>
+  <meta property="og:description" content={article.fields.title} />
+  <meta name="twitter:description" content={article.fields.title}>
+  {/if}
+
+  {#if article.fields.image}
+  <meta property="og:image" content="https:{article.fields.image.fields.file.url}?w=1200&h=630" />
+  <meta name="twitter:image" content="https:{article.fields.image.fields.file.url}?w=600&h=314" />
+  <meta name="twitter:card" value="summary_large_image">
+  {:else}
+  <meta name="twitter:card" value="summary">
+  {/if}
+</svelte:head>
 
 {#key article.fields.id}
 <section style="--color: {vars.colors[color]}; --text-color: {vars.colors[texts(color)]}">
