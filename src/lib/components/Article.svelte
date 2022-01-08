@@ -66,7 +66,7 @@
     {/if}
 
     {#if article.fields.tags}
-    <div style={article.fields.description && "grid-column-start: 1; grid-row-start: 3"}>
+    <div style={article.fields.description && "grid-column-start: 1; grid-row-start: 4"}>
       <Tags tags={[article.fields.type, ...article.fields.tags]} />
     </div>
     {/if}
