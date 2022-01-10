@@ -20,7 +20,7 @@
   {@html mark.value}
   {/if}
 {:else}
-{mark.value}
+{mark.value.replace(/ :/g, '\u00A0:').replace(/« /g, '«\u00A0').replace(/ »/g, '\u00A0»').replace(/ \?/g, '\u00A0?').replace(/ !/g, '\u00A0!')}
 {/if}
 {:else if mark.nodeType === 'hyperlink'}
 <a href="{mark.data.uri}" target="{mark.data.uri.indexOf('http') === 0 ? '_blank' : '_self'}">
