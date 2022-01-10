@@ -13,14 +13,14 @@
 
 {#if page.fields.articles}
 {#each page.fields.articles as article}
-<Expander href="/{page.fields.id}/{article.fields.id}" color={page.fields.color.toLowerCase()} bold>
+<Expander href="/{page.fields.id}/{article.fields.id}" back="/{page.fields.id}" color={page.fields.color.toLowerCase()} bold>
   <div slot="label">
     <Tags tags={[article.fields.type]} />
     <h3>{article.fields.title}</h3>
     <h5>Learn More +</h5>
   </div>
 
-  <Article {article} color={page.fields.color.toLowerCase()} />
+  <Article {article} color={page.fields.color.toLowerCase()} others={page.fields.articles} />
 </Expander>
 {/each}
 {/if}

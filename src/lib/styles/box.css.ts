@@ -1,3 +1,4 @@
+import { texts } from '$lib/formatters'
 import { globalStyle } from '@vanilla-extract/css'
 import { recipe } from '@vanilla-extract/recipes'
 import { fmc, vars } from './styles.css'
@@ -16,10 +17,10 @@ export const box = recipe({
       white: fmc({ background: 'white' }),
       muted: fmc({ background: 'offwhite' }),
       outline: { border: '1px solid var(--color)', background: 'transparent' },
-      green: fmc({ background: 'green', color: 'black' }),
-      blue: fmc({ background: 'blue' }),
-      cyan: fmc({ background: 'cyan', color: 'black' }),
-      pink: fmc({ background: 'pink' }),
+      green: { background: vars.colors['green'], color: vars.colors[texts('green')] },
+      blue: { background: vars.colors['blue'], color: vars.colors[texts('blue')] },
+      cyan: { background: vars.colors['cyan'], color: vars.colors[texts('cyan')] },
+      pink: { background: vars.colors['pink'], color: vars.colors[texts('pink')] },
       coral: fmc({ background: 'coral', color: 'black' }),
       grey: fmc({ background: 'grey', color: 'white' }),
     },

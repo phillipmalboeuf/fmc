@@ -9,6 +9,11 @@
     type: string
     tags: string[]
     image: Asset
+    recommended: Entry<ArticleDocument>[]
+    deeperNavigation: Entry<{
+      name: string
+      links: Entry<Lien>[]
+    }>[]
     contributors: Entry<{
       title: string
       id: string
@@ -31,6 +36,8 @@
   import { backs, texts } from '$lib/formatters'
 
   import { getContext, onMount, setContext } from 'svelte'
+  import { page } from '$app/stores'
+
   import Content from './Content.svelte'
   import Document from './document/Document.svelte'
   import type { Lien } from './Link.svelte'
@@ -38,10 +45,13 @@
   import Picture from './Picture.svelte'
   import Tags from './Tags.svelte'
   import ShareBar from './ShareBar.svelte'
+  import Title from './Title.svelte'
 
 	export let article: Entry<ArticleDocument>
+  export let others: Entry<ArticleDocument>[] = undefined
   export let color: string
-  export let onBack: svelte.JSX.MouseEventHandler<HTMLAnchorElement> = undefined
+  
+  let onBack: svelte.JSX.MouseEventHandler<HTMLAnchorElement> = getContext('close')
 </script>
 
 <svelte:head>
@@ -114,14 +124,72 @@
   </header>
 
   <Content content={article.fields.content} />
+
+  <footer class="{grid({ columns: 2 })}" style="background: {vars.colors[backs(color)]}; color: {vars.colors[texts(backs(color))]}">
+    <Title title={'Dive Deeper'} />
+
+    <nav>
+      <h2>Recommended Articles</h2>
+
+      {#each article.fields.recommended as rec}
+      <a href="/{rec.fields.id}">{rec.fields.title}</a>
+      {/each}
+    </nav>
+
+    {#each article.fields.deeperNavigation as navigation, i}
+    <nav class="{i === 0 && col({ start: 1 })}">
+      <h2>{navigation.fields.name}</h2>
+
+      {#each navigation.fields.links as link}
+      <Link {link} /><br>
+      {/each}
+    </nav>
+    {/each}
+
+    {#if others}
+    {#each others as other}
+    <a href="/{$page.params.page}/{other.fields.id}" class="{box({ color })} other">
+      <h4>Next Article</h4>
+      <h2>{other.fields.title}</h2>
+      <small>Learn more +</small>
+    </a>
+    {/each}
+    {/if}
+
+    <center class="{col({ span: 2 })}">
+      <a class="back" href="/{$page.params.page}" on:click={onBack}><h4>BACK ↩</h4></a>
+    </center>
+  </footer>
 </section>
 {/key}
 
 <style>
-  header {
+  header,
+  footer {
     margin: calc(-2vw - 1px) calc(-2vw - 1px) 2vw;
     padding: 2vw;
   }
+
+  footer {
+    margin: 2vw calc(-2vw - 1px);
+  }
+
+  footer :global(a:not(.back):not(.other)) {
+    display: inline-block;
+    font-size: 1.5em;
+    margin-bottom: 1em;
+  }
+
+  footer :global(a:not(.other):hover),
+  footer :global(a:not(.other):focus) {
+    color: var(--color);
+  }
+
+  a.back,
+  a.other {
+    text-decoration: none;
+  }
+
 
   figure {
     padding: 4rem;

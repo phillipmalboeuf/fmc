@@ -7,7 +7,7 @@ import json from 'json-complete'
 export const get: RequestHandler = async ({ params }) => {
   const locale = params.locale
 	const [pages] = await Promise.all([
-    entries('page', locale, { 'fields.id': params.page }),
+    entries('page', locale, { 'fields.id': params.page }, 4),
     // entries('theme', locale)
   ])
 

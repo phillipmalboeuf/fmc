@@ -6,6 +6,7 @@
   // import type { Lien } from '../Link.svelte'
   import Document from './document/Document.svelte'
   import Picture from './Picture.svelte'
+  import Title from './Title.svelte'
 
   // import Link from '../Link.svelte'
   // import Logo from '../icons/Logo.svelte'
@@ -23,7 +24,7 @@
 </script>
 
 <article class="{grid({ columns: 2 })}">
-  {#if entry.fields.title}<center class="{col({span: 2})} {box()} title"><h2>{entry.fields.title}</h2></center>{/if}
+  {#if entry.fields.title}<Title title={entry.fields.title} />{/if}
   {#if entry.fields.image}<figure class="{col({span: 2})}"><Picture media={entry.fields.image} /></figure>{/if}
   {#if entry.fields.body}<div><Document body={entry.fields.body} /></div>{/if}
   {#if entry.fields.photos?.length}{#each entry.fields.photos as media, i}<figure
@@ -36,15 +37,6 @@
 </article>
 
 <style>
-  .title {
-    color: var(--text-color);
-    background-color: var(--color);
-  }
-
-  .title h2 {
-    margin-bottom: 0;
-  }
-
   figure :global(img) {
     border-radius: 6px;
   }
