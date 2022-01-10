@@ -9,8 +9,8 @@
 
 
   export let contentHeight: number
-  export let path: string
-  export let index: boolean
+  export let path: string = undefined
+  export let index: boolean = false
 
   const { main } = getContext<{ main: Entry<{ links: Entry<Lien>[] }> }>('navigation')
 

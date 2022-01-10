@@ -14,14 +14,17 @@
   import type { PageDocument } from '$lib/components/Page.svelte'
   // import Page from '$lib/components/Page.svelte'
   import Article, { ArticleDocument } from '$lib/components/Article.svelte'
+  import Navigation from '$lib/components/Navigation.svelte'
 
 	export let article: Entry<ArticleDocument>
   export let page: Entry<PageDocument>
+  
+  let offsetHeight: number
 </script>
 
 <section class={grid({ columns: 4 })}>
-  <nav></nav>
-  <section class="content {col({ span: 3 })} {box({ color: 'muted' })}">
+  <Navigation contentHeight={offsetHeight} />
+  <section bind:offsetHeight class="content {col({ span: 3 })} {box({ color: 'muted' })}">
     <Article {article} color={page.fields.color.toLowerCase()} />
   </section>
 </section>
