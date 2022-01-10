@@ -89,7 +89,8 @@ globalStyle('h3, .h3', {
 })
 
 globalStyle('h1, h2, h3, h4, h5, h6, p', {
-  margin: '0 0 ' + vars.space.small
+  margin: '0 0 ' + vars.space.small,
+  whiteSpace: 'pre-line'
 })
 
 globalStyle('h4', {

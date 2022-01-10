@@ -10,10 +10,18 @@
     id: string
     subtitle: string
     body: RichTextContent
+    big: boolean
   }>
 </script>
 
-
+<section class:big={entry.fields.big}>
 {#if entry.fields.subtitle}<p>{entry.fields.subtitle}</p>{/if}
 {#if entry.fields.title}<h2>{entry.fields.title}</h2>{/if}
 {#if entry.fields.body}<Document body={entry.fields.body} />{/if}
+</section>
+
+<style>
+  .big :global(p) {
+    font-size: 1.66em;
+  }
+</style>
