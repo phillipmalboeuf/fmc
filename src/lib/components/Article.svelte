@@ -126,8 +126,9 @@
   <Content content={article.fields.content} />
 
   <footer class="{grid({ columns: 2 })}" style="background: {vars.colors[backs(color)]}; color: {vars.colors[texts(backs(color))]}">
+    {#if article.fields.recommended}
     <Title title={'Dive Deeper'} />
-
+    
     <nav>
       <h2>Recommended Articles</h2>
 
@@ -145,6 +146,7 @@
       {/each}
     </nav>
     {/each}
+    {/if}
 
     {#if others}
     {#each others as other}
