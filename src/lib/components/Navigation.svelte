@@ -11,6 +11,7 @@
   export let contentHeight: number
   export let path: string = undefined
   export let index: boolean = false
+  export let black: boolean = false
 
   const { main } = getContext<{ main: Entry<{ links: Entry<Lien>[] }> }>('navigation')
 
@@ -21,7 +22,7 @@
 
 <svelte:window bind:scrollY bind:innerHeight />
 
-<nav>
+<nav class:black>
   <div bind:offsetHeight={navHeight}>
     <a href="/">
       <Logo />
@@ -62,6 +63,12 @@
     width: 8rem;
     z-index: 10;
     align-self: flex-start;
+
+    --color: white;
+  }
+
+  nav.black {
+    --color: black;
   }
 
   nav :global(a:not(.logo)) {
@@ -70,6 +77,7 @@
     padding: 0.33em;
     margin-bottom: 0.33em;
     border-radius: 6px;
+    color: var(--color);
   }
 
   nav :global(a:not(.logo):hover),
@@ -89,19 +97,19 @@
   }
 
   progress[value]::-webkit-progress-bar {
-    background: white;
+    background: var(--color);
     border-radius: 2px;
     height: 2px;
   }
 
   progress[value]::progress-bar {
-    background: white;
+    background: var(--color);
     border-radius: 2px;
     height: 2px;
   }
 
   progress[value]::-webkit-progress-value {
-    background: white;
+    background: var(--color);
     border-radius: 6px;
     height: 4px;
     position: relative;
@@ -109,7 +117,7 @@
   }
 
   progress[value]::progress-value {
-    background: white;
+    background: var(--color);
     border-radius: 6px;
     height: 4px;
     position: relative;

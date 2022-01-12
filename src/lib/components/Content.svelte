@@ -40,7 +40,9 @@
 
       <svelte:self content={entry.fields.content} />
 
-      <PageArticles page={entry} />
+      {#if entry.fields.articles}
+      <PageArticles articles={entry.fields.articles.map(article => ({ article, page: entry }))} />
+      {/if}
     </Expander>
     {:else if entry.sys.contentType.sys.id === 'text'}
     <Text {entry} />

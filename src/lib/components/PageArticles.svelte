@@ -6,13 +6,16 @@
   import Document from './document/Document.svelte'
   import Expander from './Expander.svelte'
   import Tags from './Tags.svelte'
-  import Article from './Article.svelte'
+  import Article, { ArticleDocument } from './Article.svelte'
   
-	export let page: Entry<PageDocument>
+	export let articles: {
+    article: Entry<ArticleDocument>,
+    page: Entry<PageDocument>
+  }[]
 </script>
 
-{#if page.fields.articles}
-{#each page.fields.articles as article}
+{#if articles}
+{#each articles as { article, page }}
 <Expander href="/{page.fields.id}/{article.fields.id}" back="/{page.fields.id}" color={page.fields.color.toLowerCase()} bold>
   <div slot="label">
     <Tags tags={[article.fields.type]} />

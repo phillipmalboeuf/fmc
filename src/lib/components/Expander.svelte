@@ -26,7 +26,7 @@
 
 {#if expanded}
 <section class={box({ color: bold ? 'muted' : undefined })}>
-  <a class:bold class="close" href={back} on:click={close}>Close</a>
+  <a class:bold class="close" href={back} on:click={close}>CLOSE ×</a>
 
   <slot></slot>
 </section>
@@ -46,8 +46,9 @@
 <style>
   .close {
     position: absolute;
-    top: 0.5em;
-    right: 0.5em;
+    top: 1em;
+    right: 1em;
+    cursor: pointer;
   }
 
   .close.bold {

@@ -5,6 +5,6 @@
 
 <div class="{pills()}">
   {#each tags as tag}
-  <a href="/articles?t={tag}" class="{pill({ clickable: true })}">{tag}</a>
+  <a href="/tags/{tag}" class="{pill({ clickable: true })}">{tag}</a>
   {/each}
 </div>

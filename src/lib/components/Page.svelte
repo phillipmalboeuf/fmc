@@ -88,7 +88,9 @@
 
     <Content content={page.fields.content} {path} media={page.fields.image} color={page.fields.color.toLowerCase()} />
 
-    <PageArticles {page} />
+    {#if page.fields.articles}
+    <PageArticles articles={page.fields.articles.map(article => ({ article, page }))} />
+    {/if}
     {/key}
 
     <Footer />
