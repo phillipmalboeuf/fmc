@@ -15,6 +15,9 @@ const config = {
 		// hydrate the <div id="svelte"> element in src/app.html
 		target: '#svelte',
 		vite: {
+			optimizeDeps: {
+				include: ['lodash.get', 'lodash.isequal', 'lodash.clonedeep']
+			},
 			plugins: [vanillaExtractPlugin()],
 			...process.env.NODE_ENV !== 'development' && {
 				ssr: {

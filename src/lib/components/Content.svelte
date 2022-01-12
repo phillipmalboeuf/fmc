@@ -10,6 +10,7 @@
   import Chart from './Chart.svelte'
   import Media from './Media.svelte'
   import Picture from './Picture.svelte'
+  import Slider from './Slider.svelte'
 
   import { box } from '$lib/styles/box.css'
   import { vars } from '$lib/styles/styles.css'
@@ -23,7 +24,7 @@
 
 {#if content}
 {#each content as entry, i}
-<div class:hero={!!media && i === 0} id={entry.fields.id} style={!!media && i === 0 && `padding-bottom: ${media.fields.file.details.image.height / media.fields.file.details.image.width * 133}%; --back: ${vars.colors[backs(color)]}; --text: ${vars.colors[texts(backs(color))]}`}>
+<div class:hero={!!media && i === 0} id={entry.fields.id} style={!!media && i === 0 && `padding-bottom: ${media.fields.file.details.image.height / media.fields.file.details.image.width * 120}%; --back: ${vars.colors[backs(color)]}; --text: ${vars.colors[texts(backs(color))]}`}>
   {#if media && i === 0}
   <figure>
     <Picture {media} eager />
@@ -49,6 +50,8 @@
     <Media {entry} />
     {:else if entry.sys.contentType.sys.id === 'chart'}
     <Chart {entry} />
+    {:else if entry.sys.contentType.sys.id === 'slider'}
+    <Slider {entry} />
     {/if}
   </div>
 </div>

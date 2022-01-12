@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { box } from '$lib/styles/box.css'
+
   import type { Entry, RichTextContent } from 'contentful'
   // import type { Lien } from '../Link.svelte'
   import Document from './document/Document.svelte'
@@ -11,10 +13,11 @@
     subtitle: string
     body: RichTextContent
     big: boolean
+    boxed: boolean
   }>
 </script>
 
-<section class:big={entry.fields.big}>
+<section class:big={entry.fields.big} class="{entry.fields.boxed && box({ color: 'muted' })}">
 {#if entry.fields.subtitle}<p>{entry.fields.subtitle}</p>{/if}
 {#if entry.fields.title}<h2>{entry.fields.title}</h2>{/if}
 {#if entry.fields.body}<Document body={entry.fields.body} />{/if}

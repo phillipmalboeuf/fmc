@@ -28,15 +28,20 @@
   {#if entry.fields.image}<figure class="{col({span: 2})}"><Picture media={entry.fields.image} /></figure>{/if}
   {#if entry.fields.body}<div><Document body={entry.fields.body} /></div>{/if}
   {#if entry.fields.photos?.length}{#each entry.fields.photos as media, i}<figure
-  class="{i === 0 && col({ start: 1 })}">
+  class="{entry.fields.photos.length > 1 ? (i === 0 && col({ start: 1 })) : col({ align: 'bottom' })}">
     <Picture {media} small />
   </figure>{/each}{/if}
-  <center class="{col({span: 2})}">{#if entry.fields.quote}<h2>{entry.fields.quote}</h2>{/if}</center>
+  {#if entry.fields.quote}<center class="{col({span: 2})}"><h2>{entry.fields.quote}</h2></center>{/if}
   {#if entry.fields.asideContent}<aside class="{box({ color: 'outline', padding: 'tight' })} {col({ align: 'bottom' })}"><Document body={entry.fields.asideContent} /></aside>{/if}
   {#if entry.fields.secondBody}<div class="{col({ start: 2 })}"><Document body={entry.fields.secondBody} /></div>{/if}
 </article>
 
 <style>
+  article {
+    margin: 2rem 0;
+    transform: translate3d(0,0,0);
+  }
+
   figure :global(img) {
     border-radius: 6px;
   }
