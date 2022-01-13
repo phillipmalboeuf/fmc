@@ -18,6 +18,14 @@
   let scrollY: number
   let innerHeight: number
   let navHeight: number
+
+  let open: boolean = true
+
+  onMount(() => {
+    if (window.innerWidth < 888) {
+      open = false
+    }
+  })
 </script>
 
 <svelte:window bind:scrollY bind:innerHeight />
@@ -28,8 +36,8 @@
       <Logo />
     </a>
 
-    <details open>
-      <summary>{path || 'Menu'}</summary>
+    <details bind:open={open}>
+      <summary>{'Menu'}</summary>
       {#if main}
       {#each main.fields.links as link}
       <Link {link} on:click={e => {
@@ -38,6 +46,10 @@
           history.pushState({}, null, link.fields.path)
           window.scrollTo({ top: document.getElementById(link.fields.path.replace('/', '')).offsetTop, behavior: 'smooth' })
           path = link.fields.path
+
+          if (window.innerWidth < 888) {
+            open = false
+          }
         }
       }} /><br>
       {/each}
@@ -178,6 +190,12 @@
   @media (max-width: 888px) {
     progress {
       display: none;
+      /* position: absolute;
+      top: 0;
+      left: 40%;
+      width: 100% !important;
+
+      --color: black; */
     }
   }
 </style>
