@@ -22,7 +22,7 @@
     image: Asset
     photos: Asset[]
   }>
-  export let color: string
+  export let color: string = undefined
 </script>
 
 <article style="--heading-color: {vars.colors[color]}" class="{grid({ columns: 2 })}">

@@ -71,4 +71,10 @@
     font-size: 1rem;
     margin-bottom: 1.5em;
   }
+
+  @media (max-width: 888px) {
+    h5:not(.logo) {
+      margin-top: 3rem;
+    }
+  }
 </style>

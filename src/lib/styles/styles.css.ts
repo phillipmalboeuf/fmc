@@ -4,7 +4,7 @@ import { defineProperties, createSprinkles } from '@vanilla-extract/sprinkles'
 
 const space = {
   zero: '0',
-  small: '2vw',
+  small: 'max(2vw, 2vh)',
   medium: '4vw',
   large: '8vw'
 };
@@ -59,7 +59,12 @@ globalStyle('html', {
   fontFamily: vars.fonts.body,
   fontSize: `${base/1.333}px`,
   lineHeight: 1.2,
-  scrollBehavior: 'smooth'
+  scrollBehavior: 'smooth',
+  '@media': {
+    'screen and (max-width: 888px)': {
+      fontSize: `${base/1.5}px`,
+    }
+  }
 })
 
 globalStyle('body', {
@@ -77,11 +82,21 @@ globalStyle('h1, h2, h3', {
   fontFamily: vars.fonts.heading,
   fontSize: `${100/base}rem`,
   textTransform: 'uppercase',
-  lineHeight: 1
+  lineHeight: 1,
+  '@media': {
+    'screen and (max-width: 888px)': {
+      fontSize: `${60/base}rem`,
+    }
+  }
 })
 
 globalStyle('h2, .h2, h3, .h3', {
   fontSize: `${60/base}rem`,
+  '@media': {
+    'screen and (max-width: 888px)': {
+      fontSize: `${40/base}rem`,
+    }
+  }
 })
 
 globalStyle('h3, .h3', {
@@ -95,13 +110,23 @@ globalStyle('h1, h2, h3, h4, h5, h6, p', {
 
 globalStyle('h4', {
   fontSize: `${40/base}rem`,
-  fontWeight: 'normal'
+  fontWeight: 'normal',
+  '@media': {
+    'screen and (max-width: 888px)': {
+      fontSize: `${30/base}rem`,
+    }
+  }
 })
 
 globalStyle('h5', {
   fontSize: `${30/base}rem`,
   textTransform: 'uppercase',
-  fontWeight: 'normal'
+  fontWeight: 'normal',
+  '@media': {
+    'screen and (max-width: 888px)': {
+      fontSize: `${25/base}rem`,
+    }
+  }
 })
 
 globalStyle('h6', {
@@ -111,7 +136,7 @@ globalStyle('h6', {
 
 globalStyle('p', {
   fontSize: `${22/base}rem`,
-  fontWeight: 'normal'
+  fontWeight: 'normal',
 })
 
 globalStyle('a', {
@@ -148,13 +173,28 @@ const responsiveProperties = defineProperties({
     position: ['sticky', 'relative', 'absolute'],
     fontSize: {
       huge: {
-        fontSize: `${100/base}rem`
+        fontSize: `${100/base}rem`,
+        '@media': {
+          'screen and (max-width: 888px)': {
+            fontSize: `${60/base}rem`,
+          }
+        }
       },
       big: {
-        fontSize: `${60/base}rem`
+        fontSize: `${60/base}rem`,
+        '@media': {
+          'screen and (max-width: 888px)': {
+            fontSize: `${40/base}rem`,
+          }
+        }
       },
       medium: {
-        fontSize: `${40/base}rem`
+        fontSize: `${40/base}rem`,
+        '@media': {
+          'screen and (max-width: 888px)': {
+            fontSize: `${30/base}rem`,
+          }
+        }
       }
     }
   }

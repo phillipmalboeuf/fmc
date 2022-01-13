@@ -4,11 +4,11 @@ import { fmc, vars } from './styles.css'
 export const grid = recipe({
   base: {
     display: 'grid',
-    // '@media': {
-    //   'screen and (max-width: 888px)': {
-    //     gridTemplateColumns: '1fr'
-    //   }
-    // }
+    '@media': {
+      'screen and (max-width: 888px)': {
+        gridTemplateColumns: '1fr'
+      }
+    }
   },
 
   variants: {
@@ -33,18 +33,17 @@ export const grid = recipe({
 
 export const col = recipe({
   base: {
-    
   },
 
   variants: {
     span: {
-      2: { gridColumn: 'span 2' },
+      2: { gridColumn: 'span 2', '@media': { 'screen and (max-width: 888px)': { gridColumn: 'span 1' } } },
       3: { gridColumn: 'span 3' },
       4: { gridColumn: 'span 4' }
     },
     start: {
       1: { gridColumnStart: '1' },
-      2: { gridColumnStart: '2' },
+      2: { gridColumnStart: '2', '@media': { 'screen and (max-width: 888px)': { gridColumnStart: '1' } } },
       3: { gridColumnStart: '3' },
       4: { gridColumnStart: '4' }
     },

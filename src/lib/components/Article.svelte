@@ -103,7 +103,7 @@
     <div class="{grid({ columns: 2, gap: 'tight' })} {col({ span: 2 })}">
       <h3 class="{col({ span: 2 })}">Contributors</h3>
       {#each article.fields.contributors as contributor}
-      <div class="contributor {box({ padding: 'tight' })} {grid({ columns: 2, gap: 'tight' })}">
+      <div class="contributor {box({ padding: 'tight' })} {grid({ columns: 2, gap: 'tight' })}" style="grid-template-columns: 1fr 1fr !important">
         <figure class="">
           <Picture media={contributor.fields.image} small ar={1} />
         </figure>
@@ -192,6 +192,18 @@
     text-decoration: none;
   }
 
+  @media (max-width: 888px) {
+    header,
+    footer {
+      margin: calc(-2vh - 1px) calc(-2vh - 1px) 2vh;
+      padding: 2vh;
+    }
+
+    footer {
+      margin: 2vh calc(-2vh - 1px);
+    }
+  }
+
 
   figure {
     padding: 4rem;
@@ -207,11 +219,18 @@
     display: block;
     padding: 0;
     margin: -1rem;
+    /* margin-right: 0; */
   }
 
   .contributor a {
     position: absolute;
     bottom: 0.5rem;
     text-decoration-color: var(--color);
+  }
+
+  @media (max-width: 888px) {
+    .contributor figure {
+      margin-right: 0;
+    }
   }
 </style>

@@ -103,4 +103,10 @@
     padding-bottom: 42%;
     margin-bottom: 5rem;
   }
+
+  @media (max-width: 888px) {
+    figure {
+      padding-bottom: 100%;
+    }
+  }
 </style>

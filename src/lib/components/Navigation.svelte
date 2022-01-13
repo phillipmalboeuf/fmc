@@ -28,24 +28,27 @@
       <Logo />
     </a>
 
-    {#if main}
-    {#each main.fields.links as link}
-    <Link {link} on:click={e => {
-      if (index && !link.fields.path.startsWith('/#')) {
-        e.preventDefault()
-        history.pushState({}, null, link.fields.path)
-        window.scrollTo({ top: document.getElementById(link.fields.path.replace('/', '')).offsetTop, behavior: 'smooth' })
-        path = link.fields.path
-      }
-    }} /><br>
-    {/each}
-    {:else}
-    <!-- {#if page.fields.content}
-    {#each page.fields.content.filter(c => c.fields.id) as entry}
-    <a href="#{entry.fields.id}">{entry.fields.title}</a><br>
-    {/each}
-    {/if} -->
-    {/if}
+    <details open>
+      <summary>{path || 'Menu'}</summary>
+      {#if main}
+      {#each main.fields.links as link}
+      <Link {link} on:click={e => {
+        if (index && !link.fields.path.startsWith('/#')) {
+          e.preventDefault()
+          history.pushState({}, null, link.fields.path)
+          window.scrollTo({ top: document.getElementById(link.fields.path.replace('/', '')).offsetTop, behavior: 'smooth' })
+          path = link.fields.path
+        }
+      }} /><br>
+      {/each}
+      {:else}
+      <!-- {#if page.fields.content}
+      {#each page.fields.content.filter(c => c.fields.id) as entry}
+      <a href="#{entry.fields.id}">{entry.fields.title}</a><br>
+      {/each}
+      {/if} -->
+      {/if}
+    </details>
   </div>
 
   {#if scrollY !== undefined}
@@ -84,6 +87,54 @@
   nav :global(a:not(.logo):focus) {
     color: black;
     background-color: white;
+    opacity: 1;
+  }
+
+  summary {
+    display: none;
+  }
+
+  @media (max-width: 888px) {
+    nav {
+      position: relative;
+      width: 100%;
+    }
+
+    summary {
+      display: block;
+      cursor: pointer;
+      outline: none;
+      padding: 1.5vh;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details {
+      position: absolute;
+      top: 0;
+      right: -3vh;
+      width: 66%;
+      color: black;
+      --color: black;
+      background-color: white;
+      border-radius: 6px;;
+      font-size: 1.33em;
+    }
+
+    details :global(a) {
+      opacity: 0.5;
+    }
+
+    details[open] {
+      padding: 1.5vh;
+    }
+
+    details[open] summary {
+      padding: 0;
+      padding-bottom: 1.5vh;
+    }
   }
 
   progress {
@@ -122,5 +173,11 @@
     height: 4px;
     position: relative;
     bottom: 1px;
+  }
+
+  @media (max-width: 888px) {
+    progress {
+      display: none;
+    }
   }
 </style>

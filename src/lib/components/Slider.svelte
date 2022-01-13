@@ -95,4 +95,14 @@
     align-self: flex-end;
     margin-bottom: -3.5rem;
   }
+
+  @media (max-width: 888px) {
+    button {
+      font-size: 2rem;
+    }
+
+    button.arrow {
+      margin-bottom: -2.5rem;
+    }
+  }
 </style>

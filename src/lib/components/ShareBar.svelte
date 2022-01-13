@@ -75,6 +75,13 @@
     margin: -2em 0.5em;
   }
 
+  @media (max-width: 888px) {
+    hr,
+    ul {
+      display: none;
+    }
+  }
+
   a {
     text-decoration: none;
   }

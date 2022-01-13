@@ -25,7 +25,7 @@
 
 {#if content}
 {#each content as entry, i}
-<div class:hero={!!media && i === 0} id={entry.fields.id} style={!!media && i === 0 && `padding-bottom: ${media.fields.file.details.image.height / media.fields.file.details.image.width * 120}%; --back: ${vars.colors[backs(color)]}; --text: ${vars.colors[texts(backs(color))]}`}>
+<div class:hero={!!media && i === 0} id={entry.fields.id} style={!!media && i === 0 && `padding-bottom: ${media.fields.file.details.image.height / media.fields.file.details.image.width * 110}%; --back: ${vars.colors[backs(color)]}; --text: ${vars.colors[texts(backs(color))]}`}>
   {#if media && i === 0}
   <figure>
     <Picture {media} eager />
@@ -83,5 +83,12 @@
   .hero > div {
     position: relative;
     z-index: 1;
+  }
+
+  @media (max-width: 888px) {
+    .hero {
+      margin: calc(-4vh - 8rem) -2vh 2rem;
+      padding: 12rem 2vh 2vw;
+    }
   }
 </style>
