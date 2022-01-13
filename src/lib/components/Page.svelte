@@ -86,7 +86,7 @@
     <PageIntro {page} h1 />
     {/if}
 
-    <Content content={page.fields.content} {path} media={page.fields.image} color={page.fields.color.toLowerCase()} />
+    <Content content={page.fields.content} {index} {path} media={page.fields.image} color={page.fields.color.toLowerCase()} />
 
     {#if page.fields.articles}
     <PageArticles articles={page.fields.articles.map(article => ({ article, page }))} />

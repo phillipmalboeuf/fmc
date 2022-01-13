@@ -15,9 +15,10 @@
     big: boolean
     boxed: boolean
   }>
+  export let color: string = 'muted'
 </script>
 
-<section class:big={entry.fields.big} class="{entry.fields.boxed && box({ color: 'muted' })}">
+<section class:big={entry.fields.big} class="{entry.fields.boxed && box({ color })}">
 {#if entry.fields.subtitle}<p>{entry.fields.subtitle}</p>{/if}
 {#if entry.fields.title}<h2>{entry.fields.title}</h2>{/if}
 {#if entry.fields.body}<Document body={entry.fields.body} />{/if}

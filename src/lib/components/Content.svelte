@@ -20,6 +20,7 @@
   export let path: string = undefined
   export let color: string = undefined
   export let media: Asset = undefined
+  export let index: boolean = false
 </script>
 
 {#if content}
@@ -45,9 +46,9 @@
       {/if}
     </Expander>
     {:else if entry.sys.contentType.sys.id === 'text'}
-    <Text {entry} />
+    <Text {entry} {color} />
     {:else if entry.sys.contentType.sys.id === 'columns'}
-    <Columns {entry} />
+    <Columns {entry} color={index ? color : undefined} />
     {:else if entry.sys.contentType.sys.id === 'media'}
     <Media {entry} />
     {:else if entry.sys.contentType.sys.id === 'chart'}

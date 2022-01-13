@@ -22,6 +22,7 @@ export const backs = (color: string) => ({
   'green': 'yellow',
   'blue': 'marin',
   'cyan': 'moss',
+  'violet': 'coral',
 }[color])
 
 export const texts = (color: string) => ({
@@ -33,4 +34,5 @@ export const texts = (color: string) => ({
   'cyan': 'black',
   'marin': 'white',
   'moss': 'white',
+  'violet': 'black',
 }[color])

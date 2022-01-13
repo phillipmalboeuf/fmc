@@ -2,6 +2,7 @@
   import type { Asset, Entry, RichTextContent } from 'contentful'
   import { col, grid } from '$lib/styles/grid.css'
   import { box } from '$lib/styles/box.css'
+  import { vars } from '$lib/styles/styles.css'
 
   // import type { Lien } from '../Link.svelte'
   import Document from './document/Document.svelte'
@@ -21,9 +22,10 @@
     image: Asset
     photos: Asset[]
   }>
+  export let color: string
 </script>
 
-<article class="{grid({ columns: 2 })}">
+<article style="--heading-color: {vars.colors[color]}" class="{grid({ columns: 2 })}">
   {#if entry.fields.title}<Title title={entry.fields.title} />{/if}
   {#if entry.fields.image}<figure class="{col({span: 2})}"><Picture media={entry.fields.image} /></figure>{/if}
   {#if entry.fields.body}<div><Document body={entry.fields.body} /></div>{/if}
@@ -49,6 +51,14 @@
   aside {
     width: 66%;
     margin-bottom: 2.5rem;
+  }
+
+  div :global(h2),
+  div :global(h3),
+  div :global(h4),
+  div :global(h5),
+  div :global(h6) {
+    color: var(--heading-color);
   }
 
   aside :global(h2),

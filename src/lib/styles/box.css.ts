@@ -21,6 +21,7 @@ export const box = recipe({
       blue: { background: vars.colors['blue'], color: vars.colors[texts('blue')] },
       cyan: { background: vars.colors['cyan'], color: vars.colors[texts('cyan')] },
       pink: { background: vars.colors['pink'], color: vars.colors[texts('pink')] },
+      violet: fmc({ background: 'violet', color: 'black' }),
       coral: fmc({ background: 'coral', color: 'black' }),
       grey: fmc({ background: 'grey', color: 'white' }),
     },
