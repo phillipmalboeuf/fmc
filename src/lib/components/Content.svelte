@@ -73,8 +73,9 @@
 
   .hero {
     position: relative;
-    margin: -2vw -2vw 2rem -26.5vw;
-    padding: 12rem 20vw 2vw 26.5vw;
+    margin: -2vw 0 2rem calc(-8rem - 20vw);
+    padding: 12rem 20vw 2vw calc(8rem + 20vw);
+    width: 100vw;
 
     color: var(--text);
     background-color: var(--back);

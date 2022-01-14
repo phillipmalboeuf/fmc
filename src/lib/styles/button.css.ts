@@ -51,7 +51,19 @@ export const btn = recipe({
       true: { borderRadius: 999 }
     },
     full: {
-      true: { width: '100%', textAlign: 'center', marginBottom: '1rem' }
+      true: { width: '100%', textAlign: 'center', marginBottom: '1rem',
+      '@media': {
+        'screen and (max-width: 888px)': {
+          textAlign: 'left',
+          selectors: {
+            '&:after': {
+              content: '↓',
+              fontFamily: vars.fonts.body,
+              float: 'right'
+            }
+          }
+        }
+      } }
     }
   },
 

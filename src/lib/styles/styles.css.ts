@@ -59,6 +59,8 @@ globalStyle('html', {
   fontFamily: vars.fonts.body,
   fontSize: `${base/1.333}px`,
   lineHeight: 1.2,
+  WebkitFontSmoothing: 'antialiased',
+  MozOsxFontSmoothing: 'grayscale',
   scrollBehavior: 'smooth',
   '@media': {
     'screen and (max-width: 888px)': {
@@ -94,7 +96,7 @@ globalStyle('h2, .h2, h3, .h3', {
   fontSize: `${60/base}rem`,
   '@media': {
     'screen and (max-width: 888px)': {
-      fontSize: `${40/base}rem`,
+      fontSize: `${50/base}rem`,
     }
   }
 })

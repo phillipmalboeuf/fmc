@@ -26,7 +26,7 @@
 
 {#if expanded}
 <section class={box({ color: bold ? 'muted' : undefined })}>
-  <a class:bold class="close" href={back} on:click={close}>CLOSE ×</a>
+  <a class:bold class="close" href={back} on:click={close}><span>CLOSE&nbsp;</span>×</a>
 
   <slot></slot>
 </section>
@@ -46,15 +46,24 @@
 <style>
   .close {
     position: absolute;
-    top: 1em;
-    right: 1em;
+    top: 1rem;
+    right: 1rem;
     cursor: pointer;
   }
 
   .close.bold {
     top: auto;
-    bottom: 1em;
-    left: 0.5em;
+    bottom: 1rem;
+    left: 0.5rem;
     text-align: center;
+  }
+
+  @media (max-width: 888px) {
+    .close {
+      font-size: 1.5em;
+    }
+    .close span {
+      display: none;
+    }
   }
 </style>

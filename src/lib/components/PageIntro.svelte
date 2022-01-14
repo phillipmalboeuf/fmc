@@ -25,4 +25,10 @@
     max-width: 55rem;
     margin: 0 auto;
   }
+
+  @media (max-width: 888px) {
+    h4 {
+      text-align: left;
+    }
+  }
 </style>

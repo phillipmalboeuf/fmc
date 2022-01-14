@@ -6,6 +6,7 @@
   import type { Lien } from './Link.svelte'
   import { getContext, onMount, setContext } from 'svelte'
   import Logo from './Logo.svelte'
+import MenuIcon from './MenuIcon.svelte'
 
 
   export let contentHeight: number
@@ -20,6 +21,7 @@
   let navHeight: number
 
   let open: boolean = true
+  let locale: string = 'en'
 
   onMount(() => {
     if (window.innerWidth < 888) {
@@ -36,8 +38,15 @@
       <Logo />
     </a>
 
+    <div class="locales">
+      <input type="radio" id="en" bind:group={locale} value="en" >
+      <label for="en">EN</label> 
+      <input type="radio" id="fr" bind:group={locale} value="fr" >
+      <label for="fr">FR</label> 
+    </div>
+
     <details bind:open={open}>
-      <summary>{'Menu'}</summary>
+      <summary><span>Menu</span> <MenuIcon {open} /></summary>
       {#if main}
       {#each main.fields.links as link}
       <Link {link} on:click={e => {
@@ -106,6 +115,32 @@
     display: none;
   }
 
+  .locales {
+    display: inline-flex;
+    border: 1px solid;
+    border-radius: 9px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  input[type="radio"] + label {
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    margin-left: -0.33em;
+  }
+
+  input[type="radio"]:checked + label {
+    color: black;
+    background-color: white;
+  }
+
   @media (max-width: 888px) {
     nav {
       position: relative;
@@ -113,20 +148,26 @@
     }
 
     summary {
-      display: block;
+      display: flex;
       cursor: pointer;
       outline: none;
       padding: 1.5vh;
+      justify-content: space-between;
     }
 
     summary::-webkit-details-marker {
       display: none;
     }
 
-    details {
+    details,
+    .locales {
       position: absolute;
-      top: 0;
+      top: -1rem;
       right: -3vh;
+    }
+
+    details {
+      top: 2rem;
       width: 66%;
       color: black;
       --color: black;
