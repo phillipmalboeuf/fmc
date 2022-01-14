@@ -92,6 +92,7 @@
   }
 
   button.arrow {
+    font-family: 'Trim', sans-serif;
     align-self: flex-end;
     margin-bottom: -3.5rem;
   }

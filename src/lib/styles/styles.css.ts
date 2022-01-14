@@ -146,6 +146,7 @@ globalStyle('a', {
 })
 
 globalStyle('button', {
+  fontFamily: vars.fonts.body,
   cursor: 'pointer',
   color: 'currentColor'
 })

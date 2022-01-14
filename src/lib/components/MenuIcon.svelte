@@ -5,7 +5,7 @@
 <style>
   svg {
     width: 2rem;
-    margin-bottom: -0.2rem;
+    /* margin-bottom: -0.3rem; */
   }
 
   svg.open {

@@ -10,6 +10,7 @@
   import { getContext, onMount, setContext } from 'svelte'
   import type { Lien } from './Link.svelte'
   import { page } from '$app/stores'
+  import BackIcon from './BackIcon.svelte'
 
 	export let article: Entry<ArticleDocument>
   export let onBack: svelte.JSX.MouseEventHandler<HTMLAnchorElement>
@@ -38,7 +39,7 @@
 
   <button class="{pill({ corner: 'thick', clickable: true })}" on:click={() => window.print()}><h4>PRINT ↓</h4></button>
 
-  <a class="back" href="/{$page.params.page}" on:click={onBack}><h4>BACK ↩</h4></a>
+  <a class="back" href="/{$page.params.page}" on:click={onBack}><h4>BACK <BackIcon /></h4></a>
 </nav>
 
 <style>

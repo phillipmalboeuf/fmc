@@ -124,16 +124,13 @@ import MenuIcon from './MenuIcon.svelte'
   }
 
   input[type="radio"] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+    display: none;
   }
 
   input[type="radio"] + label {
     cursor: pointer;
     font-weight: bold;
     padding: 0.5em 1em;
-    margin-left: -0.33em;
   }
 
   input[type="radio"]:checked + label {
@@ -148,14 +145,21 @@ import MenuIcon from './MenuIcon.svelte'
     }
 
     summary {
-      display: flex;
+      display: block;
       cursor: pointer;
       outline: none;
       padding: 1.5vh;
-      justify-content: space-between;
+    }
+
+    summary :global(svg) {
+      float: right;
     }
 
     summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::details-marker {
       display: none;
     }
 
