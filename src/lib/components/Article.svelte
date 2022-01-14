@@ -103,7 +103,7 @@
     <div class="{grid({ columns: 2, gap: 'tight' })} {col({ span: 2 })}">
       <h3 class="{col({ span: 2 })}">Contributors</h3>
       {#each article.fields.contributors as contributor}
-      <div class="contributor {box({ padding: 'tight' })} {grid({ columns: 2, gap: 'tight' })}" style="grid-template-columns: 1fr 1fr !important">
+      <div class="contributor {box({ padding: 'tight' })} {grid({ columns: 2, gap: 'tight' })}">
         <figure class="">
           <Picture media={contributor.fields.image} small ar={1} />
         </figure>
@@ -230,7 +230,15 @@
 
   @media (max-width: 888px) {
     .contributor figure {
-      margin-right: 0;
+      height: 25vh;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .contributor a {
+      position: static;
+      display: block;
+      margin-top: 0.5rem;
     }
   }
 </style>
