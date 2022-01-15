@@ -4,7 +4,7 @@
   
   export const load: Load = async ({ params, fetch, session, stuff }) => {
     if (params.page === 'fr' || params.page === 'en') { return }
-		return respond(fetch, `/${params.page}.json`, params.locale)
+		return respond(fetch, `/${params.page}/page.json`, params.locale)
 	}
 </script>
 

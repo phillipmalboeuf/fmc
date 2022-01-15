@@ -133,7 +133,7 @@
       <h2>Recommended Articles</h2>
 
       {#each article.fields.recommended as rec}
-      <a href="/{rec.fields.id}">{rec.fields.title}</a>
+      <a href={($page.params.locale === 'fr' ? "/fr/" : "/") + rec.fields.id}>{rec.fields.title}</a>
       {/each}
     </nav>
 
@@ -150,7 +150,7 @@
 
     {#if others}
     {#each others as other}
-    <a href="/{$page.params.page}/{other.fields.id}" class="{box({ color })} other">
+    <a href="{($page.params.locale === 'fr' ? "/fr" : "")}/{$page.params.page}/{other.fields.id}" class="{box({ color })} other">
       <h4>Next Article</h4>
       <h2>{other.fields.title}</h2>
       <small>Learn more +</small>
@@ -159,7 +159,7 @@
     {/if}
 
     <center class="{col({ span: 2 })}">
-      <a class="back" href="/{$page.params.page}" on:click={onBack}><h4>BACK ↩</h4></a>
+      <a class="back" href="{($page.params.locale === 'fr' ? "/fr" : "")}/{$page.params.page}" on:click={onBack}><h4>BACK ↩</h4></a>
     </center>
   </footer>
 </section>

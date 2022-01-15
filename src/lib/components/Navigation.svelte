@@ -2,12 +2,15 @@
   import type { Entry } from 'contentful'
   import { slide } from 'svelte/transition'
 
+  import { page } from '$app/stores'
+  import { goto } from '$app/navigation'
+  import { browser } from '$app/env'
+
   import Link from './Link.svelte'
   import type { Lien } from './Link.svelte'
   import { getContext, onMount, setContext } from 'svelte'
   import Logo from './Logo.svelte'
-import MenuIcon from './MenuIcon.svelte'
-
+  import MenuIcon from './MenuIcon.svelte'
 
   export let contentHeight: number
   export let path: string = undefined
@@ -21,27 +24,32 @@ import MenuIcon from './MenuIcon.svelte'
   let navHeight: number
 
   let open: boolean = true
-  let locale: string = 'en'
+  let locale: string = $page.params.locale || 'en'
 
   onMount(() => {
     if (window.innerWidth < 888) {
       open = false
     }
   })
+
+  function change(l: string) {
+    locale = l
+    goto((locale === 'fr' ? '/fr' : '/') + ($page.params.page ? (locale === 'fr' ? '/' : '')+ $page.params.page : "") + ($page.params.article ? "/" + $page.params.article : ""))
+  }
 </script>
 
 <svelte:window bind:scrollY bind:innerHeight />
 
 <nav class:black>
   <div bind:offsetHeight={navHeight}>
-    <a href="/">
-      <Logo />
+    <a href="{($page.params.locale === 'fr' ? "/fr" : "/")}">
+      <Logo {locale} />
     </a>
 
     <div class="locales">
-      <input type="radio" id="en" bind:group={locale} value="en" >
+      <input type="radio" id="en" checked={locale==="en"} on:change={() => change("en")} value="en" >
       <label for="en">EN</label> 
-      <input type="radio" id="fr" bind:group={locale} value="fr" >
+      <input type="radio" id="fr" checked={locale==="fr"} on:change={() => change("fr")} value="fr" >
       <label for="fr">FR</label> 
     </div>
 
@@ -52,7 +60,7 @@ import MenuIcon from './MenuIcon.svelte'
       <Link {link} on:click={e => {
         if (index && !link.fields.path.startsWith('/#')) {
           e.preventDefault()
-          history.pushState({}, null, link.fields.path)
+          history.pushState({}, null, ($page.params.locale === 'fr' ? "/fr" : "") + link.fields.path)
           window.scrollTo({ top: document.getElementById(link.fields.path.replace('/', '')).offsetTop, behavior: 'smooth' })
           path = link.fields.path
 

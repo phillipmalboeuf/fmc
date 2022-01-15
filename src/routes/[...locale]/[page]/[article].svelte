@@ -3,6 +3,7 @@
   import { respond } from '$lib/responses'
   
   export const load: Load = async ({ params, fetch, session, stuff }) => {
+    if (params.page === 'fr' || params.page === 'en') { return }
 		return respond(fetch, `/${params.page}/${params.article}.json`, params.locale)
 	}
 </script>

@@ -17,6 +17,7 @@
   import Navigation from '$lib/components/Navigation.svelte'
   import PageArticles from '$lib/components/PageArticles.svelte'
   import Tags from '$lib/components/Tags.svelte'
+  import { page } from '$app/stores'
 
   export let tag: string
 	export let articles: {
@@ -29,7 +30,7 @@
 <section class="main {grid({ columns: 4 })} {box({ color: 'white' })}">
   <Navigation contentHeight={offsetHeight} black />
   <section bind:offsetHeight class="content {col({ span: 3 })}">
-    <a class="close" href={"/"}>CLOSE ×</a>
+    <a class="close" href={($page.params.locale === 'fr' ? "/fr" : "/")}>CLOSE ×</a>
 
     {#key tag}
     <Tags tags={[tag]} />

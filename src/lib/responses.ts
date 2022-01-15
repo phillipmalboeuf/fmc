@@ -2,7 +2,7 @@ import type { LoadInput } from '@sveltejs/kit';
 import json from 'json-complete'
 
 export async function respond(fetch: LoadInput['fetch'], url: string, locale?: string) {
-  const res = await fetch(url)
+  const res = await fetch(`${locale === 'fr' ? "/fr" : ""}${url}`)
 
   if (res.ok) {
     return {

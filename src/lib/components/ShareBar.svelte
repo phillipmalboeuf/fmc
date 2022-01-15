@@ -39,7 +39,7 @@
 
   <button class="{pill({ corner: 'thick', clickable: true })}" on:click={() => window.print()}><h4>PRINT ↓</h4></button>
 
-  <a class="back" href="/{$page.params.page}" on:click={onBack}><h4>BACK <BackIcon /></h4></a>
+  <a class="back" href="{($page.params.locale === 'fr' ? "/fr" : "")}/{$page.params.page}" on:click={onBack}><h4>BACK <BackIcon /></h4></a>
 </nav>
 
 <style>

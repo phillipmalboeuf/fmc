@@ -1,7 +1,7 @@
 <script context="module">
 	import { respond } from '$lib/responses'
 	export async function load({ params, fetch, session, context }) {
-		return respond(fetch, `/index.json`, params.locale)
+		return respond(fetch, `/home.json`, params.locale)
 	}
 </script>
 

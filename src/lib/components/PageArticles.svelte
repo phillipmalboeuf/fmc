@@ -3,6 +3,7 @@
   import type { Entry } from 'contentful'
   import type { PageDocument } from './Page.svelte'
 
+  import { page } from '$app/stores'
   import Document from './document/Document.svelte'
   import Expander from './Expander.svelte'
   import Tags from './Tags.svelte'
@@ -15,15 +16,15 @@
 </script>
 
 {#if articles}
-{#each articles as { article, page }}
-<Expander href="/{page.fields.id}/{article.fields.id}" back="/{page.fields.id}" color={page.fields.color.toLowerCase()} bold>
+{#each articles as a}
+<Expander href="{($page.params.locale === 'fr' ? "/fr" : "")}/{a.page.fields.id}/{a.article.fields.id}" back="/{a.page.fields.id}" color={a.page.fields.color.toLowerCase()} bold>
   <div slot="label">
-    <Tags tags={[article.fields.type]} />
-    <h3>{article.fields.title}</h3>
+    <Tags tags={[a.article.fields.type]} />
+    <h3>{a.article.fields.title}</h3>
     <h5>Learn More +</h5>
   </div>
 
-  <Article {article} color={page.fields.color.toLowerCase()} others={page.fields.articles} />
+  <Article article={a.article} color={a.page.fields.color.toLowerCase()} others={a.page.fields.articles} />
 </Expander>
 {/each}
 {/if}

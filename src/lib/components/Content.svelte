@@ -15,6 +15,7 @@
   import { box } from '$lib/styles/box.css'
   import { vars } from '$lib/styles/styles.css'
   import { backs, texts } from '$lib/formatters'
+import { page } from '$app/stores';
 
   export let content: Entry<any>[]
   export let path: string = undefined
@@ -34,7 +35,7 @@
 
   <div>
     {#if entry.sys.contentType.sys.id === 'page'}
-    <Expander expanded={path === `/${entry.fields.id}`} color={entry.fields.color.toLowerCase()} href="/{entry.fields.id}">
+    <Expander expanded={path === `/${entry.fields.id}`} color={entry.fields.color.toLowerCase()} href="{($page.params.locale === 'fr' ? "/fr" : "")}/{entry.fields.id}">
       <span slot="label">{entry.fields.title}</span>
 
       <PageIntro page={entry} />

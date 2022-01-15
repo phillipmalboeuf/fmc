@@ -16,4 +16,4 @@
   // export let plus = false
 </script>
 
-<a href={((!link.fields.external && $page.params.locale === 'en') ? "/en" : "") + link.fields.path} target={link.fields.external && '_blank'} rel={link.fields.external && "external"} on:click>{link.fields.title}</a>
+<a href={((!link.fields.external && $page.params.locale === 'fr') ? "/fr" : "") + link.fields.path} target={link.fields.external && '_blank'} rel={link.fields.external && "external"} on:click>{link.fields.title}</a>
