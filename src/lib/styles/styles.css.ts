@@ -1,4 +1,4 @@
-import { createGlobalTheme, globalStyle, globalFontFace } from '@vanilla-extract/css'
+import { createGlobalTheme, globalStyle, globalFontFace, globalKeyframes } from '@vanilla-extract/css'
 import { defineProperties, createSprinkles } from '@vanilla-extract/sprinkles'
 
 
@@ -201,7 +201,7 @@ const responsiveProperties = defineProperties({
       }
     }
   }
-});
+})
 
 const colorProperties = defineProperties({
   conditions: {
@@ -215,9 +215,24 @@ const colorProperties = defineProperties({
     color: colors,
     background: colors
   }
-});
+})
 
 export const fmc = createSprinkles(
   responsiveProperties,
   colorProperties
-);
+)
+
+globalStyle('.observed.slideIn', {
+  animation: "slide-in 0.666s cubic-bezier(0.390, 0.575, 0.565, 1.000) both"
+})
+
+globalKeyframes('slide-in', {
+  '0%': {
+    transform: 'translateY(33px)',
+    opacity: '0',
+  },
+  '100%': {
+    transform: 'translateY(0)',
+    opacity: '1',
+  }
+})

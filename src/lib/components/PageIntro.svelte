@@ -4,6 +4,7 @@
   import type { PageDocument } from './Page.svelte'
 
   import Document from './document/Document.svelte'
+  import { slideIn } from '$lib/animations'
   
 	export let page: Entry<PageDocument>
   export let h1 = false
@@ -12,11 +13,11 @@
 <header>
   <center>
     {#if h1}<h1>{page.fields.title}</h1>{:else}<h2>{page.fields.title}</h2>{/if}
-    {#if page.fields.description}<h4>{page.fields.description}</h4>{/if}
+    {#if page.fields.description}<h4 use:slideIn>{page.fields.description}</h4>{/if}
   </center>
 
   {#if page.fields.body}
-  <Document body={page.fields.body} />
+  <div use:slideIn><Document body={page.fields.body} /></div>
   {/if}
 </header>
 

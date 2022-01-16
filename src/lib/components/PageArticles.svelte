@@ -8,6 +8,7 @@
   import Expander from './Expander.svelte'
   import Tags from './Tags.svelte'
   import Article, { ArticleDocument } from './Article.svelte'
+  import { slideIn } from '$lib/animations'
   
 	export let articles: {
     article: Entry<ArticleDocument>,
@@ -18,7 +19,7 @@
 {#if articles}
 {#each articles as a}
 <Expander href="{($page.params.locale === 'fr' ? "/fr" : "")}/{a.page.fields.id}/{a.article.fields.id}" back="/{a.page.fields.id}" color={a.page.fields.color.toLowerCase()} bold>
-  <div slot="label">
+  <div use:slideIn slot="label">
     <Tags tags={[a.article.fields.type]} />
     <h3>{a.article.fields.title}</h3>
     <h5>Learn More +</h5>

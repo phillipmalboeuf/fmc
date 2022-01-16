@@ -5,6 +5,7 @@
   import { col, grid } from '$lib/styles/grid.css'
   import { box } from '$lib/styles/box.css'
   import Picture from './Picture.svelte'
+  import { slideIn } from '$lib/animations'
   // import Link from '../Link.svelte'
   // import Logo from '../icons/Logo.svelte'
 
@@ -20,7 +21,7 @@
   {#if entry.fields.title}<h2>{entry.fields.title}</h2>{/if}
   {#if entry.fields.body}<Document body={entry.fields.body} />{/if}
   {#each entry.fields.assets as media}
-  <figure class="{col({ span: 2 })} {box({ color: 'outline' })}">
+  <figure use:slideIn class="{col({ span: 2 })} {box({ color: 'outline' })}">
     <figcaption>{media.fields.title}</figcaption>
     <Picture {media} />
   </figure>

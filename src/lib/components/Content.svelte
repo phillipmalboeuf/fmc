@@ -15,7 +15,7 @@
   import { box } from '$lib/styles/box.css'
   import { vars } from '$lib/styles/styles.css'
   import { backs, texts } from '$lib/formatters'
-import { page } from '$app/stores';
+  import { page } from '$app/stores'
 
   export let content: Entry<any>[]
   export let path: string = undefined

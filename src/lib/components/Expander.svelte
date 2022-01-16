@@ -4,6 +4,7 @@
 
   import { btn } from '$lib/styles/button.css'
   import { box } from '$lib/styles/box.css'
+  import { slideIn } from '$lib/animations'
 
   export let color: any
   export let href: string = undefined
@@ -31,7 +32,7 @@
   <slot></slot>
 </section>
 {:else}
-<a class={btn({ full: true, hover: color, color: bold ? color : 'outline' })} {href} on:click={(e) => {
+<a use:slideIn class={btn({ full: true, hover: color, color: bold ? color : 'outline' })} {href} on:click={(e) => {
   e.preventDefault()
   expanded = true
 

@@ -46,6 +46,7 @@
   import Tags from './Tags.svelte'
   import ShareBar from './ShareBar.svelte'
   import Title from './Title.svelte'
+  import { slideIn } from '$lib/animations'
 
 	export let article: Entry<ArticleDocument>
   export let others: Entry<ArticleDocument>[] = undefined
@@ -76,7 +77,7 @@
 
 {#key article.fields.id}
 <section style="--color: {vars.colors[color]}; --text-color: {vars.colors[texts(color)]}">
-  <header class="{grid({ columns: 2 })}" style="background: {vars.colors[backs(color)]}; color: {vars.colors[texts(backs(color))]}">
+  <header use:slideIn class="{grid({ columns: 2 })}" style="background: {vars.colors[backs(color)]}; color: {vars.colors[texts(backs(color))]}">
     <ShareBar {article} {onBack} />
 
     {#if article.fields.image}
@@ -100,7 +101,7 @@
     {/if}
 
     {#if article.fields.contributors}
-    <div class="{grid({ columns: 2, gap: 'tight' })} {col({ span: 2 })}">
+    <div use:slideIn class="{grid({ columns: 2, gap: 'tight' })} {col({ span: 2 })}">
       <h3 class="{col({ span: 2 })}">Contributors</h3>
       {#each article.fields.contributors as contributor}
       <div class="contributor {box({ padding: 'tight' })} {grid({ columns: 2, gap: 'tight' })}">
@@ -129,7 +130,7 @@
     {#if article.fields.recommended}
     <Title title={'Dive Deeper'} />
     
-    <nav>
+    <nav use:slideIn>
       <h2>Recommended Articles</h2>
 
       {#each article.fields.recommended as rec}
@@ -138,7 +139,7 @@
     </nav>
 
     {#each article.fields.deeperNavigation as navigation, i}
-    <nav class="{i === 0 && col({ start: 1 })}">
+    <nav use:slideIn class="{i === 0 && col({ start: 1 })}">
       <h2>{navigation.fields.name}</h2>
 
       {#each navigation.fields.links as link}
@@ -150,7 +151,7 @@
 
     {#if others}
     {#each others as other}
-    <a href="{($page.params.locale === 'fr' ? "/fr" : "")}/{$page.params.page}/{other.fields.id}" class="{box({ color })} other">
+    <a use:slideIn href="{($page.params.locale === 'fr' ? "/fr" : "")}/{$page.params.page}/{other.fields.id}" class="{box({ color })} other">
       <h4>Next Article</h4>
       <h2>{other.fields.title}</h2>
       <small>Learn more +</small>

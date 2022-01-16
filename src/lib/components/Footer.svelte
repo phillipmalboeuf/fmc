@@ -6,11 +6,12 @@
 
   import { col, grid } from '$lib/styles/grid.css'
   import { box } from '$lib/styles/box.css'
+  import { slideIn } from '$lib/animations'
 
   const { secondary, social, tertiary } = getContext<{ secondary: Entry<{ links: Entry<Lien>[] }>, social: Entry<{ links: Entry<Lien>[] }>, tertiary: Entry<{ links: Entry<Lien>[] }> }>('navigation')
 </script>
 
-<footer class="{box({ color: 'grey' })}">
+<footer use:slideIn class="{box({ color: 'grey' })}">
   <h5 class="logo">Canada<br>Media Fund</h5>
 
   <div class="{grid({ columns: 4 })}">

@@ -24,6 +24,7 @@
   import { createCurve, createColumns, csvToChartData } from '$lib/charts'
   import type { Chart } from '@amcharts/amcharts5/.internal/core/render/Chart'
   import Document from './document/Document.svelte'
+  import { slideIn } from '$lib/animations'
   // import { Exporting, ExportingMenu } from '@amcharts/amcharts5/plugins/exporting'
 
 
@@ -92,9 +93,9 @@
 </script>
 
 <section class="{grid({ columns: 2 })}">
-  {#if title}<h3>{title}</h3>{/if}
-  {#if description}<aside><Document body={description} /></aside>{/if}
-  <figure class:small class="{col({ span: 2 })}" bind:this={element}></figure>
+  {#if title}<h3 use:slideIn>{title}</h3>{/if}
+  {#if description}<aside use:slideIn><Document body={description} /></aside>{/if}
+  <figure use:slideIn class:small class="{col({ span: 2 })}" bind:this={element}></figure>
 </section>
 
 <style>

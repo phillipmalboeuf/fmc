@@ -8,6 +8,7 @@
   import Document from './document/Document.svelte'
   import Picture from './Picture.svelte'
   import Title from './Title.svelte'
+import { slideIn } from '$lib/animations';
 
   // import Link from '../Link.svelte'
   // import Logo from '../icons/Logo.svelte'
@@ -27,15 +28,15 @@
 
 <article style="--heading-color: {vars.colors[color]}" class="{grid({ columns: 2 })}">
   {#if entry.fields.title}<Title title={entry.fields.title} />{/if}
-  {#if entry.fields.image}<figure class="{col({span: 2})}"><Picture media={entry.fields.image} /></figure>{/if}
-  {#if entry.fields.body}<div><Document body={entry.fields.body} /></div>{/if}
-  {#if entry.fields.photos?.length}{#each entry.fields.photos as media, i}<figure
+  {#if entry.fields.image}<figure use:slideIn class="{col({span: 2})}"><Picture media={entry.fields.image} /></figure>{/if}
+  {#if entry.fields.body}<div use:slideIn><Document body={entry.fields.body} /></div>{/if}
+  {#if entry.fields.photos?.length}{#each entry.fields.photos as media, i}<figure use:slideIn
   class="{entry.fields.photos.length > 1 ? (i === 0 && col({ start: 1 })) : col({ align: 'bottom' })}">
     <Picture {media} small />
   </figure>{/each}{/if}
-  {#if entry.fields.quote}<center class="{col({span: 2})}"><h2>{entry.fields.quote}</h2></center>{/if}
-  {#if entry.fields.asideContent}<aside class="{box({ color: 'outline', padding: 'tight' })} {col({ align: 'bottom' })}"><Document body={entry.fields.asideContent} /></aside>{/if}
-  {#if entry.fields.secondBody}<div class="{col({ start: 2 })}"><Document body={entry.fields.secondBody} /></div>{/if}
+  {#if entry.fields.quote}<center use:slideIn class="{col({span: 2})}"><h2>{entry.fields.quote}</h2></center>{/if}
+  {#if entry.fields.asideContent}<aside use:slideIn class="{box({ color: 'outline', padding: 'tight' })} {col({ align: 'bottom' })}"><Document body={entry.fields.asideContent} /></aside>{/if}
+  {#if entry.fields.secondBody}<div use:slideIn class="{col({ start: 2 })}"><Document body={entry.fields.secondBody} /></div>{/if}
 </article>
 
 <style>

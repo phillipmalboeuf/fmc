@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { slideIn } from '$lib/animations'
   import { box } from '$lib/styles/box.css'
 
   import type { Entry, RichTextContent } from 'contentful'
@@ -18,7 +19,7 @@
   export let color: string = 'muted'
 </script>
 
-<section class:big={entry.fields.big} class="{entry.fields.boxed && box({ color })}">
+<section use:slideIn class:big={entry.fields.big} class="{entry.fields.boxed && box({ color })}">
 {#if entry.fields.subtitle}<p>{entry.fields.subtitle}</p>{/if}
 {#if entry.fields.title}<h2>{entry.fields.title}</h2>{/if}
 {#if entry.fields.body}<Document body={entry.fields.body} />{/if}

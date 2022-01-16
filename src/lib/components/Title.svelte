@@ -1,11 +1,12 @@
 <script lang="ts">
   import { col, grid } from '$lib/styles/grid.css'
   import { box } from '$lib/styles/box.css'
+  import { slideIn } from '$lib/animations'
 
   export let title: string
 </script>
 
-<center class="{col({span: 2})} {box()} title"><h2>{title}</h2></center>
+<center use:slideIn class="{col({span: 2})} {box()} title"><h2>{title}</h2></center>
 
 <style>
   .title {
