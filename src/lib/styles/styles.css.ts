@@ -45,6 +45,12 @@ globalFontFace('Trim', {
   fontDisplay: 'swap'
 })
 
+globalFontFace('Trim', {
+  src: 'url("/fonts/Trim-Bold.otf") format("opentype")',
+  fontWeight: 'bold',
+  fontDisplay: 'swap'
+})
+
 globalFontFace('Trim Poster', {
   src: 'url("/fonts/TrimPoster-Lean.otf") format("opentype")',
   fontWeight: 'bold',

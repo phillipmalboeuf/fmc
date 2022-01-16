@@ -9,8 +9,8 @@
     type: string
     alignment: string
     stacked: boolean
-    minimum: number
-    maximum: number
+    min: number
+    max: number
     axeTitle: string
   }
 
@@ -21,7 +21,7 @@
   import { page } from '$app/stores'
 
   import { col, grid } from '$lib/styles/grid.css'
-  import { createCurve, createColumns, csvToChartData } from '$lib/charts'
+  import { createCurve, createColumns, csvToChartData, createPyramide } from '$lib/charts'
   import type { Chart } from '@amcharts/amcharts5/.internal/core/render/Chart'
   import Document from './document/Document.svelte'
   import { slideIn } from '$lib/animations'
@@ -37,7 +37,7 @@
   export let entry: Entry<ChartDocument>
   export let small: boolean = false
 
-  const { fields: { title, description, type, alignment, data, minimum, maximum, axeTitle, stacked } } = entry
+  const { fields: { title, description, type, alignment, data, min, max, axeTitle, stacked } } = entry
 
   const dataSource = csvToChartData(data)
 
@@ -47,12 +47,17 @@
 
     switch (type) {
       case 'Columns':
-        chart = createColumns(element, dataSource, alignment !== 'Horizontal', stacked, minimum, maximum, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
+        chart = createColumns(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
         chart.appear(1000, 100)
         break
 
       case 'Curve':
-        chart = createCurve(element, dataSource, alignment !== 'Horizontal', stacked, minimum, maximum, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
+        chart = createCurve(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
+        chart.appear(1000, 100)
+        break
+
+      case 'Big numbers':
+        chart = createPyramide(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
         chart.appear(1000, 100)
         break
     
@@ -95,7 +100,7 @@
 <section class="{grid({ columns: 2 })}">
   {#if title}<h3 use:slideIn>{title}</h3>{/if}
   {#if description}<aside use:slideIn><Document body={description} /></aside>{/if}
-  <figure use:slideIn class:small class="{col({ span: 2 })}" bind:this={element}></figure>
+  <figure class:numbers={type === 'Big numbers'} use:slideIn class:small class="{col({ span: 2 })}" bind:this={element}></figure>
 </section>
 
 <style>
@@ -106,7 +111,7 @@
   }
 
   @media (max-width: 888px) {
-    figure {
+    figure:not(.numbers) {
       padding-bottom: 100%;
     }
   }

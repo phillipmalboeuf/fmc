@@ -26,7 +26,7 @@ import am5themes_Animated from "@amcharts/amcharts5/themes/Animated"
 // import am5themes_Dark from "@amcharts/amcharts5/themes/Dark"
 import am5locales_fr from "@amcharts/amcharts5/locales/fr_FR"
 import am5locales_en from "@amcharts/amcharts5/locales/en_CA"
-// import { FunnelSeries, PieChart, PieSeries, PyramidSeries, SlicedChart } from '@amcharts/amcharts5/percent'
+import { FunnelSeries, PieChart, PieSeries, PyramidSeries, SlicedChart } from '@amcharts/amcharts5/percent'
 
 
 export function init(element: HTMLElement, locale: string) {
@@ -325,63 +325,69 @@ export function createCurve(element: HTMLElement, seriesData: any[], vertical: b
   return chart
 }
 
-// export function createPyramide(element: HTMLElement, seriesData: any[], min: number, max: number, title: string, couleur: string, locale: string) {
-//   let root = init(element, locale)
-//   let chart = root.container.children.push(
-//     SlicedChart.new(root, {
-//       layout: root.verticalLayout,
-//       paddingLeft: 0,
-//       paddingRight: 0,
-//     })
-//   )
+export function createPyramide(element: HTMLElement, seriesData: any[], vertical: boolean, stacked: boolean, min: number, max: number, title: string, firstColor: string, secondColor: string, locale: string) {
+  const keys = Object.keys(seriesData[0]).filter(key => !['Category'].includes(key))
+
+  let root = init(element, locale)
+  let chart = root.container.children.push(
+    SlicedChart.new(root, {
+      layout: root.verticalLayout,
+      paddingLeft: 0,
+      paddingRight: 0,
+    })
+  )
   
-//   title && chart.seriesContainer.children.push(Label.new(root, {
-//     text: title,
-//     rotation: -90,
-//     y: percent(50),
-//     centerX: percent(50),
-//     fontSize: '0.75em'
-//   }))
+  // title && chart.seriesContainer.children.push(Label.new(root, {
+  //   text: title,
+  //   rotation: -90,
+  //   y: percent(50),
+  //   centerX: percent(50),
+  //   fontSize: '0.75em'
+  // }))
 
+  keys.forEach((name, i) => {
+    let series = chart.series.push(FunnelSeries.new(root, {
+      name,
+      categoryField: "Category",
+      valueField: name,
+      orientation: vertical ? "vertical" : "horizontal",
+      alignLabels: false,
+    }))
 
-//   const keys = Object.keys(seriesData[0]).filter(key => !['Date', 'Demographic'].includes(key))
+    series.data.processor = DataProcessor.new(root, {
+      numericFields: [name]
+    })
 
-//   keys.forEach((name, i) => {
-//     let series = chart.series.push(FunnelSeries.new(root, {
-//       name,
-//       categoryField: "Date",
-//       valueField: name,
-//       orientation: "horizontal",
-//       alignLabels: false
-//     }))
+    series.slices.template.setAll({
+      // fill: color(firstColor),
+      // stroke: color(firstColor),
+      // strokeWidth: 3,
+      fillOpacity: 0,
+      strokeOpacity: 0
+    })
 
-//     series.data.processor = DataProcessor.new(root, {
-//       numericFields: [name]
-//     })
-    
-//     series.data.setAll(seriesData)
+    series.links.template.setAll({
+      // fill: color(firstColor),
+      fillOpacity: 0
+    })
 
-//     series.slices.template.setAll({
-//       fill: color(couleur),
-//       stroke: color(couleur),
-//       strokeWidth: 3
-//     })
+    series.labels.template.setAll({
+      text: "[fontSize: 1em #0E0E0E]{category}:[/][bold] {value}" + (title ? title : '') + '[/]',
+      rotation: 0,
+      templateField: "labelSettings",
+    });
 
-//     series.links.template.setAll({
-//       fill: color(couleur),
-//       fillOpacity: 0.66
-//     })
+    series.data.setAll(seriesData.map(data => ({
+      ...data,
+      labelSettings: {
+        fontSize: (data[name]/6.66)+"vh",
+        fill: Color.interpolate(((data[name] - (min || 0)) * 100) / ((max || 100) - (min || 0)) / 100, color(firstColor), color(secondColor))
+      }
+    })))
+  })
 
-//     series.labels.template.setAll({
-//       text: "{category}: {value}",
-//       rotation: 0,
-//       // inside: false,
-//       // radius: 10
-//     });
-//   })
-
-//   return chart
-// }
+  return chart
+}
 
 // export function createTarte(element: HTMLElement, seriesData: any[], min: number, max: number, title: string, couleur: string, locale: string) {
 //   let root = init(element, locale)
