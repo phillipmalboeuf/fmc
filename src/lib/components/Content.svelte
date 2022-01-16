@@ -16,12 +16,14 @@
   import { vars } from '$lib/styles/styles.css'
   import { backs, texts } from '$lib/formatters'
   import { page } from '$app/stores'
+  import { slideIn } from '$lib/animations'
 
   export let content: Entry<any>[]
   export let path: string = undefined
   export let color: string = undefined
   export let media: Asset = undefined
   export let index: boolean = false
+
 </script>
 
 {#if content}

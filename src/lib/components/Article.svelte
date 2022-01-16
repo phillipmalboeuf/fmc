@@ -77,28 +77,30 @@
 
 {#key article.fields.id}
 <section style="--color: {vars.colors[color]}; --text-color: {vars.colors[texts(color)]}">
-  <header use:slideIn class="{grid({ columns: 2 })}" style="background: {vars.colors[backs(color)]}; color: {vars.colors[texts(backs(color))]}">
-    <ShareBar {article} {onBack} />
+  <header style="background: {vars.colors[backs(color)]}; color: {vars.colors[texts(backs(color))]}">
+    <div use:slideIn class="{grid({ columns: 2 })}">
+      <ShareBar {article} {onBack} />
 
-    {#if article.fields.image}
-    <figure class="{col({ span: 2 })}">
-      <Picture media={article.fields.image} />
-    </figure>
-    {/if}
+      {#if article.fields.image}
+      <figure class="{col({ span: 2 })}">
+        <Picture media={article.fields.image} />
+      </figure>
+      {/if}
 
-    <h1 class="h3">
-      {article.fields.title}
-    </h1>
+      <h1 class="h3">
+        {article.fields.title}
+      </h1>
 
-    {#if article.fields.description}
-    <Document body={article.fields.description} />
-    {/if}
+      {#if article.fields.description}
+      <Document body={article.fields.description} />
+      {/if}
 
-    {#if article.fields.tags}
-    <div style={article.fields.description && "grid-column-start: 1; grid-row-start: 4"}>
-      <Tags tags={[article.fields.type, ...article.fields.tags]} />
+      {#if article.fields.tags}
+      <div style={article.fields.description && "grid-column-start: 1; grid-row-start: 4"}>
+        <Tags tags={[article.fields.type, ...article.fields.tags]} />
+      </div>
+      {/if}
     </div>
-    {/if}
 
     {#if article.fields.contributors}
     <div use:slideIn class="{grid({ columns: 2, gap: 'tight' })} {col({ span: 2 })}">
@@ -159,7 +161,7 @@
     {/each}
     {/if}
 
-    <center class="{col({ span: 2 })}">
+    <center use:slideIn class="{col({ span: 2 })}">
       <a class="back" href="{($page.params.locale === 'fr' ? "/fr" : "")}/{$page.params.page}" on:click={onBack}><h4>BACK ↩</h4></a>
     </center>
   </footer>
@@ -171,6 +173,10 @@
   footer {
     margin: calc(-2vw - 1px) calc(-2vw - 1px) 2vw;
     padding: 2vw;
+  }
+
+  header {
+    border-radius: 6px;
   }
 
   footer {
