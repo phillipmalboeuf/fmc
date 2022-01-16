@@ -111,8 +111,12 @@
   }
 
   @media (max-width: 888px) {
-    figure:not(.numbers) {
+    figure {
       padding-bottom: 100%;
+    }
+
+    figure.numbers {
+      padding-bottom: 88%;
     }
   }
 </style>

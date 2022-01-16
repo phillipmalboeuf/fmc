@@ -380,7 +380,7 @@ export function createPyramide(element: HTMLElement, seriesData: any[], vertical
     series.data.setAll(seriesData.map(data => ({
       ...data,
       labelSettings: {
-        fontSize: (data[name]/6.66)+"vh",
+        fontSize: `${data[name]/6.66}em`,
         fill: Color.interpolate(((data[name] - (min || 0)) * 100) / ((max || 100) - (min || 0)) / 100, color(firstColor), color(secondColor))
       }
     })))
