@@ -177,6 +177,8 @@
 
   header {
     border-radius: 6px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 
   footer {
