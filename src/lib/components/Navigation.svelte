@@ -184,8 +184,11 @@
       color: black;
       --color: black;
       background-color: white;
-      border-radius: 6px;;
+      border-radius: 6px;
       font-size: 1.33em;
+      max-height: 2.5em;
+      overflow: hidden;
+      transition: max-height 666ms;
     }
 
     details :global(a) {
@@ -194,6 +197,7 @@
 
     details[open] {
       padding: 1.5vh;
+      max-height: 100vh;
     }
 
     details[open] summary {
