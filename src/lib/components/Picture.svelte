@@ -25,6 +25,12 @@
     margin-top: 0.5rem;
     margin-bottom: 0;
   }
+
+  video {
+    max-height: 33vh;
+    background-color: var(--color);
+    border-radius: 12px;
+  }
  
   audio::-webkit-media-controls-enclosure {
     background-color: var(--color);

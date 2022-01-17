@@ -21,7 +21,7 @@
   {#if entry.fields.title}<h2>{entry.fields.title}</h2>{/if}
   {#if entry.fields.body}<Document body={entry.fields.body} />{/if}
   {#each entry.fields.assets as media}
-  <figure use:slideIn class="{col({ span: 2 })} {box({ color: 'outline' })}">
+  <figure use:slideIn class="{col({ span: 2 })} {!media.fields.file.contentType.startsWith('video/') && box({ color: 'outline' })}">
     <figcaption>{media.fields.title}</figcaption>
     <Picture {media} />
   </figure>
