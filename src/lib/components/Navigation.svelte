@@ -42,7 +42,7 @@
 
 <nav class:black>
   <div bind:offsetHeight={navHeight}>
-    <a href="{($page.params.locale === 'fr' ? "/fr" : "/")}">
+    <a class="logo" href="{($page.params.locale === 'fr' ? "/fr" : "/")}">
       <Logo {locale} />
     </a>
 
@@ -103,7 +103,7 @@
     --color: black;
   }
 
-  nav :global(a:not(.logo)) {
+  nav :global(a) {
     text-decoration: none;
     display: inline-block;
     padding: 0.33em;
