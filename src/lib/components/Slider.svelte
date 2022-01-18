@@ -5,12 +5,13 @@
   import Carousel from 'svelte-carousel'
 
   import { box } from '$lib/styles/box.css'
+  import { vars } from '$lib/styles/styles.css'
   
   import Text from './Text.svelte'
   import Columns from './Columns.svelte'
   import Media from './Media.svelte'
   import Chart from './Chart.svelte'
-
+  
   let ready: boolean
   onMount(async () => {
     ready = true
@@ -22,9 +23,10 @@
     slides: Entry<any>[]
   }>
   export let initialPageIndex: number = undefined
+  export let color: string = undefined
 </script>
 
-<section class="{box({ color: 'muted' })}" id={entry.fields.id}>
+<section style="--color: {vars.colors[color]}" class="{box({ color: 'muted' })}" id={entry.fields.id}>
   {#if entry.fields.title}<h2>{entry.fields.title}</h2>{/if}
   {#if ready}
   <Carousel
@@ -80,6 +82,11 @@
     background: transparent;
     font-size: 3rem;
     padding: 0;
+  }
+
+  button:hover,
+  button:focus {
+    color: var(--color);
   }
 
   .dots button {

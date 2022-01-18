@@ -37,7 +37,7 @@
 
   <div>
     {#if entry.sys.contentType.sys.id === 'page'}
-    <Expander expanded={path === `/${entry.fields.id}`} color={entry.fields.color.toLowerCase()} href="{($page.params.locale === 'fr' ? "/fr" : "")}/{entry.fields.id}">
+    <Expander expanded={path === `/${entry.fields.id}`} onOpen={() => path = `/${entry.fields.id}`} color={entry.fields.color.toLowerCase()} href="{($page.params.locale === 'fr' ? "/fr" : "")}/{entry.fields.id}">
       <span slot="label">{entry.fields.title}</span>
 
       <PageIntro page={entry} />
@@ -57,7 +57,7 @@
     {:else if entry.sys.contentType.sys.id === 'chart'}
     <Chart {entry} />
     {:else if entry.sys.contentType.sys.id === 'slider'}
-    <Slider {entry} />
+    <Slider {entry} {color} />
     {/if}
   </div>
 </div>
@@ -77,7 +77,7 @@
   .hero {
     position: relative;
     margin: -2vw 0 2rem calc(-8rem - 20vw);
-    padding: 12rem 20vw 2vw calc(8rem + 20vw);
+    padding: 9.5rem 20vw 2vw calc(8rem + 20vw);
     width: 100vw;
 
     color: var(--text);

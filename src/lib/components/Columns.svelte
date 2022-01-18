@@ -8,7 +8,7 @@
   import Document from './document/Document.svelte'
   import Picture from './Picture.svelte'
   import Title from './Title.svelte'
-import { slideIn } from '$lib/animations';
+  import { slideIn } from '$lib/animations'
 
   // import Link from '../Link.svelte'
   // import Logo from '../icons/Logo.svelte'
@@ -53,6 +53,11 @@ import { slideIn } from '$lib/animations';
   aside {
     width: 66%;
     margin-bottom: 2.5rem;
+  }
+
+  aside :global(a:hover),
+  aside :global(a:focus) {
+    color: var(--color);
   }
 
   div :global(h2),

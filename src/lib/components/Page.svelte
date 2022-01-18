@@ -74,13 +74,13 @@
 
 
 
-
+{#key page.fields.id}
 <section class={grid({ columns: 4 })}>
   <Navigation contentHeight={offsetHeight} {index} bind:path />
 
   <section bind:offsetHeight class="content {col({ span: 3 })}">
 
-    {#key page.fields.id}
+    
 
     {#if !index}
     <PageIntro {page} h1 />
@@ -91,9 +91,9 @@
     {#if page.fields.articles}
     <PageArticles articles={page.fields.articles.map(article => ({ article, page }))} />
     {/if}
-    {/key}
+    
 
     <Footer />
   </section>
 </section>
-
+{/key}

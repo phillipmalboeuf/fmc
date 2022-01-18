@@ -13,6 +13,8 @@
   export let expanded = false
   export let bold = false
 
+  export let onOpen: Function = undefined
+
   function close(e) {
     e.preventDefault()
     expanded = false
@@ -27,9 +29,9 @@
 
 {#if expanded}
 <section class={box({ color: bold ? 'muted' : undefined })}>
-  <a class:bold class="close" href={back} on:click={close}><span>CLOSE&nbsp;</span>×</a>
-
   <slot></slot>
+
+  <a class:bold class="close" href={back} on:click={close}><span>CLOSE&nbsp;</span>×</a>
 </section>
 {:else}
 <a use:slideIn class={btn({ full: true, hover: color, color: bold ? color : 'outline' })} {href} on:click={(e) => {
@@ -39,6 +41,8 @@
   if (href) {
     history.replaceState({}, '', href)
   }
+
+  onOpen()
 }}>
   <slot name="label" />
 </a>
@@ -53,10 +57,13 @@
   }
 
   .close.bold {
-    top: auto;
-    bottom: 1rem;
-    left: 0.5rem;
+    position: relative;
     text-align: center;
+    display: block;
+    width: 100%;
+    margin-bottom: 1.33em;
+    text-decoration: none;
+    font-size: 1.5em;
   }
 
   @media (max-width: 888px) {
