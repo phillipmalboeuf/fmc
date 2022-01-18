@@ -35,6 +35,7 @@ import { slideIn } from '$lib/animations';
     <Picture {media} small />
   </figure>{/each}{/if}
   {#if entry.fields.quote}<center use:slideIn class="{col({span: 2})}"><h2>{entry.fields.quote}</h2></center>{/if}
+  {#if !entry.fields.quote && !entry.fields.photos?.length}<div class="{col({span: 2})}"></div>{/if}
   {#if entry.fields.asideContent}<aside use:slideIn class="{box({ color: 'outline', padding: 'tight' })} {col({ align: 'bottom' })}"><Document body={entry.fields.asideContent} /></aside>{/if}
   {#if entry.fields.secondBody}<div use:slideIn class="{col({ start: 2 })}"><Document body={entry.fields.secondBody} /></div>{/if}
 </article>
