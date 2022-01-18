@@ -5,7 +5,7 @@ import { backs, texts } from '$lib/formatters'
 
 export const btn = recipe({
   base: [{
-    borderRadius: 6,
+    borderRadius: 12,
     cursor: "pointer",
     textDecoration: 'none',
     lineHeight: 1,

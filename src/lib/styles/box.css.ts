@@ -5,7 +5,7 @@ import { fmc, vars } from './styles.css'
 
 export const box = recipe({
   base: [fmc({ background: 'white', color: 'black' }), {
-    borderRadius: 6,
+    borderRadius: 12,
     position: 'relative',
     marginBottom: '1rem',
     // border: '1px solid transparent',
