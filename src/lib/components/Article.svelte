@@ -113,7 +113,7 @@
 
         <div>
           <p>{contributor.fields.job}</p>
-          <h2>{contributor.fields.title}</h2>
+          <h3>{contributor.fields.title}</h3>
           <p>{contributor.fields.description}</p>
 
           {#if contributor.fields.contactLink}
@@ -219,8 +219,8 @@
     margin: 0;
   }
 
-  .contributor p,
-  .contributor h2 {
+  .contributor p:first-of-type,
+  .contributor h3 {
     margin-bottom: 0;
   }
 
@@ -231,9 +231,14 @@
     /* margin-right: 0; */
   }
 
+  .contributor figure :global(img) {
+    height: 100%;
+    object-fit: cover;
+  }
+
   .contributor a {
     position: absolute;
-    bottom: 0.5rem;
+    bottom: 0.66rem;
     text-decoration-color: var(--color);
   }
 
