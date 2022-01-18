@@ -71,6 +71,9 @@ globalStyle('html', {
   '@media': {
     'screen and (max-width: 888px)': {
       fontSize: `${base/1.5}px`,
+    },
+    'screen and (min-width: 1888px)': {
+      fontSize: `${base}px`,
     }
   }
 })
