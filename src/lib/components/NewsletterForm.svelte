@@ -21,7 +21,7 @@
 
 <section use:slideIn class="{box({ color: 'outline' })} {grid({ columns: 2 })}" style="--color: {vars.colors[highlights(color)]}">
   {#if entry.fields.title}<h2>{entry.fields.title}</h2>{/if}
-  <form class="{grid({ columns: 2, gap: 'tight' })}" action="{entry.fields.url}" target="_blank">
+  <form class="{grid({ columns: 2, gap: 'tight' })} {col({ align: 'bottom' })}" action="{entry.fields.url}" target="_blank">
     <input type="email" class="{inpt()}" placeholder="{entry.fields.emailLabel}">
     <button type="submit" class="{btn({ size: 'tight' })}">{entry.fields.buttonLabel} →</button>
   </form>
