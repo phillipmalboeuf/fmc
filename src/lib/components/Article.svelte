@@ -75,7 +75,6 @@
   {/if}
 </svelte:head>
 
-{#key article.fields.id}
 <section style="--color: {vars.colors[color]}; --text-color: {vars.colors[texts(color)]}">
   <header style="background: {vars.colors[backs(color)]}; color: {vars.colors[texts(backs(color))]}">
     <div use:slideIn class="{grid({ columns: 2 })}">
@@ -166,7 +165,6 @@
     </center>
   </footer>
 </section>
-{/key}
 
 <style>
   header,

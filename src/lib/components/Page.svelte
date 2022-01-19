@@ -74,7 +74,6 @@
 
 
 
-{#key page.fields.id}
 <section class={grid({ columns: 4 })}>
   <Navigation contentHeight={offsetHeight} {index} bind:path />
 
@@ -96,4 +95,3 @@
     <Footer />
   </section>
 </section>
-{/key}

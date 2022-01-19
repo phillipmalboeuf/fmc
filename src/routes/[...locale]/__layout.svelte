@@ -22,5 +22,5 @@
 </script>
 
 <main>
-  <slot {main}></slot>
+  <slot {main} />
 </main>

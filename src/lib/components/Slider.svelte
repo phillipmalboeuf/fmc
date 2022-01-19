@@ -11,7 +11,7 @@
   import Columns from './Columns.svelte'
   import Media from './Media.svelte'
   import Chart from './Chart.svelte'
-import { highlights } from '$lib/formatters';
+  import { highlights } from '$lib/formatters'
   
   let ready: boolean
   onMount(async () => {

@@ -27,6 +27,7 @@
   let locale: string = $page.params.locale || 'en'
 
   onMount(() => {
+    innerHeight = window.innerHeight
     if (window.innerWidth < 888) {
       open = false
     }
@@ -38,7 +39,7 @@
   }
 </script>
 
-<svelte:window bind:scrollY bind:innerHeight />
+<svelte:window bind:scrollY />
 
 <nav class:black>
   <div bind:offsetHeight={navHeight}>
@@ -80,9 +81,9 @@
     </details>
   </div>
 
-  {#if scrollY !== undefined}
+  {#if scrollY !== undefined && innerHeight}
   <!-- <progress value={scrollY + 1} max={Math.max(offsetHeight - innerHeight, 1)} /> -->
-  <progress style="width: calc(95vh - {navHeight}px);" transition:slide value={scrollY + innerHeight} max={Math.max(contentHeight, innerHeight)} />
+  <progress style="width: calc(95vh - {navHeight}px);" value={scrollY + innerHeight} max={Math.max(contentHeight, innerHeight)} />
   {/if}
 </nav>
 

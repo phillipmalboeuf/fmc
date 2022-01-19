@@ -42,7 +42,7 @@
     history.replaceState({}, '', href)
   }
 
-  onOpen()
+  onOpen && onOpen()
 }}>
   <slot name="label" />
 </a>

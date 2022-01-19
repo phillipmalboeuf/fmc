@@ -27,23 +27,22 @@
   let offsetHeight: number
 </script>
 
-<section class="main {grid({ columns: 4 })} {box({ color: 'white' })}">
+<section class="container {grid({ columns: 4 })} {box({ color: 'white' })}">
   <Navigation contentHeight={offsetHeight} black />
   <section bind:offsetHeight class="content {col({ span: 3 })}">
     <a class="close" href={($page.params.locale === 'fr' ? "/fr" : "/")}>CLOSE ×</a>
 
-    {#key tag}
     <Tags tags={[tag]} />
     <br><br>
     {#if articles}
     <PageArticles {articles} />
     {/if}
-    {/key}
   </section>
 </section>
 
+
 <style>
-  .main {
+  .container {
     margin: -2vw;
   }
   .content {
