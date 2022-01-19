@@ -17,7 +17,9 @@
   import { backs, texts } from '$lib/formatters'
   import { page } from '$app/stores'
   import { slideIn } from '$lib/animations'
-import NewsletterForm from './NewsletterForm.svelte';
+  import NewsletterForm from './NewsletterForm.svelte'
+  
+  import { onMount } from 'svelte'
 
   export let content: Entry<any>[]
   export let path: string = undefined
@@ -25,11 +27,68 @@ import NewsletterForm from './NewsletterForm.svelte';
   export let media: Asset = undefined
   export let index: boolean = false
 
+  let hero: HTMLDivElement
+
+  onMount(() => {
+    if (color && hero) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(node => {
+            document.body.classList.toggle(`hero--${texts(backs(color))}`, node.isIntersecting)
+          })
+        },
+        {
+          rootMargin: '-20%'
+        }
+      )
+
+      observer.observe(hero)
+
+      return () => {
+        observer.disconnect()
+      }
+    }
+  })
 </script>
 
 {#if content}
 {#each content as entry, i}
-<div class:hero={!!media && i === 0} id={entry.fields.id} style={!!media && i === 0 && `padding-bottom: ${media.fields.file.details.image.height / media.fields.file.details.image.width * 120}%; --back: ${vars.colors[backs(color)]}; --text: ${vars.colors[texts(backs(color))]}`}>
+{#if media && i === 0}
+<div bind:this={hero} class:hero={!!media && i === 0} id={entry.fields.id} style={`padding-bottom: ${media.fields.file.details.image.height / media.fields.file.details.image.width * 120}%; --back: ${vars.colors[backs(color)]}; --text: ${vars.colors[texts(backs(color))]}`}>
+  <figure>
+    <Picture {media} eager />
+  </figure>
+
+  <div>
+    {#if entry.sys.contentType.sys.id === 'page'}
+    <Expander expanded={path === `/${entry.fields.id}`} onOpen={() => path = `/${entry.fields.id}`} color={entry.fields.color.toLowerCase()} href="{($page.params.locale === 'fr' ? "/fr" : "")}/{entry.fields.id}">
+      <span slot="label">{entry.fields.title}</span>
+
+      <PageIntro page={entry} />
+
+      <svelte:self content={entry.fields.content} />
+
+      {#if entry.fields.articles}
+      <PageArticles articles={entry.fields.articles.map(article => ({ article, page: entry }))} />
+      {/if}
+    </Expander>
+    {:else if entry.sys.contentType.sys.id === 'text'}
+    <Text {entry} {color} />
+    {:else if entry.sys.contentType.sys.id === 'columns'}
+    <Columns {entry} color={index ? color : undefined} />
+    {:else if entry.sys.contentType.sys.id === 'media'}
+    <Media {entry} />
+    {:else if entry.sys.contentType.sys.id === 'chart'}
+    <Chart {entry} />
+    {:else if entry.sys.contentType.sys.id === 'newsletterForm'}
+    <NewsletterForm {entry} {color} />
+    {:else if entry.sys.contentType.sys.id === 'slider'}
+    <Slider {entry} {color} />
+    {/if}
+  </div>
+</div>
+{:else}
+<div id={entry.fields.id}>
   {#if media && i === 0}
   <figure>
     <Picture {media} eager />
@@ -64,6 +123,7 @@ import NewsletterForm from './NewsletterForm.svelte';
     {/if}
   </div>
 </div>
+{/if}
 {/each}
 {/if}
 

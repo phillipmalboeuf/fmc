@@ -15,7 +15,6 @@
   export let contentHeight: number
   export let path: string = undefined
   export let index: boolean = false
-  export let black: boolean = false
 
   const { main } = getContext<{ main: Entry<{ links: Entry<Lien>[] }> }>('navigation')
 
@@ -41,7 +40,7 @@
 
 <svelte:window bind:scrollY />
 
-<nav class:black>
+<nav>
   <div bind:offsetHeight={navHeight}>
     <a class="logo" href="{($page.params.locale === 'fr' ? "/fr" : "/")}">
       <Logo {locale} />
@@ -98,9 +97,10 @@
     align-self: flex-start;
 
     --color: white;
+    color: var(--color);
   }
 
-  nav.black {
+  :global(body.hero--black) nav {
     --color: black;
   }
 
@@ -111,6 +111,7 @@
     margin-bottom: 0.33em;
     border-radius: 6px;
     color: var(--color);
+    transition: color 666ms;
   }
 
   nav :global(a:not(.logo):hover),
@@ -145,6 +146,12 @@
   input[type="radio"]:checked + label {
     color: black;
     background-color: white;
+  }
+
+  :global(body.hero--black) input[type="radio"]:checked + label {
+    color: white;
+    background-color: black;
+    transition: color 666ms, background-color 666ms;
   }
 
   @media (max-width: 888px) {
@@ -221,12 +228,14 @@
     background: var(--color);
     border-radius: 2px;
     height: 2px;
+    transition: background-color 666ms;
   }
 
   progress[value]::progress-bar {
     background: var(--color);
     border-radius: 2px;
     height: 2px;
+    transition: background-color 666ms;
   }
 
   progress[value]::-webkit-progress-value {
@@ -235,6 +244,7 @@
     height: 4px;
     position: relative;
     bottom: 1px;
+    transition: background-color 666ms;
   }
 
   progress[value]::progress-value {
@@ -243,6 +253,7 @@
     height: 4px;
     position: relative;
     bottom: 1px;
+    transition: background-color 666ms;
   }
 
   @media (max-width: 888px) {
