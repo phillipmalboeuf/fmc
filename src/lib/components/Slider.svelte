@@ -43,7 +43,7 @@ import { highlights } from '$lib/formatters';
       {#if entry.sys.contentType.sys.id === 'text'}
       <Text {entry} />
       {:else if entry.sys.contentType.sys.id === 'columns'}
-      <Columns {entry} />
+      <Columns {entry} noCenter />
       {:else if entry.sys.contentType.sys.id === 'media'}
       <Media {entry} />
       {:else if entry.sys.contentType.sys.id === 'chart'}
