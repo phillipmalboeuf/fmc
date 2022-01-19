@@ -15,6 +15,7 @@
   export let contentHeight: number
   export let path: string = undefined
   export let index: boolean = false
+  export let black: boolean = false
 
   const { main } = getContext<{ main: Entry<{ links: Entry<Lien>[] }> }>('navigation')
 
@@ -40,7 +41,7 @@
 
 <svelte:window bind:scrollY />
 
-<nav>
+<nav class:black>
   <div bind:offsetHeight={navHeight}>
     <a class="logo" href="{($page.params.locale === 'fr' ? "/fr" : "/")}">
       <Logo {locale} />
@@ -100,7 +101,8 @@
     color: var(--color);
   }
 
-  :global(body.hero--black) nav {
+  :global(body.hero--black) nav,
+  nav.black {
     --color: black;
   }
 
@@ -148,7 +150,8 @@
     background-color: white;
   }
 
-  :global(body.hero--black) input[type="radio"]:checked + label {
+  :global(body.hero--black) input[type="radio"]:checked + label,
+  nav.black input[type="radio"]:checked + label {
     color: white;
     background-color: black;
     transition: color 666ms, background-color 666ms;
