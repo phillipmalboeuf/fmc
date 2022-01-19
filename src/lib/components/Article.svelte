@@ -103,10 +103,10 @@
     </div>
 
     {#if article.fields.contributors}
-    <div use:slideIn class="{grid({ columns: 2, gap: 'tight' })} {col({ span: 2 })}">
+    <div use:slideIn class="{grid({ columns: 2, gap: 'horizontal' })} {col({ span: 2 })}">
       <h3 class="{col({ span: 2 })}">Contributors</h3>
       {#each article.fields.contributors as contributor}
-      <div class="contributor {box({ padding: 'tight' })} {grid({ columns: 2, gap: 'tight' })}">
+      <div class="contributor {box({ padding: 'tight' })} {grid({ columns: 2, gap: 'horizontal' })}">
         <figure class="">
           <Picture media={contributor.fields.image} small ar={1} />
         </figure>

@@ -142,7 +142,7 @@ globalStyle('h5', {
 
 globalStyle('h6', {
   fontFamily: vars.fonts.heading,
-  fontSize: `1rem`
+  fontSize: `1.88rem`
 })
 
 globalStyle('p', {

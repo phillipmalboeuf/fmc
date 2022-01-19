@@ -43,6 +43,7 @@ export const btn = recipe({
       }}],
     },
     size: {
+      tight: [fmc({ fontSize: 'big' }), { padding: '0.5em', fontSize: '2rem', fontFamily: vars.fonts.body }],
       small: fmc({ padding: 'small' }),
       medium: fmc({ padding: 'medium' }),
       large: fmc({ padding: 'large' })

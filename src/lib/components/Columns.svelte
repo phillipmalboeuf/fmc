@@ -22,12 +22,13 @@
     quote: string
     image: Asset
     photos: Asset[]
+    hideTitle: boolean
   }>
   export let color: string = undefined
 </script>
 
 <article style="--heading-color: {vars.colors[color]}" class="{grid({ columns: 2 })}">
-  {#if entry.fields.title}<Title title={entry.fields.title} />{/if}
+  {#if entry.fields.title && !entry.fields.hideTitle}<Title title={entry.fields.title} />{/if}
   {#if entry.fields.image}<figure use:slideIn class="{col({span: 2})}"><Picture media={entry.fields.image} /></figure>{/if}
   {#if entry.fields.body}<div use:slideIn><Document body={entry.fields.body} /></div>{/if}
   {#if entry.fields.photos?.length}{#each entry.fields.photos as media, i}<figure use:slideIn

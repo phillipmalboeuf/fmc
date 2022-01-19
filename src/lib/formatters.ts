@@ -36,3 +36,7 @@ export const texts = (color: string) => ({
   'moss': 'white',
   'violet': 'black',
 }[color])
+
+export const highlights = (color: string) => ({
+  'violet': 'pink',
+}[color])

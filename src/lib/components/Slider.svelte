@@ -11,6 +11,7 @@
   import Columns from './Columns.svelte'
   import Media from './Media.svelte'
   import Chart from './Chart.svelte'
+import { highlights } from '$lib/formatters';
   
   let ready: boolean
   onMount(async () => {
@@ -26,7 +27,7 @@
   export let color: string = undefined
 </script>
 
-<section style="--color: {vars.colors[color]}" class="{box({ color: 'muted' })}" id={entry.fields.id}>
+<section style="--color: {vars.colors[highlights(color)]}" class="{box({ color: 'muted' })}" id={entry.fields.id}>
   {#if entry.fields.title}<h2>{entry.fields.title}</h2>{/if}
   {#if ready}
   <Carousel

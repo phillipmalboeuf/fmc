@@ -19,7 +19,8 @@ export const grid = recipe({
       4: { gridTemplateColumns: '1fr 1fr 1fr 1fr' },
     },
     gap: {
-      tight: fmc({ columnGap: 'small' }),
+      tight: { columnGap: '1em', rowGap: '1em' },
+      horizontal: fmc({ columnGap: 'small' }),
       small: fmc({ columnGap: 'small', rowGap: 'small' }),
       medium: fmc({ columnGap: 'medium', rowGap: 'medium' }),
     },
