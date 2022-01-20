@@ -39,6 +39,8 @@
 
   const { fields: { title, description, type, alignment, data, min, max, axeTitle, stacked } } = entry
 
+  let arrow: boolean
+
   const dataSource = csvToChartData(data)
 
 
@@ -65,13 +67,11 @@
         break
     }
 
-    // if (chart) {
-    //   exporting = Exporting.new(chart._root, {
-    //     filePrefix: id,
-    //     dataSource
-    //     // menu: ExportingMenu.new(chart._root, {})
-    //   })
-    // }
+    if (chart) {
+      if (alignment !== 'Horizontal' && window.innerWidth < 888) {
+        arrow = true
+      }
+    }
   }
   
 
@@ -100,19 +100,35 @@
 <section class="{grid({ columns: 2 })}">
   {#if title}<h3 use:slideIn>{title}</h3>{/if}
   {#if description}<aside use:slideIn><Document body={description} /></aside>{/if}
-  <figure class:numbers={type === 'Big numbers'} use:slideIn class:small class="{col({ span: 2 })}" bind:this={element}></figure>
+  <figure class:numbers={type === 'Big numbers'} class:arrow use:slideIn class:small class="{col({ span: 2 })}" bind:this={element}></figure>
 </section>
 
 <style>
   figure {
+    position: relative;
     width: 100%;
     padding-bottom: 42%;
     margin-bottom: 5rem;
   }
 
+  figure.arrow:after {
+    pointer-events: none;
+
+    content: "→";
+    font-family: "Trim";
+    text-align: right;
+    height: 100%;
+    width: 6rem;
+    background: linear-gradient(90deg, rgba(246,247,246,0) 0%, rgba(246,247,246,1) 100%);
+
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
   @media (max-width: 888px) {
     figure {
-      padding-bottom: 100%;
+      padding-bottom: 133%;
     }
 
     figure.numbers {

@@ -20,7 +20,7 @@ function csvToArray(str: string, delimiter = ",") {
 }
 
 
-import { Bullet, Circle, Color, color, DataProcessor, Label, Legend, LinearGradient, p100, p50, percent, Root, Theme, Tooltip } from '@amcharts/amcharts5'
+import { Bullet, Button, Circle, Color, color, DataProcessor, Label, Legend, LinearGradient, p100, p50, percent, Root, Theme, Tooltip } from '@amcharts/amcharts5'
 import { XYChart, ValueAxis, CategoryAxis, AxisRendererX, ColumnSeries, AxisRendererY, LineSeries, AxisLabel, XYCursor } from '@amcharts/amcharts5/xy'
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated"
 // import am5themes_Dark from "@amcharts/amcharts5/themes/Dark"
@@ -66,9 +66,10 @@ export function createColumns(element: HTMLElement, seriesData: any[], vertical:
   let chart = root.container.children.push(
     XYChart.new(root, {
       panY: false,
+      panX: window.innerWidth < 888 && vertical,
       layout: root.verticalLayout,
       paddingLeft: 0,
-      // paddingRight: 0,
+      paddingRight: 0
     })
   )
 
@@ -215,6 +216,11 @@ export function createColumns(element: HTMLElement, seriesData: any[], vertical:
     let legend = chart.children.push(Legend.new(root, {}));
     legend.data.setAll(chart.series.values)
   }
+
+  if (window.innerWidth < 888 && vertical) {
+    categoryAxis.zoomToIndexes(0, 2)
+    chart.zoomOutButton.set("forceHidden", true)
+  } 
 
   return chart
 }
