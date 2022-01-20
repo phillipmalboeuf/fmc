@@ -60,18 +60,27 @@
   }
 
   figure.play {
+    position: relative;
     cursor: pointer;
   }
 
   figure.play:after {
     content: "PLAY";
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     font-family: "Trim Poster";
     font-size: 12rem;
+    line-height: 0.88;
     color: white;
-    transform: translate(-50%, -48%);
+    transform: translate(-50%, -50%);
+  }
+
+  @media (max-width: 888px) {
+    figure.play:after {
+      top: 60%;
+      font-size: 6rem;
+    }
   }
 
   figcaption {

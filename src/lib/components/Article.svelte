@@ -46,6 +46,8 @@
   import Tags from './Tags.svelte'
   import ShareBar from './ShareBar.svelte'
   import Title from './Title.svelte'
+  import BackIcon from './BackIcon.svelte'
+
   import { slideIn } from '$lib/animations'
 
 	export let article: Entry<ArticleDocument>
@@ -161,7 +163,7 @@
     {/if}
 
     <center use:slideIn class="{col({ span: 2 })}">
-      <a class="back" href="{($page.params.locale === 'fr' ? "/fr" : "")}/{$page.params.page}" on:click={onBack}><h4>BACK ↩</h4></a>
+      <a class="back" href="{($page.params.locale === 'fr' ? "/fr" : "")}/{$page.params.page}" on:click={onBack}><h4>BACK <BackIcon /></h4></a>
     </center>
   </footer>
 </section>

@@ -20,7 +20,10 @@
 
 <nav class="{pills()} {col({ span: 2 })}">
   <div class="{pill({ corner: 'thick' })}">
-    <h4>Share</h4>
+    <h4 on:click={() => !!navigator.share && navigator.share({
+      url,
+      text: `${article.fields.title} – ${article.fields.type}`
+    })}>Share</h4>
 
     <hr>
     

@@ -64,13 +64,14 @@
     margin-bottom: 1.33em;
     text-decoration: none;
     font-size: 1.5em;
+    right: 0;
   }
 
   @media (max-width: 888px) {
     .close {
       font-size: 1.5em;
     }
-    .close span {
+    .close:not(.bold) span {
       display: none;
     }
   }

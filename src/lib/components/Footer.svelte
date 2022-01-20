@@ -15,7 +15,7 @@
   <h5 class="logo">Canada<br>Media Fund</h5>
 
   <div class="{grid({ columns: 4 })}">
-    <nav class="{col({ span: 3, align: 'top' })} {grid({ columns: 3 })}">
+    <nav class="{col({ span: 3, align: 'top' })} {grid({ columns: 3, gap: 'tight' })}">
       {#each secondary.fields.links as link}
       <Link {link} />
       {/each}
@@ -30,7 +30,7 @@
       <br>
       <br>
       <br>
-      <nav class="{grid({ columns: 1 })}">
+      <nav class="tertiary {grid({ columns: 1, gap: 'tight' })}">
         {#each tertiary.fields.links as link}
         <Link {link} />
         {/each}
@@ -76,6 +76,10 @@
   @media (max-width: 888px) {
     h5:not(.logo) {
       margin-top: 3rem;
+    }
+
+    nav.tertiary {
+      margin-right: -2.25em;
     }
   }
 </style>

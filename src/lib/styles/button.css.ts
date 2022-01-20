@@ -43,7 +43,7 @@ export const btn = recipe({
       }}],
     },
     size: {
-      tight: [fmc({ fontSize: 'big' }), { padding: '0.5em', fontSize: '2rem', fontFamily: vars.fonts.body }],
+      tight: [fmc({ fontSize: 'big' }), { padding: '0.5em', fontSize: '2rem', fontFamily: vars.fonts.body, fontWeight: 'normal' }],
       small: fmc({ padding: 'small' }),
       medium: fmc({ padding: 'medium' }),
       large: fmc({ padding: 'large' })
@@ -56,6 +56,7 @@ export const btn = recipe({
       '@media': {
         'screen and (max-width: 888px)': {
           textAlign: 'left',
+          fontSize: '2em',
           selectors: {
             '&:after': {
               content: '↓',
