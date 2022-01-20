@@ -54,6 +54,11 @@
     color: var(--color);
   }
 
+  figure :global(img) {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
   figure.play {
     cursor: pointer;
   }
