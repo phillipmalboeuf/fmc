@@ -56,7 +56,6 @@ export const btn = recipe({
       '@media': {
         'screen and (max-width: 888px)': {
           textAlign: 'left',
-          fontSize: '2em',
           selectors: {
             '&:after': {
               content: '↓',

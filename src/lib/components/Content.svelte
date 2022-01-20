@@ -157,5 +157,9 @@
       margin: calc(-4vh - 8rem) -2vh 2rem;
       padding: 12rem 2vh 2vw;
     }
+
+    span {
+      font-size: 2rem;
+    }
   }
 </style>
