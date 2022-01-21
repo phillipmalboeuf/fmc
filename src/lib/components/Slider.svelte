@@ -15,7 +15,7 @@
   
   let ready: boolean
   onMount(async () => {
-    ready = true
+    ready = navigator.userAgent.search("Firefox") > -1 ? false : true
   })
 
   export let entry: Entry<{
