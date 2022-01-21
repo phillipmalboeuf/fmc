@@ -225,9 +225,18 @@
 
     transform: translateX(0.66em) rotate(90deg);
     transform-origin: top left;
+    height: 4px;
+    background: transparent;
   }
 
   progress[value]::-webkit-progress-bar {
+    background: var(--color);
+    border-radius: 2px;
+    height: 2px;
+    transition: background-color 666ms;
+  }
+
+  progress[value]::-moz-progress-bar {
     background: var(--color);
     border-radius: 2px;
     height: 2px;
