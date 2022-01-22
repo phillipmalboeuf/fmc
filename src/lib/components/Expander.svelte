@@ -6,12 +6,13 @@
   import { box } from '$lib/styles/box.css'
   import { slideIn } from '$lib/animations'
 
-  export let color: any
+  export let color: any = undefined
   export let href: string = undefined
   export let back: string = undefined
 
   export let expanded = false
   export let bold = false
+  export let tight = false
 
   export let onOpen: Function = undefined
 
@@ -34,7 +35,7 @@
   <a class:bold class="close" href={back} on:click={close}><span>CLOSE&nbsp;</span>×</a>
 </section>
 {:else}
-<a use:slideIn class={btn({ full: true, hover: color, color: bold ? color : 'outline' })} {href} on:click={(e) => {
+<a use:slideIn class={btn({ full: true, hover: color, color: bold ? color : tight ? 'none' : 'outline', size: tight ? 'tight' : 'small' })} {href} on:click={(e) => {
   e.preventDefault()
   expanded = true
 

@@ -52,7 +52,7 @@
 
 	export let article: Entry<ArticleDocument>
   export let others: Entry<ArticleDocument>[] = undefined
-  export let color: string
+  export let color: any
   
   let onBack: svelte.JSX.MouseEventHandler<HTMLAnchorElement> = getContext('close')
 </script>

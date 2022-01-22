@@ -154,6 +154,11 @@ globalStyle('a', {
   color: 'currentColor'
 })
 
+globalStyle('small, small > p', {
+  fontSize: '0.95em',
+  lineHeight: 1.33
+})
+
 globalStyle('button', {
   fontFamily: vars.fonts.body,
   cursor: 'pointer',

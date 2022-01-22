@@ -27,6 +27,7 @@ export const btn = recipe({
       pink: { selectors: { '&:hover': { background: vars.colors['pink'], color: vars.colors[texts('pink')] } } },
     },
     color: {
+      none: [fmc({ fontSize: 'big' }), { textTransform: 'uppercase', color: 'currentColor', background: 'transparent', border: '1px solid transparent' }],
       outline: [fmc({ fontSize: 'big' }), { fontFamily: vars.fonts.heading, textTransform: 'uppercase', color: 'currentColor', background: 'transparent', border: '1px solid' }],
       // muted: fmc({ background: 'violet', color: 'white' }),
       green: [{ background: vars.colors['green'], color: vars.colors[texts('green')] }, { selectors: { 
@@ -43,7 +44,12 @@ export const btn = recipe({
       }}],
     },
     size: {
-      tight: [fmc({ fontSize: 'big' }), { padding: '0.5em', fontSize: '2rem', fontFamily: vars.fonts.body, fontWeight: 'normal' }],
+      tight: [fmc({ fontSize: 'big' }), { padding: '0.5em', fontSize: '2rem', fontFamily: vars.fonts.body, fontWeight: 'normal', '@media': {
+        'screen and (max-width: 888px)': {
+          fontSize: '1.5rem'
+        }
+      }
+         }],
       small: fmc({ padding: 'small' }),
       medium: fmc({ padding: 'medium' }),
       large: fmc({ padding: 'large' })

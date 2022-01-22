@@ -1,14 +1,16 @@
 <script lang="ts">
   import { slideIn } from '$lib/animations'
   import { box } from '$lib/styles/box.css'
+  import { col, grid } from '$lib/styles/grid.css'
 
   import type { Entry, RichTextContent } from 'contentful'
-  // import type { Lien } from '../Link.svelte'
+  import { onMount } from 'svelte'
+  
   import Document from './document/Document.svelte'
-  // import Link from '../Link.svelte'
-  // import Logo from '../icons/Logo.svelte'
+  import Expander from './Expander.svelte'
 
-  export let entry: Entry<{
+
+  interface Text {
     title: string
     id: string
     subtitle: string
@@ -16,14 +18,49 @@
     big: boolean
     boxed: boolean
     hideTitle: boolean
-  }>
-  export let color: string = 'muted'
+    subTexts: Entry<Text>[]
+  }
+
+  export let entry: Entry<Text>
+  export let color: any = 'muted'
+
+  let phone = false
+
+  onMount(() => {
+    if (window.innerWidth < 888) {
+      phone = true
+    }
+  })
 </script>
 
 <section use:slideIn class:big={entry.fields.big} class:boxed={entry.fields.boxed} class="{entry.fields.boxed && box({ color })}">
 {#if entry.fields.subtitle}<p>{entry.fields.subtitle}</p>{/if}
 {#if entry.fields.title && !entry.fields.hideTitle}<h2>{entry.fields.title}</h2>{/if}
+{#if entry.fields.subTexts?.length}
+<div class="subbed {!phone && grid()}">
+  {#if entry.fields.body}<div class="{col({ span: 2 })}"><Document body={entry.fields.body} /></div>{/if}
+  {#if phone}
+  <br><br>
+  {#each entry.fields.subTexts as sub}
+  <Expander tight>
+    <span slot="label">{sub.fields.title}</span>
+
+    <h5>{sub.fields.title}</h5>
+    <Document body={sub.fields.body} />
+  </Expander>
+  {/each}
+  {:else}
+  {#each entry.fields.subTexts as sub}
+  <small>
+    <em>{sub.fields.title}</em>
+    <Document body={sub.fields.body} />
+  </small>
+  {/each}
+  {/if}
+</div>
+{:else}
 {#if entry.fields.body}<div><Document body={entry.fields.body} /></div>{/if}
+{/if}
 </section>
 
 <style>
@@ -31,12 +68,19 @@
     font-size: 1.66em;
   }
 
-  section {
-    /* margin-bottom: 4rem; */
+  .boxed > div {
+    columns: 2;
   }
 
-  .boxed div {
-    columns: 2;
+  .subbed > div :global(p) {
+    font-size: 1.5em;
+  }
+
+  small em {
+    display: block;
+    font-style: normal;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
   }
 
   @media (max-width: 888px) {
