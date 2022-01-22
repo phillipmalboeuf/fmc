@@ -30,7 +30,7 @@
   let hero: HTMLDivElement
 
   onMount(() => {
-    if (color && hero) {
+    if (color && hero && window.innerWidth > 888) {
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach(node => {
