@@ -77,10 +77,11 @@
   {/if}
 </svelte:head>
 
-<section style="--color: {vars.colors[color]}; --text-color: {vars.colors[texts(color)]}">
-  <header style="background: {vars.colors[backs(color)]}; color: {vars.colors[texts(backs(color))]}">
+<section style="--color: {vars.colors[color]}; --text-color: {vars.colors[texts(color)]}; --back-color: {vars.colors[backs(color)]}; --back-text-color: {vars.colors[texts(backs(color))]}">
+  <ShareBar {article} {onBack} />
+  <header style="background: var(--back-color); color: var(--back-text-color)">
     <div use:slideIn class="{grid({ columns: 2 })}">
-      <ShareBar {article} {onBack} />
+      
 
       {#if article.fields.image}
       <figure class="{col({ span: 2 })}">
@@ -171,8 +172,8 @@
 <style>
   header,
   footer {
-    margin: calc(-2vw - 1px) calc(-2vw - 1px) 2vw;
-    padding: 2vw;
+    margin: min(-2vw, -2vh) min(-2vw, -2vh) max(2vw, 2vh);
+    padding: max(2vw, 2vh);
   }
 
   header {
@@ -180,11 +181,7 @@
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
-
-  footer {
-    margin: 2vw calc(-2vw - 1px);
-  }
-
+  
   footer :global(a:not(.back):not(.other)) {
     display: inline-block;
     font-size: 1.5em;
@@ -201,17 +198,17 @@
     text-decoration: none;
   }
 
-  @media (max-width: 888px) {
+  /* @media (max-width: 888px) {
     header,
     footer {
-      margin: calc(-2vh - 1px) calc(-2vh - 1px) 2vh;
+      margin: -2vh -2vh 2vh;
       padding: 2vh;
     }
 
     footer {
-      margin: 2vh calc(-2vh - 1px);
+      margin: 2vh -2vh;
     }
-  }
+  } */
 
 
   figure {
@@ -243,6 +240,10 @@
   }
 
   @media (max-width: 888px) {
+    figure {
+      padding: 1rem;
+    }
+
     .contributor figure {
       height: 25vh;
       overflow: hidden;

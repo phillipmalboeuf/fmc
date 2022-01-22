@@ -9,7 +9,7 @@ export const box = recipe({
     position: 'relative',
     marginBottom: '1rem',
     // border: '1px solid transparent',
-    overflow: 'hidden'
+    // overflow: 'hidden'
   }],
 
   variants: {

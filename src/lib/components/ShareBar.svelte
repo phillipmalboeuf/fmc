@@ -46,6 +46,21 @@
 </nav>
 
 <style>
+  nav {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 2px;
+    
+    color: var(--back-text-color);
+    background-color: var(--back-color);
+    border-radius: 6px;
+
+    padding: max(1vw, 1vh);
+    z-index: 10;
+    margin: calc((max(2vw, 2vh) * -1)) calc((max(2vw, 2vh) * -1)) 1vw;
+    width: calc(100% + (max(2vw, 2vh) * 2));
+  }
+
   h4 {
     margin-bottom: 0;
   }
