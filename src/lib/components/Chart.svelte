@@ -21,7 +21,7 @@
   import { page } from '$app/stores'
 
   import { col, grid } from '$lib/styles/grid.css'
-  import { createCurve, createColumns, csvToChartData, createPyramide } from '$lib/charts'
+  import { createCurve, createColumns, csvToChartData, createPyramide, createTarte } from '$lib/charts'
   import type { Chart } from '@amcharts/amcharts5/.internal/core/render/Chart'
   import Document from './document/Document.svelte'
   import { slideIn } from '$lib/animations'
@@ -60,6 +60,11 @@
 
       case 'Big numbers':
         chart = createPyramide(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
+        chart.appear(1000, 100)
+        break
+
+      case 'Pie':
+        chart = createTarte(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
         chart.appear(1000, 100)
         break
     

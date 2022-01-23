@@ -395,46 +395,46 @@ export function createPyramide(element: HTMLElement, seriesData: any[], vertical
   return chart
 }
 
-// export function createTarte(element: HTMLElement, seriesData: any[], min: number, max: number, title: string, couleur: string, locale: string) {
-//   let root = init(element, locale)
-//   let chart = root.container.children.push(
-//     PieChart.new(root, {
-//       layout: root.verticalLayout,
-//       innerRadius: percent(40),
-//       paddingLeft: 0,
-//       paddingRight: 0,
-//     })
-//   )
+export function createTarte(element: HTMLElement, seriesData: any[], vertical: boolean, stacked: boolean, min: number, max: number, title: string, firstColor: string, secondColor: string, locale: string) {
+  let root = init(element, locale)
+  let chart = root.container.children.push(
+    PieChart.new(root, {
+      layout: root.verticalLayout,
+      innerRadius: percent(40),
+      paddingLeft: 0,
+      paddingRight: 0,
+    })
+  )
 
-//   const keys = Object.keys(seriesData[0]).filter(key => !['Date', 'Région', 'Catégorie'].includes(key))
+  const keys = Object.keys(seriesData[0]).filter(key => !['Category'].includes(key))
 
-//   keys.forEach((name, i) => {
-//     let series = chart.series.push(PieSeries.new(root, {
-//       name,
-//       categoryField: "Catégorie",
-//       valueField: name,
-//       alignLabels: false
-//     }))
+  keys.forEach((name, i) => {
+    let series = chart.series.push(PieSeries.new(root, {
+      name,
+      categoryField: "Category",
+      valueField: name,
+      alignLabels: false
+    }))
 
-//     series.data.processor = DataProcessor.new(root, {
-//       numericFields: [name]
-//     })
+    series.data.processor = DataProcessor.new(root, {
+      numericFields: [name]
+    })
     
-//     series.data.setAll(seriesData)
+    series.data.setAll(seriesData)
 
-//     series.slices.template.setAll({
-//       fill: color(couleur),
-//       stroke: color(couleur),
-//       strokeWidth: 3
-//     })
+    series.slices.template.setAll({
+      fill: color(firstColor),
+      stroke: color(secondColor),
+      strokeWidth: 3
+    })
 
-//     series.labels.template.setAll({
-//       text: "{category}",
-//       textType: "circular",
-//       inside: false,
-//       radius: 10
-//     });
-//   })
+    series.labels.template.setAll({
+      text: "{category}",
+      textType: "circular",
+      inside: false,
+      radius: 10
+    });
+  })
 
-//   return chart
-// }
+  return chart
+}
