@@ -63,10 +63,10 @@
         chart.appear(1000, 100)
         break
 
-      case 'Pie':
-        chart = createTarte(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
-        chart.appear(1000, 100)
-        break
+      // case 'Pie':
+      //   chart = createTarte(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
+      //   chart.appear(1000, 100)
+      //   break
     
       default:
         break
