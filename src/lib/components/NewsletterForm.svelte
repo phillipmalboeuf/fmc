@@ -20,9 +20,9 @@
   export let color: string = 'muted'
 </script>
 
-<section use:slideIn class="{box({ color: 'outline' })} {grid({ columns: 4 })}" style="--color: {vars.colors[highlights(color)]}">
+<section use:slideIn class="{box({ color: 'outline' })} {grid({ columns: 2 })}" style="--color: {vars.colors[highlights(color)]}">
   {#if entry.fields.title}<h2>{entry.fields.title}</h2>{/if}
-  <div class="{col({ span: 2 })}">
+  <div class="">
     {#if entry.fields.embed}{@html entry.fields.embed}{/if}
   </div>
   <!-- <form class="{grid({ columns: 2, gap: 'tight' })} {col({ align: 'bottom' })}" action="{entry.fields.url}" target="_blank">
