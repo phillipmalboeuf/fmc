@@ -13,7 +13,7 @@
   // import I from './icons/I.svelte'
   
   export let link: Entry<Lien>
-  // export let plus = false
+  export let arrow = false
 </script>
 
-<a href={((!link.fields.external && $page.params.locale === 'fr') ? "/fr" : "") + link.fields.path} target={link.fields.external && '_blank'} rel={link.fields.external && "external"} on:click>{link.fields.title}</a>
+<a href={((!link.fields.external && $page.params.locale === 'fr') ? "/fr" : "") + link.fields.path} target={link.fields.external && '_blank'} rel={link.fields.external && "external"} on:click>{link.fields.title}{link.fields.external && arrow ? ' ↗' : ''}</a>

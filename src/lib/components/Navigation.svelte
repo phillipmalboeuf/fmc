@@ -36,7 +36,7 @@
 
   function change(l: string) {
     locale = l
-    goto((locale === 'fr' ? '/fr' : '/') + ($page.params.page ? (locale === 'fr' ? '/' : '')+ $page.params.page : "") + ($page.params.article ? "/" + $page.params.article : ""))
+    goto((locale === 'fr' ? '/fr' : '/'))
   }
 </script>
 

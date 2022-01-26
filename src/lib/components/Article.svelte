@@ -98,7 +98,7 @@
       {/if}
 
       {#if article.fields.tags}
-      <div style={article.fields.description && "grid-column-start: 1; grid-row-start: 4"}>
+      <div style={article.fields.description && "grid-column-start: 1; grid-row-start: 3"}>
         <Tags tags={[article.fields.type, ...article.fields.tags]} />
       </div>
       {/if}
@@ -106,7 +106,7 @@
 
     {#if article.fields.contributors}
     <div use:slideIn class="{grid({ columns: 2, gap: 'horizontal' })} {col({ span: 2 })}">
-      <h3 class="{col({ span: 2 })}">Contributors</h3>
+      <h3 class="{col({ span: 2 })}">{$page.params.locale === 'fr' ? 'Contributeurs' : 'Contributors'}</h3>
       {#each article.fields.contributors as contributor}
       <div class="contributor {box({ padding: 'tight' })} {grid({ columns: 2, gap: 'horizontal' })}">
         <figure class="">
@@ -133,14 +133,6 @@
   <footer class="{grid({ columns: 2 })}" style="background: {vars.colors[backs(color)]}; color: {vars.colors[texts(backs(color))]}">
     {#if article.fields.recommended}
     <Title title={'Dive Deeper'} />
-    
-    <nav use:slideIn>
-      <h2>Recommended Articles</h2>
-
-      {#each article.fields.recommended as rec}
-      <a href={($page.params.locale === 'fr' ? "/fr/" : "/") + rec.fields.id}>{rec.fields.title}</a>
-      {/each}
-    </nav>
 
     {#each article.fields.deeperNavigation as navigation, i}
     <nav use:slideIn class="{i === 0 && col({ start: 1 })}">
@@ -153,7 +145,18 @@
     {/each}
     {/if}
 
-    {#if others}
+    {#if article.fields.recommended}
+    <h2 class="{col({ span: 2 })}" use:slideIn>Recommended Articles</h2>
+    {#each article.fields.recommended as rec}
+    <a use:slideIn href="{($page.params.locale === 'fr' ? "/fr" : "")}/{$page.params.page}/{rec.fields.id}" class="{box({ color })} other">
+      <h4>Next Article</h4>
+      <h2>{rec.fields.title}</h2>
+      <small>Learn more +</small>
+    </a>
+    {/each}
+    {/if}
+
+    <!-- {#if others}
     {#each others as other}
     <a use:slideIn href="{($page.params.locale === 'fr' ? "/fr" : "")}/{$page.params.page}/{other.fields.id}" class="{box({ color })} other">
       <h4>Next Article</h4>
@@ -161,7 +164,7 @@
       <small>Learn more +</small>
     </a>
     {/each}
-    {/if}
+    {/if} -->
 
     <center use:slideIn class="{col({ span: 2 })}">
       <a class="back" href="{($page.params.locale === 'fr' ? "/fr" : "")}/{$page.params.page}" on:click={onBack}><h4>BACK <BackIcon /></h4></a>
@@ -191,6 +194,10 @@
   footer :global(a:not(.other):hover),
   footer :global(a:not(.other):focus) {
     color: var(--color);
+  }
+
+  footer > h2 {
+    margin-bottom: 0;
   }
 
   a.back,

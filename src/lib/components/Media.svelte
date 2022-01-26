@@ -6,6 +6,7 @@
   import { box } from '$lib/styles/box.css'
   import Picture from './Picture.svelte'
   import { slideIn } from '$lib/animations'
+import { page } from '$app/stores';
   // import Link from '../Link.svelte'
   // import Logo from '../icons/Logo.svelte'
 
@@ -24,7 +25,7 @@
   {#if entry.fields.body}<Document body={entry.fields.body} />{/if}
   {#each entry.fields.assets as media}
   {#if media.fields.description?.startsWith('https://')}
-  <figure use:slideIn class="{col({ span: 2 })}" class:play={play !== media.sys.id} on:click={() => play = media.sys.id}>
+  <figure use:slideIn class="{col({ span: 2 })}" data-label="{$page.params.locale === 'fr' ? 'Écouter' : 'Play'}" class:play={play !== media.sys.id} on:click={() => play = media.sys.id}>
     <figcaption>{media.fields.title}</figcaption>
     {#if play === media.sys.id}
     <iframe style="aspect-ratio: {media.fields.file.details.image.width} / {media.fields.file.details.image.height}" src={media.fields.description} title={media.fields.title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
@@ -65,7 +66,7 @@
   }
 
   figure.play:after {
-    content: "PLAY";
+    content: attr(data-label);
     position: absolute;
     top: 55%;
     left: 50%;

@@ -23,7 +23,7 @@
     <h4 on:click={() => !!navigator.share && navigator.share({
       url,
       text: `${article.fields.title} – ${article.fields.type}`
-    })}>Share</h4>
+    })}>{$page.params.locale === 'fr' ? 'Partager' : 'Share'}</h4>
 
     <hr>
     
@@ -40,9 +40,9 @@
     </ul>
   </div>
 
-  <button class="{pill({ corner: 'thick', clickable: true })}" on:click={() => window.print()}><h4>PRINT ↓</h4></button>
+  <button class="{pill({ corner: 'thick', clickable: true })}" on:click={() => window.print()}><h4>{$page.params.locale === 'fr' ? 'IMPRIMER' : 'PRINT'} ↓</h4></button>
 
-  <a class="back" href="{($page.params.locale === 'fr' ? "/fr" : "")}/{$page.params.page}" on:click={onBack}><h4>BACK <BackIcon /></h4></a>
+  <a class="back" href="{($page.params.locale === 'fr' ? "/fr" : "")}/{$page.params.page}" on:click={onBack}><h4>{$page.params.locale === 'fr' ? 'RETOUR' : 'BACK'} <BackIcon /></h4></a>
 </nav>
 
 <style>
