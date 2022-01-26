@@ -4,10 +4,10 @@ import type { Entry } from 'contentful'
 import json from 'json-complete'
 
 // @ts-ignore
-export const get: RequestHandler = async ({ params }) => {
+export const get: RequestHandler = async ({ params, locals }) => {
   const locale = params.locale
 	const [pages] = await Promise.all([
-    entries('page', locale, { 'fields.id': params.page }, 4),
+    entries('page', locale, { 'fields.id': params.page }, locals.host === 'fmc-preview.votre.best', 4),
     // entries('theme', locale)
   ])
 

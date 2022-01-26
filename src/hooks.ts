@@ -1,6 +1,7 @@
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ request, resolve }) {
 
+	request.locals.host = request.headers.host
 	const response = await resolve(request)
 
 	return {
