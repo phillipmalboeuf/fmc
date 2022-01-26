@@ -12,7 +12,7 @@
 
 <header>
   <center>
-    {#if h1}<h1>{page.fields.title}</h1>{:else}<h2>{page.fields.title}</h2>{/if}
+    {#if h1}<h1 use:slideIn>{page.fields.title}</h1>{:else}<h2 use:slideIn>{page.fields.title}</h2>{/if}
     {#if page.fields.description}<h4 use:slideIn>{page.fields.description}</h4>{/if}
   </center>
 

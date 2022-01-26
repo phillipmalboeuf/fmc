@@ -15,6 +15,7 @@
   export let contentHeight: number
   export let path: string = undefined
   export let index: boolean = false
+  export let landing: boolean = false
   export let black: boolean = false
 
   const { main } = getContext<{ main: Entry<{ links: Entry<Lien>[] }> }>('navigation')
@@ -54,6 +55,7 @@
       <label for="fr">FR</label> 
     </div>
 
+    {#if !landing}
     <details bind:open={open}>
       <summary><span>Menu</span> <MenuIcon {open} /></summary>
       {#if main}
@@ -79,9 +81,10 @@
       {/if} -->
       {/if}
     </details>
+    {/if}
   </div>
 
-  {#if scrollY !== undefined && innerHeight}
+  {#if !landing && scrollY !== undefined && innerHeight}
   <!-- <progress value={scrollY + 1} max={Math.max(offsetHeight - innerHeight, 1)} /> -->
   <progress style="width: calc(95vh - {navHeight}px);" value={scrollY + innerHeight} max={Math.max(contentHeight, innerHeight)} />
   {/if}

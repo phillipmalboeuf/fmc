@@ -29,6 +29,7 @@
 
 	export let page: Entry<PageDocument>
   export let index = false
+  export let landing = false
   
 
   let offsetHeight: number
@@ -75,13 +76,11 @@
 
 
 <section class={grid({ columns: 4 })}>
-  <Navigation contentHeight={offsetHeight} {index} bind:path />
+  <Navigation contentHeight={offsetHeight} {index} {landing} bind:path />
 
-  <section bind:offsetHeight class="content {col({ span: 3 })}">
+  <section bind:offsetHeight class="content {col({ span: 3 })}">  
 
-    
-
-    {#if !index}
+    {#if !index && !landing}
     <PageIntro {page} h1 />
     {/if}
 
