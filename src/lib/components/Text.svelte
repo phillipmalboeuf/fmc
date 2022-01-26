@@ -97,6 +97,10 @@
     .boxed div {
       columns: 1;
     }
+
+    .big :global(h1) {
+      font-size: 5.25rem;
+    }
   }
 
   section :global(p:last-child) {

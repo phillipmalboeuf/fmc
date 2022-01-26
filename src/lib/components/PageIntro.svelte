@@ -12,7 +12,7 @@
 
 <header>
   <center>
-    {#if h1}<h1 use:slideIn>{page.fields.title}</h1>{:else}<h2 use:slideIn>{page.fields.title}</h2>{/if}
+    {#if h1}<h1 use:slideIn>{page.fields.title}</h1>{:else}<h2>{page.fields.title}</h2>{/if}
     {#if page.fields.description}<h4 use:slideIn>{page.fields.description}</h4>{/if}
   </center>
 
@@ -28,8 +28,12 @@
   }
 
   @media (max-width: 888px) {
-    h4 {
+    h4, h2 {
       text-align: left;
+    }
+
+    h2 {
+      font-size: 2rem;
     }
   }
 </style>

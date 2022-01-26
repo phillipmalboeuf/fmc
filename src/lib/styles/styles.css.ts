@@ -124,7 +124,7 @@ globalStyle('h4', {
   fontWeight: 'normal',
   '@media': {
     'screen and (max-width: 888px)': {
-      fontSize: `${30/base}rem`,
+      fontSize: `${25/base}rem`,
     }
   }
 })
