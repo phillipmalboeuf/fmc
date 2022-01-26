@@ -218,13 +218,13 @@ const responsiveProperties = defineProperties({
 })
 
 const colorProperties = defineProperties({
-  conditions: {
-    lightMode: {
-      '@media': '(prefers-color-scheme: light)'
-    },
-    darkMode: { '@media': '(prefers-color-scheme: dark)' }
-  },
-  defaultCondition: 'darkMode',
+  // conditions: {
+  //   lightMode: {
+  //     '@media': '(prefers-color-scheme: light)'
+  //   },
+  //   darkMode: { '@media': '(prefers-color-scheme: dark)' }
+  // },
+  // defaultCondition: 'darkMode',
   properties: {
     color: colors,
     background: colors
