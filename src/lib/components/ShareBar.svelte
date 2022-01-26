@@ -53,7 +53,7 @@
     
     color: var(--back-text-color);
     background-color: var(--back-color);
-    border-radius: 6px;
+    border-radius: 12px;
 
     padding: max(1vw, 1vh);
     z-index: 10;

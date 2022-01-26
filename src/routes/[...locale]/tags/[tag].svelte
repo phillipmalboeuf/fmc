@@ -16,10 +16,10 @@
   import type { ArticleDocument } from '$lib/components/Article.svelte'
   import Navigation from '$lib/components/Navigation.svelte'
   import PageArticles from '$lib/components/PageArticles.svelte'
-  import Tags from '$lib/components/Tags.svelte'
+  import Tags, { TagDocument } from '$lib/components/Tags.svelte'
   import { page } from '$app/stores'
 
-  export let tag: string
+  export let tag: Entry<TagDocument>
 	export let articles: {
     article: Entry<ArticleDocument>,
     page: Entry<PageDocument>

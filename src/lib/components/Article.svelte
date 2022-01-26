@@ -1,5 +1,6 @@
 <script context="module" lang="ts">
   import type { Asset, Entry, RichTextContent } from 'contentful'
+  import type { TagDocument } from './Tags.svelte'
 
 
   export interface ArticleDocument {
@@ -7,7 +8,7 @@
     id: string
     description?: RichTextContent
     type: string
-    tags: string[]
+    tagsList: Entry<TagDocument>[]
     image: Asset
     recommended: Entry<ArticleDocument>[]
     deeperNavigation: Entry<{
@@ -51,7 +52,7 @@
   import { slideIn } from '$lib/animations'
 
 	export let article: Entry<ArticleDocument>
-  export let others: Entry<ArticleDocument>[] = undefined
+  // export let others: Entry<ArticleDocument>[] = undefined
   export let color: any
   
   let onBack: svelte.JSX.MouseEventHandler<HTMLAnchorElement> = getContext('close')
@@ -97,9 +98,9 @@
       <Document body={article.fields.description} />
       {/if}
 
-      {#if article.fields.tags}
+      {#if article.fields.tagsList}
       <div style={article.fields.description && "grid-column-start: 1; grid-row-start: 3"}>
-        <Tags tags={[article.fields.type, ...article.fields.tags]} />
+        <Tags tags={[...article.fields.tagsList]} />
       </div>
       {/if}
     </div>
@@ -180,7 +181,7 @@
   }
 
   header {
-    border-radius: 6px;
+    border-radius: 12px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }

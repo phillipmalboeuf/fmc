@@ -9,6 +9,7 @@
   import Tags from './Tags.svelte'
   import Article, { ArticleDocument } from './Article.svelte'
   import { slideIn } from '$lib/animations'
+  import { pills, pill } from '$lib/styles/pill.css'
   
 	export let articles: {
     article: Entry<ArticleDocument>,
@@ -18,14 +19,15 @@
 
 {#if articles}
 {#each articles as a}
-<Expander href="{($page.params.locale === 'fr' ? "/fr" : "")}/{a.page.fields.id}/{a.article.fields.id}" back="/{a.page.fields.id}" color={a.page.fields.color.toLowerCase()} bold>
+<Expander href="{($page.params.locale === 'fr' ? "/fr" : "")}/{a.page.fields.id}/{a.article.fields.id}" back="{($page.params.locale === 'fr' ? "/fr" : "")}/{a.page.fields.id}" color={a.page.fields.color.toLowerCase()} bold>
   <div use:slideIn slot="label">
-    <Tags tags={[a.article.fields.type]} />
+    <!-- <Tags tags={[a.article.fields.type]} /> -->
+    <span class="{pill()}">{a.article.fields.type}</span><br><br>
     <h3>{a.article.fields.title}</h3>
     <h5>Learn More +</h5>
   </div>
 
-  <Article article={a.article} color={a.page.fields.color.toLowerCase()} others={a.page.fields.articles} />
+  <Article article={a.article} color={a.page.fields.color.toLowerCase()} />
 </Expander>
 {/each}
 {/if}
