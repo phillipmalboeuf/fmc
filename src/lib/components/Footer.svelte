@@ -49,6 +49,11 @@
     text-decoration: none;
   }
 
+  footer nav :global(a:hover),
+  footer nav :global(a:focus) {
+    text-decoration: underline;
+  }
+
   footer nav:not(.social) :global(a) {
     position: relative;
     margin-right: 2em;

@@ -72,4 +72,10 @@
     padding: 0.5em;
     margin-bottom: 0;
   }
+
+  div :global(button:hover),
+  div :global(button:focus) {
+    background-color: var(--color);
+    color: black;
+  }
 </style>
