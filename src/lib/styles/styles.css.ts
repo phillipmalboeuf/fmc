@@ -69,6 +69,9 @@ globalStyle('html', {
   MozOsxFontSmoothing: 'grayscale',
   scrollBehavior: 'smooth',
   '@media': {
+    'screen and (max-width: 1200px)': {
+      fontSize: `${base/1.5}px`,
+    },
     'screen and (max-width: 888px)': {
       fontSize: `${base/1.5}px`,
     },

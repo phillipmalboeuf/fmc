@@ -38,7 +38,7 @@
           })
         },
         {
-          rootMargin: '-20%'
+          rootMargin: '-40%'
         }
       )
 
@@ -139,7 +139,7 @@
 
   .hero {
     position: relative;
-    margin: -2vw 0 2rem calc(-8rem - 20vw);
+    margin: -2.5vw 0 2rem calc(-8rem - 20vw);
     padding: 9.5rem 20vw 2vw calc(8rem + 20vw);
     width: 100vw;
 

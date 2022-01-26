@@ -44,7 +44,7 @@
 {/if}
 {#if entry.fields.subTexts?.length}
 <div class="subbed {!phone && grid()}">
-  {#if entry.fields.body}<div class="{col({ span: 2 })}"><Document body={entry.fields.body} /></div>{/if}
+  {#if entry.fields.body}<Document body={entry.fields.body} />{/if}
   {#if phone}
   <br><br>
   {#each entry.fields.subTexts as sub}
@@ -56,8 +56,8 @@
   </Expander>
   {/each}
   {:else}
-  {#each entry.fields.subTexts as sub}
-  <small>
+  {#each entry.fields.subTexts as sub, i}
+  <small class="{i === 0 && col({ start: 1 })}">
     <em>{sub.fields.title}</em>
     <Document body={sub.fields.body} />
   </small>
@@ -82,8 +82,9 @@
     columns: 2;
   }
 
-  .subbed > div :global(p) {
+  .subbed > :global(p) {
     font-size: 1.5em;
+    grid-column: span 2;
   }
 
   small em {
@@ -91,6 +92,12 @@
     font-style: normal;
     text-transform: uppercase;
     margin-bottom: 1rem;
+  }
+
+  @media (max-width: 1200px) {
+    .big :global(h1) {
+      font-size: 6.66rem;
+    }
   }
 
   @media (max-width: 888px) {
