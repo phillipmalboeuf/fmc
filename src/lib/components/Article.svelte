@@ -218,6 +218,9 @@
     }
   } */
 
+  .contributor {
+    overflow: hidden;
+  }
 
   figure {
     padding: 4rem;
