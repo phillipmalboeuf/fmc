@@ -91,7 +91,7 @@ globalStyle('main', {
 
 globalStyle('h1, h2, h3', {
   fontFamily: vars.fonts.heading,
-  fontSize: `${100/base}rem`,
+  fontSize: `${88/base}rem`,
   textTransform: 'uppercase',
   lineHeight: 1,
   '@media': {

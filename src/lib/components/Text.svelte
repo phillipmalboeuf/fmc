@@ -74,6 +74,10 @@
     font-size: 1.66em;
   }
 
+  .big :global(h1) {
+    font-size: 8rem;
+  }
+
   .boxed > div {
     columns: 2;
   }
