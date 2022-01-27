@@ -75,7 +75,7 @@
   }
 
   .big :global(h1) {
-    font-size: 8rem;
+    font-size: 7rem;
   }
 
   .boxed > div {

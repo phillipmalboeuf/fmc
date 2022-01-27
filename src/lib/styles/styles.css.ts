@@ -63,7 +63,7 @@ globalStyle('*', {
 
 globalStyle('html', {
   fontFamily: vars.fonts.body,
-  fontSize: `${base/1.333}px`,
+  fontSize: `${base/1.2}px`,
   lineHeight: 1.2,
   WebkitFontSmoothing: 'antialiased',
   MozOsxFontSmoothing: 'grayscale',

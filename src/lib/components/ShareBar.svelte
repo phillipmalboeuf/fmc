@@ -49,7 +49,7 @@
   nav {
     position: -webkit-sticky;
     position: sticky;
-    top: 2px;
+    top: 0;
     
     color: var(--back-text-color);
     background-color: var(--back-color);

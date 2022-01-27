@@ -83,5 +83,9 @@
     .spacer {
       display: none;
     }
+
+    aside {
+      width: 100%;
+    }
   }
 </style>

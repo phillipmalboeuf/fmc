@@ -73,6 +73,7 @@ import { page } from '$app/stores';
     font-family: "Trim Poster";
     font-size: 12rem;
     line-height: 0.88;
+    text-transform: uppercase;
     color: white;
     transform: translate(-50%, -50%);
   }

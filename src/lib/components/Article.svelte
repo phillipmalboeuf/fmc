@@ -204,6 +204,18 @@
   a.back,
   a.other {
     text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  a.other {
+    border: 1px solid transparent;
+  }
+
+  a.other:hover,
+  a.other:focus {
+    background: transparent;
+    color: var(--color);
+    border: 1px solid;
   }
 
   /* @media (max-width: 888px) {
@@ -229,7 +241,7 @@
 
   .contributor p:first-of-type,
   .contributor h3 {
-    margin-bottom: 0;
+    margin-bottom: 0.2em;
   }
 
   .contributor figure {
