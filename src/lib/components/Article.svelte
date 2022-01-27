@@ -6,6 +6,7 @@
   export interface ArticleDocument {
     title: string
     id: string
+    metaDescription: string
     description?: RichTextContent
     type: string
     tagsList: Entry<TagDocument>[]
@@ -63,10 +64,10 @@
   <meta property="og:title" content="{article.fields.title} – Canada Media Fund" />
   <meta name="twitter:title" content="{article.fields.title} – Canada Media Fund">
 
-  {#if article.fields.title}
-  <meta name="description" content={article.fields.title}>
-  <meta property="og:description" content={article.fields.title} />
-  <meta name="twitter:description" content={article.fields.title}>
+  {#if article.fields.metaDescription}
+  <meta name="description" content={article.fields.metaDescription}>
+  <meta property="og:description" content={article.fields.metaDescription} />
+  <meta name="twitter:description" content={article.fields.metaDescription}>
   {/if}
 
   {#if article.fields.image}

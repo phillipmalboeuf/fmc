@@ -11,7 +11,7 @@ function init() {
       })
     },
     {
-      rootMargin: '50px'
+      rootMargin: '100px'
     }
   )
 }
