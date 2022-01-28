@@ -168,6 +168,10 @@
     transition: color 666ms, background-color 666ms;
   }
 
+  div.spacer {
+    display: none;
+  }
+
   @media (max-width: 888px) {
     nav {
       position: fixed;
