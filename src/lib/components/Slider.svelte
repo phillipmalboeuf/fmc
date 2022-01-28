@@ -85,8 +85,7 @@
     padding: 0;
   }
 
-  button:hover,
-  button:focus {
+  button:hover {
     color: var(--color);
   }
 
