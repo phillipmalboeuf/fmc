@@ -89,6 +89,8 @@ globalStyle('body', {
 
 globalStyle('main', {
   padding: vars.space.small,
+  paddingLeft: vars.space.medium,
+  paddingRight: vars.space.medium,
   minHeight: '100vh'
 })
 
