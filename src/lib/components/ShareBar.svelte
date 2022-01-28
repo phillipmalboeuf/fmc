@@ -99,6 +99,10 @@
     ul {
       display: none;
     }
+
+    button {
+      display: none;
+    }
   }
 
   a {
