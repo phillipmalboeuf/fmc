@@ -5,6 +5,7 @@
   import { btn } from '$lib/styles/button.css'
   import { box } from '$lib/styles/box.css'
   import { slideIn } from '$lib/animations'
+  import { browser } from '$app/env'
 
   export let color: any = undefined
   export let href: string = undefined
@@ -16,6 +17,8 @@
 
   export let onOpen: Function = undefined
 
+  let element: HTMLElement
+
   function close(e) {
     e.preventDefault()
     expanded = false
@@ -26,16 +29,18 @@
   }
 
   setContext('close', close)
+
+  $: browser && href && expanded && element && element.scrollIntoView()
 </script>
 
-{#if expanded}
-<section class={box({ color: bold ? 'muted' : undefined })}>
+{#if expanded} 
+<section bind:this={element} class={box({ color: bold ? 'muted' : undefined })}>
   <slot></slot>
 
   <a class:bold class="close" href={back} on:click={close}><span>CLOSE&nbsp;</span>×</a>
 </section>
 {:else}
-<a use:slideIn class={btn({ full: true, hover: color, color: bold ? color : tight ? 'none' : 'outline', size: tight ? 'tight' : 'small' })} {href} on:click={(e) => {
+<a use:slideIn class:bold class={btn({ full: true, hover: color, color: bold ? color : tight ? 'none' : 'outline', size: tight ? 'tight' : 'small' })} {href} on:click={(e) => {
   e.preventDefault()
   expanded = true
 
@@ -69,6 +74,9 @@
   }
 
   @media (max-width: 888px) {
+    a.bold:after {
+      display: none;
+    }
     .close {
       font-size: 1.5em;
     }
