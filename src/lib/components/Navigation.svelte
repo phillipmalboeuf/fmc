@@ -104,6 +104,12 @@
     color: var(--color);
   }
 
+  @media print {
+    nav {
+      visibility: hidden;
+    }
+  }
+
   :global(body.hero--black) nav,
   nav.black {
     --color: black;

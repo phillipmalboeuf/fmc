@@ -162,4 +162,10 @@
       font-size: 2rem;
     }
   }
+
+  @media print {
+    figure {
+      display: none;
+    }
+  }
 </style>
