@@ -47,18 +47,19 @@
 
 <style>
   nav {
-    position: -webkit-sticky;
+    /* position: -webkit-sticky;
     position: sticky;
-    top: 0;
+    top: 0; */
     
     color: var(--back-text-color);
     background-color: var(--back-color);
-    border-radius: 12px;
+    margin-bottom: 2rem;
+    /* border-radius: 12px; */
 
-    padding: max(1vw, 1vh);
-    z-index: 10;
-    margin: calc((max(2vw, 2vh) * -1)) calc((max(2vw, 2vh) * -1)) 1vw;
-    width: calc(100% + (max(2vw, 2vh) * 2));
+    /* padding: max(1vw, 1vh); */
+    /* z-index: 10; */
+    /* margin: calc((max(2vw, 2vh) * -1)) calc((max(2vw, 2vh) * -1)) 1vw;
+    width: calc(100% + (max(2vw, 2vh) * 2)); */
   }
 
   h4 {

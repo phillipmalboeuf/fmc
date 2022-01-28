@@ -20,7 +20,7 @@
 
   const { main } = getContext<{ main: Entry<{ links: Entry<Lien>[] }> }>('navigation')
 
-  let scrollY: number
+  let scrollY: number = 0
   let innerHeight: number
   let navHeight: number
 
@@ -36,13 +36,14 @@
 
   function change(l: string) {
     locale = l
-    goto((locale === 'fr' ? '/fr' : '/'), { noscroll: true })
+    goto((locale === 'fr' ? '/fr' : '/'), { noscroll: true})
   }
 </script>
 
 <svelte:window bind:scrollY />
 
-<nav class:black>
+<div class="spacer" />
+<nav class:black class:scrolled={scrollY > 0}>
   <div bind:offsetHeight={navHeight}>
     <a class="logo" href="{($page.params.locale === 'fr' ? "/fr" : "/")}">
       <Logo {locale} />
@@ -152,6 +153,7 @@
     cursor: pointer;
     font-weight: bold;
     padding: 0.5em 1em;
+    transition: background-color 333ms, color 333ms;
   }
 
   input[type="radio"]:checked + label {
@@ -168,8 +170,27 @@
 
   @media (max-width: 888px) {
     nav {
-      position: relative;
-      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      padding: max(2vw, 2vh) max(2vw, 2vh) 0;
+      transition: background-color 333ms, color 333ms;
+      color: black;
+    }
+
+    div.spacer {
+      height: 8rem
+    }
+
+    nav.scrolled {
+      background-color: white;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+    }
+
+    nav :global(svg) {
+      color: black;
     }
 
     summary {
@@ -194,12 +215,12 @@
     details,
     .locales {
       position: absolute;
-      top: -1rem;
-      right: -3vh;
+      top: -0.5rem;
+      right: 0;
     }
 
     details {
-      top: 2rem;
+      top: 2.5rem;
       width: 66%;
       color: black;
       --color: black;
@@ -208,7 +229,12 @@
       font-size: 1.33em;
       max-height: 2.5em;
       overflow: hidden;
-      transition: max-height 666ms;
+      border: 1px solid transparent;
+      transition: max-height 666ms, border-color 333ms;
+    }
+
+    nav.scrolled details {
+      border: 1px solid;
     }
 
     details :global(a) {
@@ -223,6 +249,11 @@
     details[open] summary {
       padding: 0;
       padding-bottom: 1.5vh;
+    }
+
+    nav input[type="radio"]:checked + label {
+      background-color: black;
+      color: white;
     }
   }
 

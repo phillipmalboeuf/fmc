@@ -80,10 +80,11 @@
 </svelte:head>
 
 <section style="--color: {vars.colors[color]}; --text-color: {vars.colors[texts(color)]}; --back-color: {vars.colors[backs(color)]}; --back-text-color: {vars.colors[texts(backs(color))]}">
-  <ShareBar {article} {onBack} />
+  
   <header style="background: var(--back-color); color: var(--back-text-color)">
+    <ShareBar {article} {onBack} />
+
     <div use:slideIn class="{grid({ columns: 2 })}">
-      
 
       {#if article.fields.image}
       <figure class="{col({ span: 2 })}">
