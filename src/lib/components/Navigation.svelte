@@ -36,7 +36,7 @@
 
   function change(l: string) {
     locale = l
-    goto((locale === 'fr' ? '/fr' : '/'))
+    goto((locale === 'fr' ? '/fr' : '/'), { noscroll: true })
   }
 </script>
 
