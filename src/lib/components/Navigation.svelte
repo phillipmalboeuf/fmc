@@ -184,6 +184,7 @@
     }
 
     div.spacer {
+      display: block;
       height: 8rem
     }
 
