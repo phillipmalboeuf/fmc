@@ -42,6 +42,7 @@
 <style>
   footer {
     margin-top: 5rem;
+    margin-bottom: 0;
   }
   
   footer :global(a),
