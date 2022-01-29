@@ -28,7 +28,7 @@ export const btn = recipe({
     },
     color: {
       none: [fmc({ fontSize: 'big' }), { textTransform: 'uppercase', color: 'currentColor', background: 'transparent', border: '1px solid transparent' }],
-      outline: [fmc({ fontSize: 'big' }), { fontFamily: vars.fonts.heading, textTransform: 'uppercase', color: 'currentColor', background: 'transparent', border: '1px solid' }],
+      outline: [fmc({ fontSize: 'big' }), { fontFamily: vars.fonts.heading, textTransform: 'uppercase', color: 'currentColor', background: 'black', border: '1px solid' }],
       // muted: fmc({ background: 'violet', color: 'white' }),
       green: [{ background: vars.colors['green'], color: vars.colors[texts('green')] }, { selectors: { 
         '&:hover': { color: vars.colors[texts(backs('green'))], background: vars.colors[backs('green')] } 
