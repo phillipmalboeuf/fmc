@@ -12,31 +12,30 @@
 </script>
 
 <footer use:slideIn class="{box({ color: 'grey' })}">
-  <h5 class="logo">Canada<br>Media Fund</h5>
+  <nav>
+    <h2><a href="http://cmf-fmc.ca" target="_blank">Visit the CMF Website</a></h2>
+  </nav>
 
-  <div class="{grid({ columns: 4 })}">
-    <nav class="{col({ span: 3, align: 'top' })} {grid({ columns: 3, gap: 'tight' })}">
+  <div class="{grid({ columns: 3 })}">
+    <nav class="{col({ align: 'bottom' })}">
       {#each secondary.fields.links as link}
       <Link {link} />
       {/each}
     </nav>
-    <div>
-      <h5>Connect with us</h5>
-      <nav class="social">
-        {#each social.fields.links as link}
-        <Link {link} />
-        {/each}
-      </nav>
-      <br>
-      <br>
-      <br>
-      <nav class="tertiary {grid({ columns: 1, gap: 'tight' })}">
-        {#each tertiary.fields.links as link}
-        <Link {link} />
-        {/each}
-        <small>© 2021 Canada Media Fund all right reserved</small>
-      </nav>
-    </div>
+
+    <nav class="social">
+      <strong>Connect with us</strong><br>
+      {#each social.fields.links as link}
+      <Link {link} />
+      {/each}
+    </nav>
+
+    <nav class="tertiary {col({ align: 'bottom' })}">
+      <!-- {#each tertiary.fields.links as link}
+      <Link {link} />
+      {/each} -->
+      <small>© 2021 Canada Media Fund all right reserved</small>
+    </nav>
   </div>
 </footer>
 
@@ -45,46 +44,56 @@
     margin-top: 5rem;
   }
   
-  footer nav :global(a) {
+  footer :global(a),
+  strong,
+  small {
+    display: inline-block;
     text-decoration: none;
+    margin-right: 1em;
+    font-size: 0.9em;
+    margin-bottom: 0.5em;
+  }
+
+  small {
+    margin-bottom: 0;
+  }
+
+  strong {
+    text-transform: uppercase;
+    font-size: 1.1em;
   }
 
   footer nav :global(a:hover),
   footer nav :global(a:focus) {
-    text-decoration: underline;
-  }
-
-  footer nav:not(.social) :global(a) {
-    position: relative;
-    margin-right: 2em;
-  }
-
-  footer nav.social :global(a) {
-    margin-right: 0.66em;
+    color: black;
   }
 
   footer nav:not(.social) :global(a:after) {
-    content: "→";
-    position: absolute;
-    right: 0;
-  }
-
-  h5.logo {
-    margin-bottom: 5rem;
-  }
-
-  h5:not(.logo) {
-    font-size: 1rem;
-    margin-bottom: 1.5em;
+    content: " →";
+    font-family: 'Trim';
+    font-style: normal;
+    font-weight: normal;
+    /* font-size: 0.8em; */
+    vertical-align: middle;
+    margin-left: 0.5em;
   }
 
   @media (max-width: 888px) {
-    h5:not(.logo) {
-      margin-top: 3rem;
+    footer :global(a) {
+      display: block;
     }
 
-    nav.tertiary {
-      margin-right: -2.25em;
+    footer nav :global(a:after) {
+      content: " →";
+      position: absolute;
+      right: 1rem;
+      font-size: 1rem;
+    }
+    
+    small {
+      width: 100%;
+      font-size: 0.8rem;
+      text-align: center;
     }
   }
 </style>
