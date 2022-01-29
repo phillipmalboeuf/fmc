@@ -28,6 +28,7 @@
   export let index: boolean = false
 
   let hero: HTMLDivElement
+  let scrollY: number = 0
 
   onMount(() => {
     if (color && hero && window.innerWidth > 888) {
@@ -38,7 +39,7 @@
           })
         },
         {
-          rootMargin: '-40%'
+          rootMargin: '-49%'
         }
       )
 
@@ -51,13 +52,16 @@
   })
 </script>
 
+<svelte:window bind:scrollY />
+
 {#if content}
 {#each content as entry, i}
 {#if media && i === 0}
-<div bind:this={hero} class:hero={!!media && i === 0} id={entry.fields.id} style={`padding-bottom: ${media.fields.file.details.image.height / media.fields.file.details.image.width * 120}%; --back: ${vars.colors[backs(color)]}; --text: ${vars.colors[texts(backs(color))]}`}>
-  <figure>
-    <Picture {media} eager />
-  </figure>
+<figure style="background-color: {vars.colors[backs(color)]}; transform: translate3d(0, -{scrollY*1.1}px, 0)">
+  <Picture {media} eager />
+</figure>
+
+<div bind:this={hero} class:hero={!!media && i === 0} id={entry.fields.id} style={`padding-bottom: ${media.fields.file.details.image.height / media.fields.file.details.image.width * 100}%; --back: ${vars.colors[backs(color)]}; --text: ${vars.colors[texts(backs(color))]}`}>
 
   <div>
     {#if entry.sys.contentType.sys.id === 'page'}
@@ -129,22 +133,26 @@
 
 <style>
   figure {
-    position: absolute;
-    bottom: 0;
+    position: fixed;
+    top: 0;
     left: 0;
     z-index: 0;
     width: 100vw;
     z-index: 0;
+    padding-top: 20vh;
+    background-color: var(--back);
   }
 
   .hero {
     position: relative;
-    margin: -2.5vw 0 2rem calc(-8rem - 20vw);
-    padding: 9.5rem 20vw 2vw calc(8rem + 20vw);
-    width: 100vw;
+    padding: 8rem 22vw 2vw 0;
+    
+    /* margin: -2vw 0 2rem calc(-8rem - 21vw);
+    padding: 9.5rem 20vw 2vw calc(8rem + 21vw); */
+    /* width: 100vw; */
 
     color: var(--text);
-    background-color: var(--back);
+    /* background-color: var(--back); */
   }
 
   .hero > div {
@@ -154,8 +162,20 @@
 
   @media (max-width: 888px) {
     .hero {
-      margin: calc(-4vh - 8rem) -2vh 2rem;
-      padding: 12rem 2vh 2vw;
+      padding: 2rem 0 2vh;
+    }
+
+    figure {
+      height: 100vh;
+      overflow-x: hidden;
+    }
+
+    figure :global(img) {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 120% !important;
+      max-width: 120% !important;
     }
 
     span {
