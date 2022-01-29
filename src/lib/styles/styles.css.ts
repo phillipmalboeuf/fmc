@@ -157,7 +157,8 @@ globalStyle('p', {
 })
 
 globalStyle('a', {
-  color: 'currentColor'
+  color: 'currentColor',
+  textUnderlineOffset: '3px'
 })
 
 globalStyle('small, small > p', {

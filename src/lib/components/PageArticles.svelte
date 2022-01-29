@@ -37,6 +37,10 @@
     text-align: left;
   }
 
+  h3 {
+    max-width: 42rem;
+  }
+
   h5 {
     margin-bottom: 0;
   }

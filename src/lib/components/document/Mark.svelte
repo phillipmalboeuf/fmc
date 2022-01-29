@@ -5,6 +5,7 @@
 <style>
   a {
     text-decoration: underline;
+    text-decoration-color: var(--color);
   }
 </style>
 

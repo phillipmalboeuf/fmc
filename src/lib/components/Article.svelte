@@ -264,6 +264,11 @@
     text-decoration-color: var(--color);
   }
 
+  .contributor a:hover,
+  .contributor a:hover {
+    color: var(--color);
+  }
+
   @media (max-width: 888px) {
     figure {
       padding: 1rem;
