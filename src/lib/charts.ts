@@ -33,7 +33,7 @@ export function init(element: HTMLElement, locale: string) {
   let root = Root.new(element)
   root._logo.dispose()
 
-  const myTheme = Theme.new(root);
+  const myTheme = Theme.new(root)
 
   myTheme.rule("Label").setAll({
     fill: color("#0E0E0E"),
@@ -222,7 +222,7 @@ export function createColumns(element: HTMLElement, seriesData: any[], vertical:
     chart.zoomOutButton.set("forceHidden", true)
   } 
 
-  return chart
+  return root
 }
 
 export function createCurve(element: HTMLElement, seriesData: any[], vertical: boolean, stacked: boolean, min: number, max: number, title: string, firstColor: string, secondColor: string, locale: string) {
@@ -328,7 +328,7 @@ export function createCurve(element: HTMLElement, seriesData: any[], vertical: b
     legend.data.setAll(chart.series.values)
   }
 
-  return chart
+  return root
 }
 
 export function createPyramide(element: HTMLElement, seriesData: any[], vertical: boolean, stacked: boolean, min: number, max: number, title: string, firstColor: string, secondColor: string, locale: string) {
@@ -392,40 +392,56 @@ export function createPyramide(element: HTMLElement, seriesData: any[], vertical
     })))
   })
 
-  return chart
+  return root
 }
 
 export function createTarte(element: HTMLElement, seriesData: any[], vertical: boolean, stacked: boolean, min: number, max: number, title: string, firstColor: string, secondColor: string, locale: string) {
   let root = init(element, locale)
-  let chart = root.container.children.push(
-    PieChart.new(root, {
-      layout: root.verticalLayout,
-      innerRadius: percent(40),
-      paddingLeft: 0,
-      paddingRight: 0,
-    })
-  )
+  
 
   const keys = Object.keys(seriesData[0]).filter(key => !['Category'].includes(key))
 
   keys.forEach((name, i) => {
+    let chart = root.container.children.push(
+      PieChart.new(root, {
+        layout: root.verticalLayout,
+        // innerRadius: percent(10),
+        paddingLeft: 0,
+        paddingRight: 0,
+      })
+    )
+
+    title && chart.children.unshift(Label.new(root, {
+      text: title,
+      rotation: -90,
+      y: percent(50),
+      centerX: percent(50),
+      fontSize: '0.75em'
+    }))
+
+    let legend = chart.children.push(Legend.new(root, {
+      layout: root.verticalLayout
+    }))
+
     let series = chart.series.push(PieSeries.new(root, {
       name,
       categoryField: "Category",
       valueField: name,
-      alignLabels: false
+      alignLabels: false,
+      legendLabelText: "{category}",
+      // legendValueText: "{value}"
     }))
 
     series.data.processor = DataProcessor.new(root, {
       numericFields: [name]
     })
-    
-    series.data.setAll(seriesData)
 
     series.slices.template.setAll({
       fill: color(firstColor),
-      stroke: color(secondColor),
-      strokeWidth: 3
+      stroke: color('#0E0E0E'),
+      strokeWidth: 1,
+      strokeOpacity: 0,
+      templateField: 'sliceSettings'
     })
 
     series.labels.template.setAll({
@@ -433,8 +449,19 @@ export function createTarte(element: HTMLElement, seriesData: any[], vertical: b
       textType: "circular",
       inside: false,
       radius: 10
-    });
+    })
+
+    series.data.setAll(seriesData.map((data, index) => ({
+      ...data,
+      sliceSettings: {
+        fill: Color.interpolate(index / seriesData.length, color(firstColor), color(secondColor))
+      }
+    })))
+
+    legend.data.pushAll(series.dataItems)
   })
 
-  return chart
+  
+
+  return root
 }

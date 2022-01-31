@@ -22,13 +22,17 @@
 
   import { col, grid } from '$lib/styles/grid.css'
   import { createCurve, createColumns, csvToChartData, createPyramide, createTarte } from '$lib/charts'
+  
+  import type { Root } from '@amcharts/amcharts5'
   import type { Chart } from '@amcharts/amcharts5/.internal/core/render/Chart'
+  
   import Document from './document/Document.svelte'
   import { slideIn } from '$lib/animations'
+  
   // import { Exporting, ExportingMenu } from '@amcharts/amcharts5/plugins/exporting'
 
 
-  let chart: Chart
+  let root: Root
   let element: HTMLElement
   let observer: IntersectionObserver
 
@@ -49,30 +53,30 @@
 
     switch (type) {
       case 'Columns':
-        chart = createColumns(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
-        chart.appear(1000, 100)
+        root = createColumns(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
+        // chart.appear(1000, 100)
         break
 
       case 'Curve':
-        chart = createCurve(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
-        chart.appear(1000, 100)
+        root = createCurve(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
+        // chart.appear(1000, 100)
         break
 
-      case 'Big numbers':
-        chart = createPyramide(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
-        chart.appear(1000, 100)
-        break
-
-      // case 'Pie':
-      //   chart = createTarte(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
+      // case 'Big numbers':
+      //   chart = createPyramide(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
       //   chart.appear(1000, 100)
       //   break
+
+      case 'Pie':
+        root = createTarte(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
+        // chart.appear(1000, 100)
+        break
     
       default:
         break
     }
 
-    if (chart) {
+    if (root) {
       if (alignment !== 'Horizontal' && window.innerWidth < 888) {
         arrow = true
       }
@@ -98,7 +102,7 @@
 
   onDestroy(() => {
     observer?.disconnect()
-    chart?._root.dispose()
+    root?.dispose()
   })
 </script>
 
