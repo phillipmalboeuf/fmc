@@ -1,10 +1,11 @@
 import { createClient } from 'contentful'
 
-const preview = false
+const preview = true
 
 export const contentful = createClient({
   space: 'qmgotqwz3wgy',
   accessToken: preview ? 'oyU9lo5e7eX94FJYQupNQ9WPB5VAEXVYHal3xE4O6UA' : 'ErM-EnlSlznXnztNn_NRnMN0YejzhQSDRzHtDANKjpA',
+  host: preview ? 'preview.contentful.com' : undefined
 })
 
 const limit = 12
