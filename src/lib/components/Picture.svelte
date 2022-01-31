@@ -37,6 +37,7 @@
   }
 </style>
 
+{#if media}
 {#if media.fields.file.contentType.startsWith('video/')}
 <!-- svelte-ignore a11y-media-has-caption -->
 <video src="{media.fields.file.url}" controls />
@@ -68,4 +69,4 @@
 <small>{media.fields.description}</small>
 {/if}
 {/if}
-
+{/if}
