@@ -162,7 +162,7 @@
 
   @media (max-width: 888px) {
     .hero {
-      padding: 2rem 0 2vh;
+      padding: 0 0 2vh;
     }
 
     figure {
@@ -172,7 +172,7 @@
 
     figure :global(img) {
       position: absolute;
-      bottom: 0;
+      bottom: -5%;
       left: 0;
       width: 150% !important;
       max-width: 150% !important;
