@@ -20,7 +20,7 @@
   export let color: string = 'muted'
 </script>
 
-<section use:slideIn class="{box({ color: 'outline' })} {grid({ columns: 2 })}" style="--color: {vars.colors[highlights(color)]}">
+<section use:slideIn class="{box({ color: 'outline' })} {grid({ columns: entry.fields.title ? 2 : 1 })}" style="--color: {vars.colors[highlights(color)]}">
   {#if entry.fields.title}<h2>{entry.fields.title}</h2>{/if}
   <div class="">
     {#if entry.fields.embed}{@html entry.fields.embed}{/if}
