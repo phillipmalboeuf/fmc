@@ -58,7 +58,7 @@
   {:else}
   {#each entry.fields.subTexts as sub, i}
   <small class="{i === 0 && col({ start: 1 })}">
-    <em>{sub.fields.title}</em>
+    {#if sub.fields.title}<em>{sub.fields.title}</em>{/if}
     <Document body={sub.fields.body} />
   </small>
   {/each}
