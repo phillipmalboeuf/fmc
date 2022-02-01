@@ -7,6 +7,9 @@ export const grid = recipe({
     '@media': {
       'screen and (max-width: 888px)': {
         gridTemplateColumns: '1fr'
+      },
+      'print': {
+        gridTemplateColumns: '1fr'
       }
     }
   },
@@ -38,13 +41,19 @@ export const col = recipe({
 
   variants: {
     span: {
-      2: { gridColumn: 'span 2', '@media': { 'screen and (max-width: 888px)': { gridColumn: 'span 1' } } },
+      2: { gridColumn: 'span 2', '@media': {
+        'screen and (max-width: 888px)': { gridColumn: 'span 1' },
+        'print': { gridColumn: 'span 1' }
+      } },
       3: { gridColumn: 'span 3' },
       4: { gridColumn: 'span 4' }
     },
     start: {
       1: { gridColumnStart: '1' },
-      2: { gridColumnStart: '2', '@media': { 'screen and (max-width: 888px)': { gridColumnStart: '1' } } },
+      2: { gridColumnStart: '2', '@media': {
+        'screen and (max-width: 888px)': { gridColumnStart: '1' },
+        'print': { gridColumnStart: '1' }
+      } },
       3: { gridColumnStart: '3' },
       4: { gridColumnStart: '4' }
     },

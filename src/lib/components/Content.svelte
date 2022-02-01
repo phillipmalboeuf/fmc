@@ -155,6 +155,12 @@
     /* background-color: var(--back); */
   }
 
+  @media print {
+    .hero {
+      padding-right: 8rem;
+    }
+  }
+
   .hero > div {
     position: relative;
     z-index: 1;

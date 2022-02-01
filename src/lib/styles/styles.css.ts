@@ -92,7 +92,12 @@ globalStyle('main', {
   padding: vars.space.small,
   paddingLeft: vars.space.medium,
   paddingRight: vars.space.medium,
-  minHeight: '100vh'
+  minHeight: '100vh',
+  '@media': {
+    'print': {
+      padding: vars.space.small
+    }
+  }
 })
 
 globalStyle('h1, h2, h3', {

@@ -107,7 +107,11 @@
 
   @media print {
     nav {
-      visibility: hidden;
+      display: none;
+    }
+
+    :global(.content) {
+      grid-column: span 4;
     }
   }
 
