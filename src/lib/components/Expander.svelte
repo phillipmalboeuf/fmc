@@ -14,6 +14,7 @@
   export let expanded = false
   export let bold = false
   export let tight = false
+  export let closeButtons = false
 
   export let onOpen: Function = undefined
 
@@ -33,11 +34,13 @@
   $: browser && href && expanded && element && element.scrollIntoView()
 </script>
 
-{#if expanded} 
+{#if expanded}
 <section bind:this={element} class={box({ color: bold ? 'muted' : undefined })}>
+  {#if closeButtons}<a class="close" href={back} on:click={close}><span>CLOSE&nbsp;</span>×</a>{/if}
+
   <slot></slot>
 
-  <a class:bold class="close" href={back} on:click={close}><span>CLOSE&nbsp;</span>×</a>
+  {#if closeButtons}<a class="close second" href={back} on:click={close}><span>CLOSE&nbsp;</span>×</a>{/if}
 </section>
 {:else}
 <a use:slideIn class:bold class={btn({ full: true, hover: color, color: bold ? color : tight ? 'none' : 'outline', size: tight ? 'tight' : 'small' })} {href} on:click={(e) => {
@@ -62,7 +65,7 @@
     cursor: pointer;
   }
 
-  .close.bold {
+  .close.second {
     position: relative;
     text-align: center;
     display: block;

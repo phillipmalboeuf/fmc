@@ -64,19 +64,7 @@
 <div bind:this={hero} class:hero={!!media && i === 0} id={entry.fields.id} style={`padding-bottom: ${media.fields.file.details.image.height / media.fields.file.details.image.width * 88}%; --back: ${vars.colors[backs(color)]}; --text: ${vars.colors[texts(backs(color))]}`}>
 
   <div>
-    {#if entry.sys.contentType.sys.id === 'page'}
-    <Expander expanded={path === `/${entry.fields.id}`} onOpen={() => path = `/${entry.fields.id}`} color={entry.fields.color.toLowerCase()} href="{($page.params.locale === 'fr' ? "/fr" : "")}/{entry.fields.id}">
-      <span slot="label">{entry.fields.title}</span>
-
-      <PageIntro page={entry} />
-
-      <svelte:self content={entry.fields.content} />
-
-      {#if entry.fields.articles}
-      <PageArticles articles={entry.fields.articles.map(article => ({ article, page: entry }))} />
-      {/if}
-    </Expander>
-    {:else if entry.sys.contentType.sys.id === 'text'}
+    {#if entry.sys.contentType.sys.id === 'text'}
     <Text {entry} {color} />
     {:else if entry.sys.contentType.sys.id === 'columns'}
     <Columns {entry} color={index ? color : undefined} />
@@ -101,7 +89,7 @@
 
   <div>
     {#if entry.sys.contentType.sys.id === 'page'}
-    <Expander expanded={path === `/${entry.fields.id}`} onOpen={() => path = `/${entry.fields.id}`} color={entry.fields.color.toLowerCase()} href="{($page.params.locale === 'fr' ? "/fr" : "")}/{entry.fields.id}">
+    <Expander closeButtons expanded={path === `/${entry.fields.id}`} onOpen={() => path = `/${entry.fields.id}`} color={entry.fields.color.toLowerCase()} href="{($page.params.locale === 'fr' ? "/fr" : "")}/{entry.fields.id}">
       <span slot="label">{entry.fields.title}</span>
 
       <PageIntro page={entry} />

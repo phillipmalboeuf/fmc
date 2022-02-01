@@ -17,6 +17,7 @@
 
 
 <script lang="ts">
+  import { page as p } from '$app/stores'
   import { col, grid } from '$lib/styles/grid.css'
 
   import Content from './Content.svelte'
@@ -26,6 +27,7 @@
   import Navigation from './Navigation.svelte'
   import PageArticles from './PageArticles.svelte'
   import PageIntro from './PageIntro.svelte'
+  import BackIcon from './BackIcon.svelte'
 
 	export let page: Entry<PageDocument>
   export let index = false
@@ -90,7 +92,19 @@
     <PageArticles articles={page.fields.articles.map(article => ({ article, page }))} />
     {/if}
     
+    {#if !index && !landing}
+    <a class="back" href="{($p.params.locale === 'fr' ? "/fr" : "")}/"><h4>BACK <BackIcon /></h4></a>
+    {/if}
 
     <Footer />
   </section>
 </section>
+
+<style>
+  a.back {
+    display: block;
+    margin-top: 2rem;
+    text-align: center;
+    text-decoration: none;
+  }
+</style>
