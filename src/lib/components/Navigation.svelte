@@ -34,9 +34,9 @@
     }
   })
 
-  function change(l: string) {
-    locale = l
-    goto((locale === 'fr' ? '/fr' : '/'), { noscroll: true})
+  async function change(l: string) {
+    const href = await fetch(`${($page.params.locale === 'fr' ? "/fr" : "")}/switch.json?l=${l}&path=${window.location.pathname}`)
+    window.location.assign((await href.json()).href)
   }
 </script>
 
@@ -65,7 +65,7 @@
         if (index && !link.fields.path.startsWith('/#')) {
           e.preventDefault()
           history.pushState({}, null, ($page.params.locale === 'fr' ? "/fr" : "") + link.fields.path)
-          // window.scrollTo({ top: document.getElementById(link.fields.path.replace('/', '')).offsetTop, behavior: 'smooth' })
+          window.scrollTo({ top: document.getElementById(link.fields.path.replace('/', '')).offsetTop, behavior: 'smooth' })
           path = link.fields.path
 
           if (window.innerWidth < 888) {
