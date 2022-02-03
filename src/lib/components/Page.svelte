@@ -77,7 +77,7 @@
 
 
 
-<section class:landing class={grid({ columns: 4 })}>
+<section class:landing class={grid({ columns: 4, align: 'middle' })}>
   <Navigation contentHeight={offsetHeight} {index} {landing} bind:path />
 
   <section bind:offsetHeight class="content {col({ span: landing ? 4 : 3 })}{landing ? ' '+grid({ columns: 2, align: 'middle', gap: 'medium' }) : ''}">  
@@ -105,7 +105,9 @@
 <style>
   section.landing {
     color: black;
+    min-height: calc(100vh - 20rem);
   }
+
   a.back {
     display: block;
     margin-top: 2rem;
