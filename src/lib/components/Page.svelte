@@ -77,16 +77,16 @@
 
 
 
-<section class={grid({ columns: 4 })}>
+<section class:landing class={grid({ columns: 4 })}>
   <Navigation contentHeight={offsetHeight} {index} {landing} bind:path />
 
-  <section bind:offsetHeight class="content {col({ span: 3 })}">  
+  <section bind:offsetHeight class="content {col({ span: landing ? 4 : 3 })}{landing ? ' '+grid({ columns: 2 }) : ''}">  
 
     {#if !index && !landing}
     <PageIntro {page} h1 />
     {/if}
 
-    <Content content={page.fields.content} {index} {path} media={page.fields.image} color={page.fields.color.toLowerCase()} />
+    <Content content={page.fields.content} {index} {landing} {path} media={page.fields.image} color={page.fields.color?.toLowerCase()} />
 
     {#if page.fields.articles}
     <PageArticles articles={page.fields.articles.map(article => ({ article, page }))} />
@@ -96,11 +96,16 @@
     <a class="back" href="{($p.params.locale === 'fr' ? "/fr" : "")}/"><h4>BACK <BackIcon /></h4></a>
     {/if}
 
+    {#if !landing}
     <Footer />
+    {/if}
   </section>
 </section>
 
 <style>
+  section.landing {
+    color: black;
+  }
   a.back {
     display: block;
     margin-top: 2rem;

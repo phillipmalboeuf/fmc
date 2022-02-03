@@ -26,6 +26,7 @@
   export let color: string = undefined
   export let media: Asset = undefined
   export let index: boolean = false
+  export let landing: boolean = false
 
   let hero: HTMLDivElement
   let scrollY: number = 0
@@ -56,7 +57,7 @@
 
 {#if content}
 {#each content as entry, i}
-{#if media && i === 0}
+{#if !landing && media && i === 0}
 <figure style="background-color: {vars.colors[backs(color)]}; transform: translate3d(0, -{scrollY*1.1}px, 0); padding-top: {media.fields.file.details.image.height / media.fields.file.details.image.width * 40}%">
   <Picture {media} eager />
 </figure>
@@ -81,12 +82,6 @@
 </div>
 {:else}
 <div id={entry.fields.id}>
-  {#if media && i === 0}
-  <figure>
-    <Picture {media} eager />
-  </figure>
-  {/if}
-
   <div>
     {#if entry.sys.contentType.sys.id === 'page'}
     <Expander closeButtons expanded={path === `/${entry.fields.id}`} onOpen={() => path = `/${entry.fields.id}`} color={entry.fields.color.toLowerCase()} href="{($page.params.locale === 'fr' ? "/fr" : "")}/{entry.fields.id}">
@@ -109,7 +104,7 @@
     {:else if entry.sys.contentType.sys.id === 'chart'}
     <Chart {entry} />
     {:else if entry.sys.contentType.sys.id === 'newsletterForm'}
-    <NewsletterForm {entry} {color} />
+    <NewsletterForm {entry} {color} {landing} />
     {:else if entry.sys.contentType.sys.id === 'slider'}
     <Slider {entry} {color} />
     {/if}

@@ -16,3 +16,9 @@
 </script>
 
 <Page {page} landing />
+
+<style>
+  :global(body) {
+    background: linear-gradient(180deg, #462FF1 0%, #FEAEC7 100%);
+  }
+</style>

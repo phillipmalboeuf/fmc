@@ -43,7 +43,7 @@
 <svelte:window bind:scrollY />
 
 <div class="spacer" />
-<nav class:black class:scrolled={scrollY > 0}>
+<nav class:black class:landing class:scrolled={scrollY > 0}>
   <div bind:offsetHeight={navHeight}>
     <a class="logo" href="{($page.params.locale === 'fr' ? "/fr" : "/")}">
       <Logo {locale} />
@@ -103,6 +103,14 @@
 
     --color: white;
     color: var(--color);
+  }
+
+  @media (min-width: 888px) {
+    nav.landing {
+      position: relative;
+      top: -2vw;
+      left: -2vw;
+    }
   }
 
   @media print {
@@ -226,6 +234,10 @@
       position: absolute;
       top: -0.5rem;
       right: 0;
+    }
+
+    .landing .locales {
+      top: 2rem;
     }
 
     details {

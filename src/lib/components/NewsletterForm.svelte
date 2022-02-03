@@ -18,10 +18,11 @@
     // buttonLabel: string
   }>
   export let color: string = 'muted'
+  export let landing = false
 </script>
 
-<section use:slideIn class="{box({ color: 'outline' })} {grid({ columns: entry.fields.title ? 2 : 1 })}" style="--color: {vars.colors[highlights(color)]}">
-  {#if entry.fields.title}<h2>{entry.fields.title}</h2>{/if}
+<section use:slideIn class:landing class="{box({ color: 'outline' })} {grid({ columns: entry.fields.title ? landing ? 1 : 2 : 1 })}" style="--color: {vars.colors[highlights(color)]}">
+  {#if entry.fields.title}{#if entry.fields.title}<h5>{entry.fields.title}</h5>{:else}<h2>{entry.fields.title}</h2>{/if}{/if}
   <div class="">
     {#if entry.fields.embed}{@html entry.fields.embed}{/if}
   </div>
@@ -37,7 +38,13 @@
     margin-bottom: 4rem;
   }
 
-  h2 {
+  @media (max-width: 888px) {
+    section.landing {
+      margin-top: 2rem;
+    }
+  }
+
+  h2, h5 {
     margin-bottom: 0;
   }
 
@@ -65,12 +72,17 @@
   }
 
   div :global(button) {
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-transform: uppercase;
     border: 1px solid;
-    border-radius: 6px;
+    border-radius: 12px;
     padding: 0.5em;
     margin-bottom: 0;
+  }
+
+  div :global(button):after {
+    content: "→";
+    margin-left: 0.5em;
   }
 
   div :global(button:hover),
