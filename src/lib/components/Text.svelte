@@ -34,7 +34,6 @@
 </script>
 
 <section use:slideIn class:big={entry.fields.big} class:boxed={entry.fields.boxed} class="{entry.fields.boxed && box({ color })}">
-{#if entry.fields.subtitle}<p>{entry.fields.subtitle}</p>{/if}
 {#if entry.fields.title && !entry.fields.hideTitle}
   {#if entry.fields.title.length < 100}
   <h1>{entry.fields.title}</h1>
@@ -42,6 +41,7 @@
   <h2>{entry.fields.title}</h2>
   {/if}
 {/if}
+{#if entry.fields.subtitle}<p>{entry.fields.subtitle}</p>{/if}
 {#if entry.fields.subTexts?.length}
 <div class="subbed {!phone && grid()}">
   {#if entry.fields.body}<Document body={entry.fields.body} />{/if}
@@ -70,7 +70,7 @@
 </section>
 
 <style>
-  .big :global(p) {
+  .big p {
     font-size: 1.66em;
   }
 

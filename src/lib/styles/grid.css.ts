@@ -27,6 +27,11 @@ export const grid = recipe({
       small: fmc({ columnGap: 'small', rowGap: 'small' }),
       medium: fmc({ columnGap: 'medium', rowGap: 'medium' }),
     },
+    align: {
+      top: { alignItems: 'flex-start' },
+      middle: { alignItems: 'center' },
+      bottom: { alignItems: 'flex-end' }
+    }
   },
 
   defaultVariants: {

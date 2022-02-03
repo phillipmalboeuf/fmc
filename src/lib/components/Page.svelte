@@ -80,7 +80,7 @@
 <section class:landing class={grid({ columns: 4 })}>
   <Navigation contentHeight={offsetHeight} {index} {landing} bind:path />
 
-  <section bind:offsetHeight class="content {col({ span: landing ? 4 : 3 })}{landing ? ' '+grid({ columns: 2 }) : ''}">  
+  <section bind:offsetHeight class="content {col({ span: landing ? 4 : 3 })}{landing ? ' '+grid({ columns: 2, align: 'middle', gap: 'medium' }) : ''}">  
 
     {#if !index && !landing}
     <PageIntro {page} h1 />

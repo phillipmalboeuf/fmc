@@ -44,6 +44,12 @@
     }
   }
 
+  @media (min-width: 888px) {
+    section.landing {
+      margin: 0 2vw;
+    }
+  }
+
   h2, h5 {
     margin-bottom: 0;
   }

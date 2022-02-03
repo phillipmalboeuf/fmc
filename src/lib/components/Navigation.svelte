@@ -110,6 +110,7 @@
       position: relative;
       top: -2vw;
       left: -2vw;
+      margin-bottom: -7rem;
     }
   }
 
