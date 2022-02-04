@@ -28,7 +28,7 @@
   }
 
   @media (max-width: 888px) {
-    h4, h2 {
+    h1, h4, h2 {
       text-align: left;
     }
 
