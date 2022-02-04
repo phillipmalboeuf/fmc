@@ -199,7 +199,6 @@
       width: 100vw;
       padding: max(2vw, 2vh) max(2vw, 2vh) 0;
       transition: background-color 333ms, color 333ms;
-      color: black;
     }
 
     div.spacer {
@@ -208,12 +207,17 @@
     }
 
     nav.scrolled:not(.landing) {
+      color: black;
       background-color: white;
       border-bottom-left-radius: 12px;
       border-bottom-right-radius: 12px;
     }
 
     nav :global(svg) {
+      transition: color 333ms;
+    }
+
+    nav.scrolled:not(.landing) :global(svg) {
       color: black;
     }
 
@@ -279,7 +283,7 @@
       padding-bottom: 1.5vh;
     }
 
-    nav input[type="radio"]:checked + label {
+    nav.scrolled:not(.landing) input[type="radio"]:checked + label {
       background-color: black;
       color: white;
     }
