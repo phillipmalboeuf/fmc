@@ -114,6 +114,12 @@
     }
   }
 
+  @media (max-width: 888px) {
+    nav.landing {
+      position: absolute;
+    }
+  }
+
   @media print {
     nav {
       display: none;
@@ -201,7 +207,7 @@
       height: 8rem
     }
 
-    nav.scrolled {
+    nav.scrolled:not(.landing) {
       background-color: white;
       border-bottom-left-radius: 12px;
       border-bottom-right-radius: 12px;
