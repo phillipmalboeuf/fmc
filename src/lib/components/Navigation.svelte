@@ -22,25 +22,33 @@
 
   let scrollY: number = 0
   let innerHeight: number
+  let innerWidth: number
   let navHeight: number
 
   let open: boolean = true
   let locale: string = $page.params.locale || 'en'
 
-  onMount(() => {
-    innerHeight = window.innerHeight
-    if (window.innerWidth < 888) {
-      open = false
-    }
-  })
+  // onMount(() => {
+  //   innerHeight = window.innerHeight
+  //   if (window.innerWidth < 888) {
+  //     open = false
+  //   }
+  // })  
 
   async function change(l: string) {
     const href = await fetch(`${($page.params.locale === 'fr' ? "/fr" : "")}/switch.json?l=${l}&path=${window.location.pathname}`)
     window.location.assign((await href.json()).href)
   }
+
+  function resize(w: number) {
+    innerHeight = window.innerHeight
+    open = w > 888
+  }
+
+  $: browser && resize(innerWidth)
 </script>
 
-<svelte:window bind:scrollY />
+<svelte:window bind:scrollY bind:innerWidth />
 
 <div class="spacer" />
 <nav class:black class:landing class:scrolled={scrollY > 0}>
