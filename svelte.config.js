@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-auto';
+import node from '@sveltejs/adapter-node';
 import vercel from '@sveltejs/adapter-vercel'
 import preprocess from 'svelte-preprocess';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
@@ -10,7 +10,7 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
-		adapter: vercel(),
+		adapter: node(),
 
 		// hydrate the <div id="svelte"> element in src/app.html
 		target: '#svelte',
