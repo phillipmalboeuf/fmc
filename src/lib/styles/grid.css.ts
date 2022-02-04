@@ -20,6 +20,7 @@ export const grid = recipe({
       2: { gridTemplateColumns: '1fr 1fr' },
       3: { gridTemplateColumns: '1fr 1fr 1fr' },
       4: { gridTemplateColumns: '1fr 1fr 1fr 1fr' },
+      5: { gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr' },
     },
     gap: {
       tight: { columnGap: '1em', rowGap: '1em' },

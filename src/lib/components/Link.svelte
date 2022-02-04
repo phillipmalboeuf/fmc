@@ -16,4 +16,8 @@
   export let arrow = false
 </script>
 
+{#if link.fields.path}
 <a href={((!link.fields.external && $page.params.locale === 'fr') ? "/fr" : "") + link.fields.path} target={link.fields.external && '_blank'} rel={link.fields.external && "external"} on:click>{link.fields.title}{link.fields.external && arrow ? ' ↗' : ''}</a>
+{:else}
+<small>{link.fields.title}</small>
+{/if}

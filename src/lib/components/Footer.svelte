@@ -13,28 +13,30 @@
 
 <footer use:slideIn class="{box({ color: 'grey' })}">
   <nav>
-    <h2><a href="http://cmf-fmc.ca" target="_blank">Visit the CMF Website</a></h2>
+    <h2><Link link={secondary.fields.links[0]} /></h2>
   </nav>
 
-  <div class="{grid({ columns: 3 })}">
+  <div class="{grid({ columns: 5 })}">
     <nav class="{col({ align: 'bottom' })}">
-      {#each secondary.fields.links as link}
+      {#each secondary.fields.links as link, i}
+      {#if i > 0}
       <Link {link} />
+      {/if}
       {/each}
     </nav>
 
-    <nav class="social">
+    <nav class="social {col({span:2})}">
       <strong>Connect with us</strong><br>
       {#each social.fields.links as link}
       <Link {link} />
       {/each}
     </nav>
 
-    <nav class="tertiary {col({ align: 'bottom' })}">
-      <!-- {#each tertiary.fields.links as link}
+    <nav class="tertiary {col({ span: 2, align: 'bottom' })}">
+      {#each tertiary.fields.links as link}
       <Link {link} />
-      {/each} -->
-      <small>© 2021 Canada Media Fund all right reserved</small>
+      {/each}
+      <!-- <small>© 2021 Canada Media Fund all right reserved</small> -->
     </nav>
   </div>
 </footer>
@@ -46,8 +48,7 @@
   }
   
   footer :global(a),
-  strong,
-  small {
+  strong {
     display: inline-block;
     text-decoration: none;
     margin-right: 1em;
@@ -55,9 +56,6 @@
     margin-bottom: 0.5em;
   }
 
-  small {
-    margin-bottom: 0;
-  }
 
   strong {
     text-transform: uppercase;
@@ -79,6 +77,10 @@
     margin-left: 0.5em;
   }
 
+  .tertiary {
+    text-align: right;
+  }
+
   @media (max-width: 888px) {
     footer :global(a) {
       display: block;
@@ -90,11 +92,15 @@
       right: 1rem;
       font-size: 1rem;
     }
+
+    .tertiary {
+      text-align: center;
+    }
     
-    small {
+    /* small {
       width: 100%;
       font-size: 0.8rem;
       text-align: center;
-    }
+    } */
   }
 </style>
