@@ -181,6 +181,10 @@ globalStyle('figure', {
   margin: 0
 })
 
+globalStyle('iframe', {
+  maxWidth: '100%',
+})
+
 globalStyle('[id]', {
   scrollMarginTop: vars.space.medium
 })
