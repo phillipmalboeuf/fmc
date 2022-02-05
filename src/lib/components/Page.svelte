@@ -28,6 +28,7 @@
   import PageArticles from './PageArticles.svelte'
   import PageIntro from './PageIntro.svelte'
   import BackIcon from './BackIcon.svelte'
+import { box } from '$lib/styles/box.css';
 
 	export let page: Entry<PageDocument>
   export let index = false
@@ -80,7 +81,7 @@
 <section class:landing class={grid({ columns: 4, align: 'middle' })}>
   <Navigation contentHeight={offsetHeight} {index} {landing} bind:path />
 
-  <section bind:offsetHeight class="content {col({ span: landing ? 4 : 3 })}{landing ? ' '+grid({ columns: 2, align: 'middle', gap: 'medium' }) : ''}">  
+  <section bind:offsetHeight class="content {col({ span: landing ? 4 : 3 })}{landing ? ' '+grid({ columns: 2, align: 'middle', gap: 'medium' }) : ''}{!index ? ' '+box({ color: 'muted' }) : ''}">  
 
     {#if !index && !landing}
     <PageIntro {page} h1 />

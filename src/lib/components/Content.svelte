@@ -32,24 +32,24 @@
   let scrollY: number = 0
 
   onMount(() => {
-    if (color && hero && window.innerWidth > 888) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(node => {
-            document.body.classList.toggle(`hero--${texts(backs(color))}`, node.isIntersecting)
-          })
-        },
-        {
-          rootMargin: '-49%'
-        }
-      )
+    // if (color && hero && window.innerWidth > 888) {
+    //   const observer = new IntersectionObserver(
+    //     (entries) => {
+    //       entries.forEach(node => {
+    //         document.body.classList.toggle(`hero--${texts(backs(color))}`, node.isIntersecting)
+    //       })
+    //     },
+    //     {
+    //       rootMargin: '-49%'
+    //     }
+    //   )
 
-      observer.observe(hero)
+    //   observer.observe(hero)
 
-      return () => {
-        observer.disconnect()
-      }
-    }
+    //   return () => {
+    //     observer.disconnect()
+    //   }
+    // }
   })
 </script>
 
@@ -58,7 +58,7 @@
 {#if content}
 {#each content as entry, i}
 {#if !landing && media && i === 0}
-<figure style="background-color: {vars.colors[backs(color)]}; transform: translate3d(0, -{scrollY*1.1}px, 0); padding-top: {media.fields.file.details.image.height / media.fields.file.details.image.width * 40}%">
+<figure style="background-color: {vars.colors[backs(color)]}; transform: translate3d(0, -{scrollY*1.1}px, 0)">
   <Picture {media} eager />
 </figure>
 
@@ -122,7 +122,7 @@
     z-index: 0;
     width: 100vw;
     z-index: 0;
-    padding-top: 20vh;
+    /* padding-top: 20vh; */
     background-color: var(--back);
   }
 
