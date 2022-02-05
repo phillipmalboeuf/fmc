@@ -15,7 +15,7 @@
   "devDependencies": {
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/adapter-node": "^1.0.0-next.67",
-    "@sveltejs/adapter-vercel": "next",
+    "@sveltejs/adapter-vercel": "^1.0.0-next.40",
     "@sveltejs/kit": "^1.0.0-next.260",
     "@vanilla-extract/css": "^1.6.8",
     "@vanilla-extract/css-utils": "^0.1.2",
