@@ -31,7 +31,12 @@
 
   setContext('close', close)
 
-  $: browser && href && expanded && element && element.scrollIntoView()
+  function scroll() {
+    console.log(element.clientTop, element.scrollTop, element.offsetTop)
+    setTimeout(() => window.scrollTo({ top: element.offsetTop, behavior: 'smooth' }), 10)
+  }
+
+  $: browser && href && expanded && element && scroll()
 </script>
 
 {#if expanded}
