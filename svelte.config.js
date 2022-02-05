@@ -10,9 +10,7 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
-		adapter: node({
-			precompress: true,
-		}),
+		adapter: vercel(),
 
 		vite: {
 			optimizeDeps: {

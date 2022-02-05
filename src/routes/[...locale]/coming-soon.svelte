@@ -1,7 +1,7 @@
 <script context="module">
 	import { respond } from '$lib/responses'
 	export async function load({ params, fetch, session, context }) {
-		return respond(fetch, `/home.json`, params.locale)
+		return respond(fetch, `/coming-soon/page.json`, params.locale)
 	}
 </script>
 
@@ -15,4 +15,10 @@
   export let page: Entry<PageDocument>
 </script>
 
-<Page {page} index />
+<Page {page} landing />
+
+<style>
+  :global(body) {
+    background: linear-gradient(180deg, #462FF1 0%, #FEAEC7 100%) !important;
+  }
+</style>
