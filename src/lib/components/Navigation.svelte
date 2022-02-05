@@ -95,7 +95,7 @@
 
   {#if !landing && scrollY !== undefined && innerHeight}
   <!-- <progress value={scrollY + 1} max={Math.max(offsetHeight - innerHeight, 1)} /> -->
-  <progress style="width: calc(95vh - {navHeight}px);" value={scrollY + innerHeight} max={Math.max(contentHeight, innerHeight)} />
+  <progress style="width: calc(90vh - {navHeight}px);" value={scrollY + innerHeight} max={Math.max(contentHeight, innerHeight)} />
   {/if}
 </nav>
 
@@ -103,7 +103,7 @@
   nav {
     position: sticky;
     position: -webkit-sticky;
-    top: 2vh;
+    top: max(2.5vw, 2.5vh);
     left: 0;
     width: 8rem;
     z-index: 10;
@@ -198,7 +198,7 @@
   div.spacer {
     display: none;
   }
-
+  
   @media (max-width: 888px) {
     nav {
       position: fixed;
@@ -305,30 +305,29 @@
 
     transform: translateX(0.66em) rotate(90deg);
     transform-origin: top left;
-    height: 4px;
-    background: transparent;
+    background: var(--color);
+    border-radius: 2px;
+    height: 2px;
   }
 
   progress[value]::-webkit-progress-bar {
     background: var(--color);
-    border-radius: 2px;
-    height: 2px;
-    transition: background-color 666ms;
   }
 
   progress[value]::-moz-progress-bar {
     background: var(--color);
-    border-radius: 2px;
-    height: 2px;
+    border-radius: 6px;
+    height: 4px;
+    transform: translateY(-1px);
     transition: background-color 666ms;
   }
 
-  progress[value]::progress-bar {
+  /* progress[value]::progress-bar {
     background: var(--color);
     border-radius: 2px;
     height: 2px;
     transition: background-color 666ms;
-  }
+  } */
 
   progress[value]::-webkit-progress-value {
     background: var(--color);
