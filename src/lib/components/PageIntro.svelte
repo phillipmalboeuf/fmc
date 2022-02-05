@@ -19,7 +19,7 @@
 </header>
 
 {#if page.fields.image}
-<figure><Picture media={page.fields.image} /></figure>
+<figure use:slideIn><Picture media={page.fields.image} /></figure>
 {/if}
 
 {#if page.fields.body}
