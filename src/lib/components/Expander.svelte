@@ -32,7 +32,7 @@
   setContext('close', close)
 
   function scroll() {
-    setTimeout(() => window.scrollTo({ top: element.getBoundingClientRect().top + window.pageYOffset, behavior: 'smooth' }), 10)
+    setTimeout(() => window.scrollTo({ top: element.getBoundingClientRect().top + window.pageYOffset - 100, behavior: 'smooth' }), 10)
   }
 
   $: browser && href && expanded && element && scroll()
