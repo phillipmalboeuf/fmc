@@ -78,6 +78,10 @@
     font-size: 7rem;
   }
 
+  .boxed {
+    margin: 2rem 0;
+  }
+
   .boxed > div {
     columns: 2;
   }
