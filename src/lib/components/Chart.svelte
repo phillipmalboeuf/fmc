@@ -21,7 +21,7 @@
   import { page } from '$app/stores'
 
   import { col, grid } from '$lib/styles/grid.css'
-  import { createCurve, createColumns, csvToChartData, createPyramide, createTarte } from '$lib/charts'
+  import { createCurve, createColumns, csvToChartData, createPyramide, createTarte, csvToMatrix } from '$lib/charts'
   
   import type { Root } from '@amcharts/amcharts5'
   import type { Chart } from '@amcharts/amcharts5/.internal/core/render/Chart'
@@ -39,18 +39,15 @@
   // export let exporting: Exporting
 
   export let entry: Entry<ChartDocument>
-  export let small: boolean = false
 
   const { fields: { title, description, type, alignment, data, min, max, axeTitle, stacked } } = entry
 
   let arrow: boolean
 
-  const dataSource = csvToChartData(data)
-
+  const dataSource = type === 'Table' ? csvToMatrix(data) : csvToChartData(data)
 
   function createChart() {
     observer?.disconnect()
-
     switch (type) {
       case 'Columns':
         root = createColumns(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
@@ -85,19 +82,20 @@
   
 
   onMount(() => {
-    observer = new IntersectionObserver( 
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            createChart()
-          }
-        })
-      },
-      { threshold: [0] }
-    )
+    if (element) {
+      observer = new IntersectionObserver( 
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              createChart()
+            }
+          })
+        },
+        { threshold: [0] }
+      )
 
-
-    observer.observe(element)
+      observer.observe(element)
+    }
   })
 
   onDestroy(() => {
@@ -109,7 +107,27 @@
 <section class="{grid({ columns: 2 })}">
   {#if title}<h3 use:slideIn>{title}</h3>{/if}
   {#if description}<aside use:slideIn><Document body={description} /></aside>{/if}
-  <figure class:numbers={type === 'Big numbers'} class:arrow use:slideIn class:small class="{col({ span: 2 })}" bind:this={element}></figure>
+  {#if type !== 'Table'}
+  <figure class:arrow use:slideIn class="{col({ span: 2 })}" bind:this={element}></figure>
+  {:else}
+  <figure class="table {col({ span: 2 })}">
+    <div>
+      <table use:slideIn>
+        {#each dataSource as row, ri}
+        <tr class:highlight={row[1] === ""}>
+          {#each row as col, ci}
+          {#if ri === 0 || ci === 0}
+          <th>{col}</th>
+          {:else}
+          <td>{col}</td>
+          {/if}
+          {/each}
+        </tr>
+        {/each}
+      </table>
+    </div>
+  </figure>
+  {/if}
 </section>
 
 <style>
@@ -123,7 +141,12 @@
     padding-bottom: 42%;
   }
 
-  figure.arrow:after {
+  figure.table {
+    padding-bottom: 0;
+  }
+
+  figure.arrow:after,
+  figure.table:after {
     pointer-events: none;
 
     content: "→";
@@ -141,10 +164,32 @@
   @media (max-width: 888px) {
     figure {
       padding-bottom: 133%;
+      width: 85vw;
     }
+  }
 
-    figure.numbers {
-      padding-bottom: 88%;
-    }
+  figure.table > div {
+    width: 100%;
+    overflow-x: scroll;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 200%;
+  }
+
+  tr.highlight {
+    background-color: var(--color);
+  }
+
+  th {
+    width: 10rem;
+    text-align: left;
+  }
+
+  th, td {
+    padding: 0.5em;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
   }
 </style>

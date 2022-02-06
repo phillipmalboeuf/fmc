@@ -1,11 +1,8 @@
 export function csvToChartData(data: string) {
-  return csvToArray(data)
-}
+  const delimiter = data.includes('\t') ? '\t' : ','
+  const headers = data.slice(0, data.indexOf("\n")).split(delimiter)
 
-function csvToArray(str: string, delimiter = ",") {
-  const headers = str.slice(0, str.indexOf("\n")).split(delimiter)
-
-  const rows = str.slice(str.indexOf("\n") + 1).split("\n")
+  const rows = data.slice(data.indexOf("\n") + 1).split("\n")
 
   const arr = rows.map(function (row) {
     const values = row.split(delimiter)
@@ -17,6 +14,19 @@ function csvToArray(str: string, delimiter = ",") {
   })
 
   return arr
+}
+
+export function csvToMatrix(data: string) {
+  const delimiter = data.includes('\t') ? '\t' : ','
+  var resultArray = [];
+  data.split("\n").forEach(function(row) {
+      var rowArray = [];
+      row.split(delimiter).forEach(function(cell) {
+          rowArray.push(cell);
+      });
+      resultArray.push(rowArray);
+  });
+  return resultArray;
 }
 
 
