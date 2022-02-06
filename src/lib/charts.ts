@@ -140,7 +140,9 @@ export function createColumns(element: HTMLElement, seriesData: any[], vertical:
     // const hsl = color(couleur).toHSL()
     // hsl.h += i * 0.02
 
-    const fill = Color.interpolate((keys.length - 1 - i) / (keys.length-1), color(firstColor), color(secondColor))
+    const fill = keys.length > 1
+      ? Color.interpolate((keys.length - 1 - i) / (keys.length-1), color(firstColor), color(secondColor))
+      : color(secondColor)
 
     // let gradient = LinearGradient.new(root, {
     //   stops: [{

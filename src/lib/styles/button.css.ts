@@ -57,6 +57,21 @@ export const btn = recipe({
     rounded: {
       true: { borderRadius: 999 }
     },
+    arrows: {
+      true: [fmc({ fontSize: 'big' }), {
+          fontFamily: vars.fonts.heading, textTransform: 'uppercase',
+          selectors: {
+            '&.up:after': {
+              content: '↑',
+            },
+            '&:after': {
+              content: '↓',
+              fontFamily: vars.fonts.body,
+              float: 'right'
+            }
+          }
+        }]
+    },
     full: {
       true: { width: '100%', textAlign: 'center', marginBottom: '1rem',
       '@media': {

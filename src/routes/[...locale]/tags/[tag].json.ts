@@ -9,7 +9,7 @@ export const get: RequestHandler = async ({ params }) => {
   const tags = await entries<{ id: string }>('tag', locale, { 'fields.id': params.tag })
   if (tags.items.length) {
     const [articles, pages] = await Promise.all([
-      entries<{ id: string }>('article', locale, { 'fields.tagsList.sys.id': tags.items[0].sys.id }, 4),
+      entries<{ id: string }>('article', locale, { 'fields.tagsList.sys.id': tags.items[0].sys.id }, 5),
       entries<{
         articles: Entry<{
           id: string

@@ -15,6 +15,7 @@
   export let bold = false
   export let tight = false
   export let closeButtons = false
+  export let arrows = false
 
   export let onOpen: Function = undefined
 
@@ -35,11 +36,17 @@
     setTimeout(() => window.scrollTo({ top: element.getBoundingClientRect().top + window.pageYOffset - 100, behavior: 'smooth' }), 10)
   }
 
-  $: browser && href && expanded && element && scroll()
+  $: browser && expanded && element && scroll()
 </script>
 
 {#if expanded}
-<section bind:this={element} class={box({ color: bold ? 'muted' : undefined })}>
+<section bind:this={element} class={!arrows && box({ color: bold ? 'muted' : undefined })}>
+  {#if arrows}<a class:bold class="up {btn({ full: true, hover: !arrows && color, color: arrows ? color : bold ? color : tight ? 'none' : 'outline', size: tight ? 'tight' : 'small', arrows })}" {href} on:click={(e) => {
+    e.preventDefault()
+    expanded = false
+  }}>
+  <slot name="label" />
+  </a>{/if}
   {#if closeButtons}<a class="close" href={back} on:click={close}><span>CLOSE&nbsp;</span>×</a>{/if}
 
   <slot></slot>
@@ -47,7 +54,7 @@
   {#if closeButtons}<a class="close second" href={back} on:click={close}><span>CLOSE&nbsp;</span>×</a>{/if}
 </section>
 {:else}
-<a use:slideIn class:bold class={btn({ full: true, hover: color, color: bold ? color : tight ? 'none' : 'outline', size: tight ? 'tight' : 'small' })} {href} on:click={(e) => {
+<a use:slideIn class:arrows class:bold class={btn({ full: true, hover: !arrows && color, color: arrows ? color : bold ? color : tight ? 'none' : 'outline', size: tight ? 'tight' : 'small', arrows })} {href} on:click={(e) => {
   e.preventDefault()
   expanded = true
 

@@ -28,7 +28,7 @@
   import PageArticles from './PageArticles.svelte'
   import PageIntro from './PageIntro.svelte'
   import BackIcon from './BackIcon.svelte'
-import { box } from '$lib/styles/box.css';
+  import { box } from '$lib/styles/box.css'
 
 	export let page: Entry<PageDocument>
   export let index = false

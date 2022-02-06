@@ -113,11 +113,14 @@
 </section>
 
 <style>
+  section {
+    margin: 4rem 0 5rem;
+  }
+
   figure {
     position: relative;
     width: 100%;
     padding-bottom: 42%;
-    margin-bottom: 5rem;
   }
 
   figure.arrow:after {

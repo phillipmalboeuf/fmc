@@ -10,10 +10,10 @@ export const contentful = createClient({
 
 const limit = 12
 
-export async function entry<T>(id: string, locale: string, query: {[key: string]: any}={}, include=2) {
+export async function entry<T>(id: string, locale: string, query: {[key: string]: any}={}, include=3) {
   return (await contentful.getEntry<T>(id, { include, locale: {'fr': 'fr-CA'}[locale], ...query }))
 }
 
-export async function entries<T>(content_type: string, locale: string, query: {[key: string]: any}={}, include=2, page=0) {
+export async function entries<T>(content_type: string, locale: string, query: {[key: string]: any}={}, include=3, page=0) {
   return await contentful.getEntries<T>({ content_type, include, locale: {'fr': 'fr-CA'}[locale], ...query, limit, skip: limit*page })
 }

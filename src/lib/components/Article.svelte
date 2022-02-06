@@ -187,6 +187,10 @@
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
+
+  footer {
+    margin-top: max(2vw, 2vh);
+  }
   
   footer :global(a:not(.back):not(.other)) {
     display: inline-block;

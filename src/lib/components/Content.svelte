@@ -95,6 +95,12 @@
       <PageArticles articles={entry.fields.articles.map(article => ({ article, page: entry }))} />
       {/if}
     </Expander>
+    {:else if entry.sys.contentType.sys.id === 'subSection'}
+    <Expander arrows {color}>
+      <span slot="label">{entry.fields.title}</span>
+
+      <svelte:self content={entry.fields.content} />
+    </Expander>
     {:else if entry.sys.contentType.sys.id === 'text'}
     <Text {entry} {color} />
     {:else if entry.sys.contentType.sys.id === 'columns'}
