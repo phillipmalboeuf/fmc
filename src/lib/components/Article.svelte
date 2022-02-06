@@ -131,7 +131,7 @@
     {/if}
   </header>
 
-  <Content content={article.fields.content} />
+  <Content content={article.fields.content} {color} />
 
   <footer class="{grid({ columns: 2 })}" style="background: {vars.colors[backs(color)]}; color: {vars.colors[texts(backs(color))]}">
     {#if article.fields.recommended}

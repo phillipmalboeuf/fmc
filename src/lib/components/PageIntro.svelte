@@ -6,6 +6,7 @@
   import Document from './document/Document.svelte'
   import { slideIn } from '$lib/animations'
   import Picture from './Picture.svelte'
+  import ReadMore from './ReadMore.svelte'
   
 	export let page: Entry<PageDocument>
   export let h1 = false
@@ -22,9 +23,7 @@
 <figure use:slideIn><Picture media={page.fields.image} /></figure>
 {/if}
 
-{#if page.fields.body}
-<div use:slideIn><Document body={page.fields.body} /></div>
-{/if}
+<div><ReadMore body={page.fields.body} /></div>
 
 <style>
   header,
