@@ -5,7 +5,7 @@
 </script>
 
 {#if body}
-{#each body.content as node}
-<Node node={node} />
+{#each body.content as n}
+<Node {n} />
 {/each}
 {/if}
