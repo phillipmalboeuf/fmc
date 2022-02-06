@@ -21,9 +21,9 @@ export const get: RequestHandler = async ({ params }) => {
       return {
         body: json.encode({
           tag: tags.items[0],
-          articles: articles.items.map(article => ({
+          articles: articles.items.filter(article => article.fields).map(article => ({
             article,
-            page: pages.items.find(page => page.fields.articles?.find(a => a.fields.id === article.fields.id))
+            page: pages.items.find(page => page.fields.articles?.filter(a => a.fields).find(a => a.fields.id === article.fields.id))
           }))
         })
       }

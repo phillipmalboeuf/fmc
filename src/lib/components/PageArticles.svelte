@@ -18,7 +18,7 @@
 </script>
 
 {#if articles}
-{#each articles.filter(a => a.article.fields) as a}
+{#each articles.filter(a => a.article?.fields && a.page?.fields) as a}
 <Expander href="{($page.params.locale === 'fr' ? "/fr" : "")}/{a.page.fields.id}/{a.article.fields.id}" back="{($page.params.locale === 'fr' ? "/fr" : "")}/{a.page.fields.id}" color={a.page.fields.color.toLowerCase()} bold>
   <div use:slideIn slot="label">
     <!-- <Tags tags={[a.article.fields.type]} /> -->
