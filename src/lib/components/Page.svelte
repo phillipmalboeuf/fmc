@@ -108,6 +108,10 @@
     min-height: calc(100vh - 20rem);
   }
 
+  section.landing .content {
+    margin: -4vh 0;
+  }
+
   a.back {
     display: block;
     margin-top: 2rem;
