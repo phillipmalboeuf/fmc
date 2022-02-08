@@ -84,7 +84,7 @@
   <header style="background: var(--back-color); color: var(--back-text-color)">
     <ShareBar {article} {onBack} />
 
-    <div use:slideIn class="{grid({ columns: 2 })}">
+    <div use:slideIn class="{grid({ columns: 2, gap: 'horizontal' })}">
 
       {#if article.fields.image}
       <figure class="{col({ span: 2 })}">
@@ -101,14 +101,14 @@
       {/if}
 
       {#if article.fields.tagsList}
-      <div style={article.fields.description && "grid-column-start: 1; grid-row-start: 3"}>
+      <div style={article.fields.description && `grid-column-start: 1; grid-row-start: ${article.fields.image ? 3 : 2}`}>
         <Tags tags={[...article.fields.tagsList]} />
       </div>
       {/if}
     </div>
 
     {#if article.fields.contributors}
-    <div use:slideIn class="{grid({ columns: 2, gap: 'horizontal' })} {col({ span: 2 })}">
+    <div use:slideIn class="contributors {grid({ columns: 2, gap: 'horizontal' })} {col({ span: 2 })}">
       <h3 class="{col({ span: 2 })}">{$page.params.locale === 'fr' ? 'Contributeurs' : 'Contributors'}</h3>
       {#each article.fields.contributors as contributor}
       <div class="contributor {box({ padding: 'tight' })} {grid({ columns: 2, gap: 'horizontal' })}">
@@ -131,7 +131,7 @@
     {/if}
   </header>
 
-  <Content content={article.fields.content} />
+  <Content content={article.fields.content} {color} />
 
   <footer class="{grid({ columns: 2 })}" style="background: {vars.colors[backs(color)]}; color: {vars.colors[texts(backs(color))]}">
     {#if article.fields.recommended}
@@ -186,6 +186,10 @@
     border-radius: 12px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+  }
+
+  footer {
+    margin-top: max(2vw, 2vh);
   }
   
   footer :global(a:not(.back):not(.other)) {
@@ -246,6 +250,10 @@
     margin-bottom: 0.2em;
   }
 
+  .contributor p:last-child {
+    margin-bottom: 0;
+  }
+
   .contributor figure {
     display: block;
     padding: 0;
@@ -269,7 +277,21 @@
     color: var(--color);
   }
 
+  @media (max-width: 1200px) {
+    .contributors {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .contributors h3 {
+      grid-column: span 2;
+    }
+  }
+
   @media (max-width: 888px) {
+    .contributors {
+      margin-top: 2rem;
+    }
+
     figure {
       padding: 1rem;
     }
