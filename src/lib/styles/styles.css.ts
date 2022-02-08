@@ -84,7 +84,7 @@ globalStyle('html', {
 globalStyle('body', {
   margin: 0,
   color: vars.colors.white,
-  background: vars.colors.blackish,
+  background: vars.colors.black,
   overscrollBehaviorX: 'none'
 })
 

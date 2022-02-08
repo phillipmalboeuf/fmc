@@ -62,7 +62,7 @@
   <Picture {media} eager />
 </figure>
 
-<div bind:this={hero} class:hero={!!media && i === 0} id={entry.fields.id} style={`padding-bottom: ${media.fields.file.details.image.height / media.fields.file.details.image.width * 88}%; --back: ${vars.colors[backs(color)]}; --text: ${vars.colors[texts(backs(color))]}`}>
+<div bind:this={hero} class:hero={!!media && i === 0} id={entry.fields.id} style={`padding-bottom: ${media.fields.file.details.image.height / media.fields.file.details.image.width * 95}%; --back: ${vars.colors[backs(color)]}; --text: ${vars.colors[texts(backs(color))]}`}>
 
   <div>
     {#if entry.sys.contentType.sys.id === 'text'}
@@ -123,7 +123,7 @@
 <style>
   figure {
     position: fixed;
-    top: 0;
+    top: -2vw;
     left: 0;
     z-index: 0;
     width: 100vw;
@@ -161,13 +161,14 @@
     }
 
     figure {
-      height: 100vh;
+      top: 0;
+      height: 110vh;
       overflow-x: hidden;
     }
 
     figure :global(img) {
       position: absolute;
-      bottom: -5%;
+      bottom: 0;
       left: 0;
       width: 150% !important;
       max-width: 150% !important;
