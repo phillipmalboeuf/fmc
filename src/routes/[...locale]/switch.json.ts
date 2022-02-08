@@ -6,11 +6,7 @@ export const get: RequestHandler = async ({ params, url }) => {
   const to = url.searchParams.get('l')
   let path = url.searchParams.get('path')
 
-  let href = ''
-
-  if (to === 'fr') {
-    href += '/fr'
-  }
+  let href = to === 'fr' ? 'https://rapportdestendances.cmf-fmc.ca' : 'https://trendsreport.cmf-fmc.ca'
 
   if (from === 'fr') {
     path = path === '/fr' ? '/' : path.replace('/fr', '')
