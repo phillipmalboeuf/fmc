@@ -250,6 +250,10 @@
     margin-bottom: 0.2em;
   }
 
+  .contributor p:last-child {
+    margin-bottom: 0;
+  }
+
   .contributor figure {
     display: block;
     padding: 0;
@@ -273,11 +277,21 @@
     color: var(--color);
   }
 
+  @media (max-width: 1200px) {
+    .contributors {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .contributors h3 {
+      grid-column: span 2;
+    }
+  }
+
   @media (max-width: 888px) {
     .contributors {
       margin-top: 2rem;
     }
-    
+
     figure {
       padding: 1rem;
     }
