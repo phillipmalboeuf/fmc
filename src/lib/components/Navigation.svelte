@@ -53,7 +53,7 @@
 <div class="spacer" />
 <nav class:black class:landing class:scrolled={scrollY > 0}>
   <div bind:offsetHeight={navHeight}>
-    <a class="logo" href="{($page.params.locale === 'fr' ? "/fr" : "/")}">
+    <a class="logo" href="{($page.params.locale === 'fr' ? "https://rapportdestendances.cmf-fmc.ca" : "https://trendsreport.cmf-fmc.ca")}">
       <Logo {locale} />
     </a>
 
