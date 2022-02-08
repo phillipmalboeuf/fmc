@@ -55,6 +55,7 @@
   aside {
     width: 66%;
     margin-bottom: 2.5rem;
+    border-color: var(--color);
   }
 
   aside :global(a:hover),

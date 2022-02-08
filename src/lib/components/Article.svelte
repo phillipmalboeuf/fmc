@@ -84,7 +84,7 @@
   <header style="background: var(--back-color); color: var(--back-text-color)">
     <ShareBar {article} {onBack} />
 
-    <div use:slideIn class="{grid({ columns: 2 })}">
+    <div use:slideIn class="{grid({ columns: 2, gap: 'horizontal' })}">
 
       {#if article.fields.image}
       <figure class="{col({ span: 2 })}">
@@ -101,7 +101,7 @@
       {/if}
 
       {#if article.fields.tagsList}
-      <div style={article.fields.description && "grid-column-start: 1; grid-row-start: 3"}>
+      <div style={article.fields.description && `grid-column-start: 1; grid-row-start: ${article.fields.image ? 3 : 2}`}>
         <Tags tags={[...article.fields.tagsList]} />
       </div>
       {/if}
