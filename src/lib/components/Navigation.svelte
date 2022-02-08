@@ -153,6 +153,12 @@
     transition: color 666ms;
   }
 
+  @media (max-width: 888px) {
+    nav :global(a) {
+      padding: 0.33em 0;
+    }
+  }
+
   nav :global(a:not(.logo):hover),
   nav :global(a:not(.logo):focus) {
     color: black;

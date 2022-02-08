@@ -94,7 +94,7 @@
     .close {
       font-size: 1.5em;
     }
-    .close:not(.bold) span {
+    .close:not(.bold):not(.second) span {
       display: none;
     }
   }
