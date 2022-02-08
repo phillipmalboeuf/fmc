@@ -158,6 +158,7 @@ globalStyle('h6', {
 
 globalStyle('p', {
   fontSize: `${22/base}rem`,
+  margin: '0 0 1em',
   fontWeight: 'normal',
 })
 

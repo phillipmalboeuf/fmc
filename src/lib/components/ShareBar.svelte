@@ -40,9 +40,9 @@
     </ul>
   </div>
 
-  <button class="{pill({ corner: 'thick', clickable: true })}" on:click={() => window.print()}><h4>{$page.params.locale === 'fr' ? 'IMPRIMER' : 'PRINT'} ↓</h4></button>
+  <button class="{pill({ corner: 'thick', clickable: true })}" on:click={() => window.print()}><h4>{$page.params.locale === 'fr' ? 'IMPRIMER' : 'PRINT'}&nbsp;&nbsp;&nbsp;&nbsp;↓</h4></button>
 
-  <a class="back" href="{($page.params.locale === 'fr' ? "/fr" : "")}/{$page.params.page}" on:click={onBack}><h4>{$page.params.locale === 'fr' ? 'RETOUR' : 'BACK'} <BackIcon /></h4></a>
+  <a class="back" href="{($page.params.locale === 'fr' ? "/fr" : "")}/{$page.params.page}" on:click={onBack}><h4>{$page.params.locale === 'fr' ? 'RETOUR' : 'BACK'}&nbsp;&nbsp;<BackIcon /></h4></a>
 </nav>
 
 <style>
@@ -87,6 +87,17 @@
     padding-right: 1em;
   }
 
+  div:hover {
+    color: var(--text-color);
+    background-color: var(--color);
+  }
+
+  div:hover a:hover,
+  div:hover a:focus {
+    color: var(--text-color);
+    text-decoration: underline;
+  }
+
   hr {
     border: none;
     height: 3.66em;
@@ -124,5 +135,10 @@
     background: transparent;
     padding-left: 1em;
     padding-right: 1em;
+  }
+
+  button:hover,
+  button:focus {
+    background-color: var(--color);
   }
 </style>

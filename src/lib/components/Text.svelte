@@ -35,7 +35,7 @@
 
 <section use:slideIn class:big={entry.fields.big} class:boxed={entry.fields.boxed} class="{entry.fields.boxed && box({ color })}">
 {#if entry.fields.title && !entry.fields.hideTitle}
-  {#if entry.fields.title.length < 100}
+  {#if entry.fields.big}
   <h1>{entry.fields.title}</h1>
   {:else}
   <h2>{entry.fields.title}</h2>

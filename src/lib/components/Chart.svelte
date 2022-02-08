@@ -132,7 +132,11 @@
 
 <style>
   section {
-    margin: 4rem 0 5rem;
+    margin: 5rem 0 6rem;
+  }
+
+  aside {
+    margin-top: 0.5rem;
   }
 
   figure {

@@ -51,7 +51,7 @@
 
   <slot></slot>
 
-  {#if closeButtons}<a class="close second" href={back} on:click={close}><span>CLOSE&nbsp;</span>×</a>{/if}
+  {#if !arrows}<a class="close second" href={back} on:click={close}><span>CLOSE&nbsp;</span>×</a>{/if}
 </section>
 {:else}
 <a use:slideIn class:arrows class:bold class={btn({ full: true, hover: !arrows && color, color: arrows ? color : bold ? color : tight ? 'none' : 'outline', size: tight ? 'tight' : 'small', arrows })} {href} on:click={(e) => {
@@ -81,7 +81,7 @@
     text-align: center;
     display: block;
     width: 100%;
-    margin-bottom: 1.33em;
+    margin: 1.33em 0 1.66em;
     text-decoration: none;
     font-size: 1.5em;
     right: 0;

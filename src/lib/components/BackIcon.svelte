@@ -4,7 +4,7 @@
 <style>
   svg {
     width: 1em;
-    vertical-align: middle;
+    vertical-align: top;
   }
 
     path {

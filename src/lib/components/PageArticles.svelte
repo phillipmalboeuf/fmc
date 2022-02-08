@@ -37,6 +37,10 @@
     text-align: left;
   }
 
+  div > span {
+    display: inline-block;
+  }
+
   h3 {
     max-width: 42rem;
   }

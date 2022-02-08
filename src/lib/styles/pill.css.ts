@@ -8,7 +8,7 @@ export const pills = recipe({
     width: '100%',
     flexWrap: 'wrap',
     alignItems: 'center',
-    gap: '0.5em',
+    gap: '1em',
     marginBottom: '1em'
   },
 })
@@ -38,7 +38,7 @@ export const pill = recipe({
     },
     corner: {
       small: { borderRadius: 6 },
-      thick: { borderRadius: 12 }
+      thick: { borderRadius: 20 }
     }
   },
 
