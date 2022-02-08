@@ -38,7 +38,7 @@ export const pill = recipe({
     },
     corner: {
       small: { borderRadius: 6 },
-      thick: { borderRadius: 20 }
+      thick: { borderRadius: 18 }
     }
   },
 

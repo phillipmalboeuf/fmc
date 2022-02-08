@@ -108,7 +108,7 @@
     </div>
 
     {#if article.fields.contributors}
-    <div use:slideIn class="{grid({ columns: 2, gap: 'horizontal' })} {col({ span: 2 })}">
+    <div use:slideIn class="contributors {grid({ columns: 2, gap: 'horizontal' })} {col({ span: 2 })}">
       <h3 class="{col({ span: 2 })}">{$page.params.locale === 'fr' ? 'Contributeurs' : 'Contributors'}</h3>
       {#each article.fields.contributors as contributor}
       <div class="contributor {box({ padding: 'tight' })} {grid({ columns: 2, gap: 'horizontal' })}">
@@ -274,6 +274,10 @@
   }
 
   @media (max-width: 888px) {
+    .contributors {
+      margin-top: 2rem;
+    }
+    
     figure {
       padding: 1rem;
     }
