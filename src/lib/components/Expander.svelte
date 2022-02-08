@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores'
-  import { setContext } from 'svelte'
+  import { setContext, tick } from 'svelte'
 
   import { btn } from '$lib/styles/button.css'
   import { box } from '$lib/styles/box.css'
@@ -20,23 +20,27 @@
   export let onOpen: Function = undefined
 
   let element: HTMLElement
+  let button: HTMLAnchorElement
 
-  function close(e) {
+  async function close(e) {
     e.preventDefault()
     expanded = false
 
     if (back) {
       history.replaceState({}, '', back)
     }
+
+    await tick()
+    scroll(button)
   }
 
   setContext('close', close)
 
-  function scroll() {
-    setTimeout(() => window.scrollTo({ top: element.getBoundingClientRect().top + window.pageYOffset - 100, behavior: 'smooth' }), 10)
+  function scroll(e: HTMLElement) {
+    setTimeout(() => window.scrollTo({ top: e.getBoundingClientRect().top + window.pageYOffset - 100, behavior: 'smooth' }), 10)
   }
 
-  $: browser && expanded && element && scroll()
+  $: browser && expanded && element && scroll(element)
 </script>
 
 {#if expanded}
@@ -54,7 +58,7 @@
   {#if !arrows}<a class="close second" href={back} on:click={close}><span>CLOSE&nbsp;</span>×</a>{/if}
 </section>
 {:else}
-<a use:slideIn class:arrows class:bold class={btn({ full: true, hover: !arrows && color, color: arrows ? color : bold ? color : tight ? 'none' : 'outline', size: tight ? 'tight' : 'small', arrows })} {href} on:click={(e) => {
+<a bind:this={button} use:slideIn class:arrows class:bold class={btn({ full: true, hover: !arrows && color, color: arrows ? color : bold ? color : tight ? 'none' : 'outline', size: tight ? 'tight' : 'small', arrows })} {href} on:click={(e) => {
   e.preventDefault()
   expanded = true
 
