@@ -22,7 +22,7 @@
 </script>
 
 <section use:slideIn class:landing class="{box({ color: 'outline' })} {grid({ columns: entry.fields.title ? landing ? 1 : 2 : 1 })}" style="--color: {vars.colors[highlights(color)]}">
-  {#if entry.fields.title}{#if entry.fields.title}<h5>{entry.fields.title}</h5>{:else}<h2>{entry.fields.title}</h2>{/if}{/if}
+  {#if entry.fields.title}{#if landing}<h5>{entry.fields.title}</h5>{:else}<h2>{entry.fields.title}</h2>{/if}{/if}
   <div class="">
     {#if entry.fields.embed}{@html entry.fields.embed}{/if}
   </div>
