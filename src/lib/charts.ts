@@ -5,6 +5,7 @@ export function csvToChartData(data: string) {
   const rows = data.slice(data.indexOf("\n") + 1).split("\n")
 
   const arr = rows.map(function (row) {
+    if (delimiter === '\t') { row = row.replace(/,/g, '.') }
     const values = row.split(delimiter)
     const el = headers.reduce(function (object, header, index) {
       object[header] = values[index]
@@ -225,7 +226,9 @@ export function createColumns(element: HTMLElement, seriesData: any[], vertical:
   })
 
   if (keys.length > 1) {
-    let legend = chart.children.push(Legend.new(root, {}));
+    let legend = chart.children.push(Legend.new(root, {
+      paddingTop: 20
+    }));
     legend.data.setAll(chart.series.values)
   }
 
@@ -336,7 +339,9 @@ export function createCurve(element: HTMLElement, seriesData: any[], vertical: b
   })
 
   if (keys.length > 1) {
-    let legend = chart.children.push(Legend.new(root, {}));
+    let legend = chart.children.push(Legend.new(root, {
+      paddingTop: 20
+    }));
     legend.data.setAll(chart.series.values)
   }
 
@@ -418,10 +423,21 @@ export function createTarte(element: HTMLElement, seriesData: any[], vertical: b
       PieChart.new(root, {
         layout: root.verticalLayout,
         // innerRadius: percent(10),
-        paddingLeft: 0,
-        paddingRight: 0,
+        // paddingTop: 10,
+        paddingLeft: 10,
+        paddingRight: 10,
+        width: percent(100/keys.length),
+        x: percent((100/keys.length)*i)
       })
     )
+
+    chart.children.unshift(Label.new(root, {
+      text: name,
+      y: -10,
+      textAlign: 'center',
+      x: percent(50),
+      fontSize: '1em'
+    }))
 
     title && chart.children.unshift(Label.new(root, {
       text: title,
@@ -431,9 +447,10 @@ export function createTarte(element: HTMLElement, seriesData: any[], vertical: b
       fontSize: '0.75em'
     }))
 
-    let legend = chart.children.push(Legend.new(root, {
-      layout: root.verticalLayout
-    }))
+    // let legend = chart.children.push(Legend.new(root, {
+    //   layout: root.verticalLayout,
+    //   paddingTop: 20
+    // }))
 
     let series = chart.series.push(PieSeries.new(root, {
       name,
@@ -460,7 +477,7 @@ export function createTarte(element: HTMLElement, seriesData: any[], vertical: b
       text: "{category}",
       textType: "circular",
       inside: false,
-      radius: 10
+      radius: 15,
     })
 
     series.data.setAll(seriesData.map((data, index) => ({
@@ -470,7 +487,7 @@ export function createTarte(element: HTMLElement, seriesData: any[], vertical: b
       }
     })))
 
-    legend.data.pushAll(series.dataItems)
+    // legend.data.pushAll(series.dataItems)
   })
 
   
