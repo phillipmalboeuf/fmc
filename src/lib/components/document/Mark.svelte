@@ -7,6 +7,11 @@
     text-decoration: underline;
     text-decoration-color: var(--color);
   }
+
+  a:hover,
+  a:focus {
+    color: var(--color);
+  }
 </style>
 
 {#if mark.nodeType === 'text'}

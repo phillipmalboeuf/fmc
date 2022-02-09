@@ -2,6 +2,7 @@
   import { slideIn } from '$lib/animations'
   import { box } from '$lib/styles/box.css'
   import { col, grid } from '$lib/styles/grid.css'
+  import { vars } from '$lib/styles/styles.css'
 
   import type { Entry, RichTextContent } from 'contentful'
   import { onMount } from 'svelte'
@@ -33,7 +34,8 @@
   })
 </script>
 
-<section use:slideIn class:big={entry.fields.big} class:boxed={entry.fields.boxed} class="{entry.fields.boxed && box({ color })}">
+<section use:slideIn class:big={entry.fields.big} class:boxed={entry.fields.boxed} style="--color: {vars.colors[color]}" class="{entry.fields.boxed && box({ color })}">
+{#if entry.fields.subtitle}<p>{entry.fields.subtitle}</p>{/if}
 {#if entry.fields.title && !entry.fields.hideTitle}
   {#if entry.fields.big}
   <h1>{entry.fields.title}</h1>
@@ -41,7 +43,6 @@
   <h2>{entry.fields.title}</h2>
   {/if}
 {/if}
-{#if entry.fields.subtitle}<p>{entry.fields.subtitle}</p>{/if}
 {#if entry.fields.subTexts?.length}
 <div class="subbed {!phone && grid()}">
   {#if entry.fields.body}<Document body={entry.fields.body} />{/if}
@@ -89,6 +90,8 @@
   .subbed > :global(p) {
     font-size: 1.5em;
     grid-column: span 2;
+    text-decoration-color: var(--color);
+    text-decoration-thickness: 1px;
   }
 
   small em {
