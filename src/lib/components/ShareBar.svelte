@@ -30,7 +30,7 @@
     <ul>
       <li><a href="mailto:?subject={article.fields.title}&body={url}" target="_blank">Email</a></li>
       <li><a href="https://www.facebook.com/sharer.php?u={url}" target="_blank">Facebook</a></li>
-      <li><a href="https://www.linkedin.com/shareArticle?url={url}&title={article.fields.title}" target="_blank">LinkedIn</a></li>
+      <li><a href="https://www.linkedin.com/sharing/share-offsite/?url={url}&title={article.fields.title}" target="_blank">LinkedIn</a></li>
       <li><a href="https://twitter.com/intent/tweet?url={url}&text={`${article.fields.title} – ${article.fields.type}`}" target="_blank">Twitter</a></li>
       <!-- <li class="url">
         <label for="url">URL</label>
