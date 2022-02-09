@@ -62,7 +62,7 @@
   <Picture {media} eager />
 </figure>
 
-<div bind:this={hero} class:hero={!!media && i === 0} id={entry.fields.id} style={`padding-bottom: ${media.fields.file.details.image.height / media.fields.file.details.image.width * 95}%; --back: ${vars.colors[backs(color)]}; --text: ${vars.colors[texts(backs(color))]}`}>
+<div bind:this={hero} class:hero={!!media && i === 0} id={entry.fields.id} style={`padding-bottom: ${media.fields.file.details.image.height / media.fields.file.details.image.width * 90}%; --back: ${vars.colors[backs(color)]}; --text: ${vars.colors[texts(backs(color))]}`}>
 
   <div>
     {#if entry.sys.contentType.sys.id === 'text'}
@@ -123,7 +123,7 @@
 <style>
   figure {
     position: fixed;
-    top: -2vw;
+    top: -20vw;
     left: 0;
     z-index: 0;
     width: 100vw;
@@ -135,7 +135,7 @@
   .hero {
     position: relative;
     padding: 8rem 0 2vw 0;
-    margin-left: -10vw;
+    /* margin-left: -10vw; */
     
     /* margin: -2vw 0 2rem calc(-8rem - 21vw);
     padding: 9.5rem 20vw 2vw calc(8rem + 21vw); */
@@ -170,10 +170,10 @@
 
     figure :global(img) {
       position: absolute;
-      bottom: 0;
+      top: 0;
       left: 0;
-      width: 150% !important;
-      max-width: 150% !important;
+      width: 160% !important;
+      max-width: 160% !important;
     }
 
     span {

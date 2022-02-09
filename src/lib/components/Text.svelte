@@ -76,12 +76,13 @@
     text-decoration-thickness: 1px;
   }
 
-  .big p {
-    font-size: 1.66em;
+  .big :global(p) {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
   }
 
   .big :global(h1) {
-    font-size: 7rem;
+    margin-bottom: 0.25em;
   }
 
   .boxed {
@@ -106,12 +107,6 @@
     font-style: normal;
     text-transform: uppercase;
     margin-bottom: 1rem;
-  }
-
-  @media (max-width: 1200px) {
-    .big :global(h1) {
-      font-size: 6.66rem;
-    }
   }
 
   @media (max-width: 888px) {

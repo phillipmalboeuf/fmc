@@ -23,12 +23,13 @@
     image: Asset
     photos: Asset[]
     hideTitle: boolean
+    noSplit: boolean
   }>
   export let color: string = undefined
   export let noCenter: boolean = false
 </script>
 
-<article style="--heading-color: {vars.colors[color]}" class="{grid({ columns: 2 })}">
+<article style="--heading-color: {vars.colors[color]}" class="{grid({ columns: 2, gap: entry.fields.noSplit ? 'medium' : 'small' })}">
   {#if entry.fields.title && !entry.fields.hideTitle}<Title title={entry.fields.title} />{/if}
   {#if entry.fields.image}<figure use:slideIn class="{col({span: 2})}"><Picture media={entry.fields.image} /></figure>{/if}
   {#if entry.fields.body}<div use:slideIn><Document body={entry.fields.body} /></div>{/if}
@@ -37,7 +38,7 @@
     <Picture {media} small />
   </figure>{/each}{/if}
   {#if entry.fields.quote}<center use:slideIn class="{col({span: 2})}"><h2>{entry.fields.quote}</h2></center>{/if}
-  {#if !entry.fields.quote && !entry.fields.photos?.length && !noCenter}<div class="spacer {col({span: 2})}"></div>{/if}
+  {#if !entry.fields.noSplit && !entry.fields.quote && !entry.fields.photos?.length && !noCenter}<div class="spacer {col({span: 2})}"></div>{/if}
   {#if entry.fields.asideContent}<aside use:slideIn class="{box({ color: 'outline', padding: 'tight' })} {col({ align: 'bottom' })}"><Document body={entry.fields.asideContent} /></aside>{/if}
   {#if entry.fields.secondBody}<div use:slideIn class="{col({ start: 2 })}"><Document body={entry.fields.secondBody} /></div>{/if}
 </article>
@@ -69,6 +70,11 @@
   div :global(h5),
   div :global(h6) {
     color: var(--heading-color);
+  }
+
+  div :global(h2 + p) {
+    color: var(--heading-color);
+    font-size: 1.5rem;
   }
 
   aside :global(h2),
