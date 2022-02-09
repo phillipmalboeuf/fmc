@@ -15,7 +15,11 @@
 	export let article: Entry<ArticleDocument>
   export let onBack: svelte.JSX.MouseEventHandler<HTMLAnchorElement>
 
-  const url = `https://fmc.votre.best/articles/${article.fields.id}`
+  let url: string
+
+  onMount(() => {
+    url = `https://fmc.votre.best${window.location.pathname}`
+  })
 </script>
 
 <nav class="{pills()} {col({ span: 2 })}">
