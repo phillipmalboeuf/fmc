@@ -171,7 +171,7 @@
     figure :global(img) {
       position: absolute;
       top: 0;
-      left: 0;
+      left: -30%;
       width: 160% !important;
       max-width: 160% !important;
     }
