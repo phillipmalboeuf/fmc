@@ -30,6 +30,17 @@ export function csvToMatrix(data: string) {
   return resultArray;
 }
 
+export const transpose = matrix => {
+  for (let row = 0; row < matrix.length; row++) {
+    for (let column = 0; column < row; column++) {
+      let temp = matrix[row][column]
+      matrix[row][column] = matrix[column][row]
+      matrix[column][row] = temp
+    }
+  }
+  return matrix;
+}
+
 
 import { Bullet, Button, Circle, Color, color, DataProcessor, Label, Legend, LinearGradient, p100, p50, percent, Root, Theme, Tooltip } from '@amcharts/amcharts5'
 import { XYChart, ValueAxis, CategoryAxis, AxisRendererX, ColumnSeries, AxisRendererY, LineSeries, AxisLabel, XYCursor } from '@amcharts/amcharts5/xy'

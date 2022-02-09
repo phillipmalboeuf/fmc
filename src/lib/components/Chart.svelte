@@ -21,13 +21,14 @@
   import { page } from '$app/stores'
 
   import { col, grid } from '$lib/styles/grid.css'
-  import { createCurve, createColumns, csvToChartData, createPyramide, createTarte, csvToMatrix } from '$lib/charts'
+  import { createCurve, createColumns, csvToChartData, createPyramide, createTarte, csvToMatrix, transpose } from '$lib/charts'
   
-  import type { Root } from '@amcharts/amcharts5'
+  import { color, Color, Root } from '@amcharts/amcharts5'
   import type { Chart } from '@amcharts/amcharts5/.internal/core/render/Chart'
   
   import Document from './document/Document.svelte'
   import { slideIn } from '$lib/animations'
+import { map } from '@amcharts/amcharts5/.internal/core/util/Array';
   
   // import { Exporting, ExportingMenu } from '@amcharts/amcharts5/plugins/exporting'
 
@@ -44,7 +45,9 @@
 
   let arrow: boolean
 
-  const dataSource = type === 'Table' ? csvToMatrix(data) : csvToChartData(data)
+  const dataSource = (type === 'Table' || type === 'Icons' || type === 'Labels')
+    ? csvToMatrix(data)
+    : csvToChartData(data)
 
   function createChart() {
     observer?.disconnect()
@@ -107,9 +110,7 @@
 <section class="{grid({ columns: 2 })}">
   {#if title}<h3 use:slideIn>{title}</h3>{/if}
   {#if description}<aside use:slideIn><Document body={description} /></aside>{/if}
-  {#if type !== 'Table'}
-  <figure class:arrow use:slideIn class="{col({ span: 2 })}" bind:this={element}></figure>
-  {:else}
+  {#if type === 'Table'}
   <figure class="table {col({ span: 2 })}">
     <div>
       <table use:slideIn>
@@ -127,6 +128,40 @@
       </table>
     </div>
   </figure>
+  {:else if type === 'Icons'}
+  <figure class="icons {col({ span: 2 })} {grid({ columns: 3 })}">
+    {#each dataSource as row, ri}
+    {#if ri > 0}
+    <table class="icon_table" use:slideIn>
+      <tr>
+        <th colspan="2">{row[0]}</th>
+      </tr>
+      {#each row as col, ci}
+      {#if ci > 0}
+      <tr style="background-color: {Color.interpolate((row.length - ci) / (row.length - 1), color('#044554'), color('#2BFFF5'))};">
+        <td>{dataSource[0][ci]}</td>
+        <td>{col}</td>
+      </tr>
+      {/if}
+      {/each}
+    </table>
+    {/if}
+    {/each}
+  </figure>
+  {:else if type === 'Labels'}
+  <figure class="icons {col({ span: 2 })} {grid({ columns: 3 })}">
+    {#each dataSource as row, ri}
+    {#if ri > 0}
+    <center>
+      <p>{row[0]}<br><strong>{row.filter((r, i) => i).map(r => axeTitle ? r+axeTitle : r).join(' | ')}</strong></p>
+    </center>
+    {:else}
+    <center class="{col({ span: 3 })}"><strong>{row.filter((r, i) => i).map(r => r.replace(' (%, rounded)','').replace(' (%, arrondis)','')).join(' | ')}</strong></center>
+    {/if}
+    {/each}
+  </figure>
+  {:else}
+  <figure class:arrow use:slideIn class="{col({ span: 2 })}" bind:this={element}></figure>
   {/if}
 </section>
 
@@ -139,13 +174,19 @@
     margin-top: 0.5rem;
   }
 
+  aside :global(small) {
+    font-size: 0.75em;
+    vertical-align: top;
+  }
+
   figure {
     position: relative;
     width: 100%;
     padding-bottom: 42%;
   }
 
-  figure.table {
+  figure.table,
+  figure.icons {
     padding-bottom: 0;
   }
 
@@ -192,8 +233,30 @@
   }
 
   th, td {
-    padding: 0.5em;
+    padding: 0.5rem;
     border-top: 1px solid;
     border-bottom: 1px solid;
+  }
+
+  table.icon_table {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+  }
+
+  table.icon_table th {
+    font-size: 1.25rem;
+    font-weight: normal;
+  }
+
+  table.icon_table th,
+  table.icon_table td {
+    border: none;
+    padding: 1rem 1rem 1.5rem;
+  }
+
+  table.icon_table td:last-child {
+    font-size: 1.25rem;
   }
 </style>
