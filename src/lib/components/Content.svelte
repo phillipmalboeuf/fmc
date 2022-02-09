@@ -134,7 +134,8 @@
 
   .hero {
     position: relative;
-    padding: 8rem 22vw 2vw 0;
+    padding: 8rem 0 2vw 0;
+    margin-left: -10vw;
     
     /* margin: -2vw 0 2rem calc(-8rem - 21vw);
     padding: 9.5rem 20vw 2vw calc(8rem + 21vw); */
@@ -158,6 +159,7 @@
   @media (max-width: 888px) {
     .hero {
       padding: 0 0 2vh;
+      margin-left: 0;
     }
 
     figure {

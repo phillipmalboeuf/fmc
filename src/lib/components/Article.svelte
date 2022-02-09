@@ -123,9 +123,9 @@
         </figure>
 
         <div>
-          <p>{contributor.fields.job}</p>
+          {#if contributor.fields.job}<p>{contributor.fields.job}</p>{/if}
           <h3>{contributor.fields.title}</h3>
-          <p>{contributor.fields.description}</p>
+          {#if contributor.fields.description}<p>{contributor.fields.description}</p>{/if}
 
           {#if contributor.fields.contactLink}
           <a href={contributor.fields.contactLink} target="_blank" rel="external">Contact {contributor.fields.title} →</a>
@@ -231,14 +231,9 @@
   }
 
   /* @media (max-width: 888px) {
-    header,
-    footer {
-      margin: -2vh -2vh 2vh;
-      padding: 2vh;
-    }
-
-    footer {
-      margin: 2vh -2vh;
+    section {
+      margin-left: min(-2vw, -2vh);
+      margin-right: min(-2vw, -2vh);
     }
   } */
 
@@ -298,12 +293,16 @@
       margin-top: 2rem;
     }
 
+    .contributor {
+      display: block;
+    }
+
     figure {
       padding: 1rem;
     }
 
     .contributor figure {
-      height: 25vh;
+      height: 22vh;
       overflow: hidden;
       margin-bottom: 1rem;
     }

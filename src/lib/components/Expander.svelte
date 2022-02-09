@@ -44,7 +44,7 @@
 </script>
 
 {#if expanded}
-<section bind:this={element} class={!arrows && box({ color: bold ? 'muted' : undefined })}>
+<section bind:this={element} class:bold class={!arrows && box({ color: bold ? 'muted' : undefined })}>
   {#if arrows}<a class:bold class="up {btn({ full: true, hover: !arrows && color, color: arrows ? color : bold ? color : tight ? 'none' : 'outline', size: tight ? 'tight' : 'small', arrows })}" {href} on:click={(e) => {
     e.preventDefault()
     expanded = false
@@ -92,6 +92,11 @@
   }
 
   @media (max-width: 888px) {
+    section.bold {
+      margin-left: min(-2vw, -2vh);
+      margin-right: min(-2vw, -2vh);
+    }
+
     a.bold:after {
       display: none;
     }
