@@ -71,6 +71,11 @@
 </section>
 
 <style>
+  section {
+    text-decoration-color: var(--color);
+    text-decoration-thickness: 1px;
+  }
+
   .big p {
     font-size: 1.66em;
   }
@@ -87,11 +92,13 @@
     columns: 2;
   }
 
+  .boxed :global(a) {
+    text-decoration-color: currentColor;
+  }
+
   .subbed > :global(p) {
     font-size: 1.5em;
     grid-column: span 2;
-    text-decoration-color: var(--color);
-    text-decoration-thickness: 1px;
   }
 
   small em {

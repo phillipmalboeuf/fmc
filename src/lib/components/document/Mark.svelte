@@ -10,7 +10,7 @@
 
   a:hover,
   a:focus {
-    color: var(--color);
+    /* color: var(--color); */
   }
 </style>
 
