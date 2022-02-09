@@ -7,6 +7,7 @@
     title: string
     id: string
     metaDescription: string
+    bigIntro?: boolean
     description?: RichTextContent
     type: string
     tagsList: Entry<TagDocument>[]
@@ -84,7 +85,7 @@
   <header style="background: var(--back-color); color: var(--back-text-color)">
     <ShareBar {article} {onBack} />
 
-    <div use:slideIn class="{grid({ columns: 2, gap: 'horizontal' })}">
+    <div class:big={article.fields.bigIntro} use:slideIn class="{article.fields.bigIntro ? '' : grid({ columns: 2, gap: 'horizontal' })}">
 
       {#if article.fields.image}
       <figure class="{col({ span: 2 })}">
@@ -92,7 +93,19 @@
       </figure>
       {/if}
 
-      <h1 class="h3">
+      {#if article.fields.bigIntro}
+      <aside>
+        {article.fields.type.toUpperCase()}<br>
+        {#if article.fields.contributors}
+        {$page.params.locale === 'fr' ? 'par ' : 'by '}
+        {#each article.fields.contributors as contributor}
+        {contributor.fields.title}{#if contributor.fields.job}, {contributor.fields.job}{/if}{#if contributor.fields.description}, {contributor.fields.description}{/if}
+        {/each}
+        {/if}
+      </aside>
+      {/if}
+
+      <h1 class={article.fields.bigIntro ? "h1" : "h3"}>
         {article.fields.title}
       </h1>
 
@@ -113,7 +126,7 @@
       {/if}
     </div>
 
-    {#if article.fields.contributors}
+    {#if article.fields.contributors && !article.fields.bigIntro}
     <div use:slideIn class="contributors {grid({ columns: 2, gap: 'horizontal' })} {col({ span: 2 })}">
       <h3 class="{col({ span: 2 })}">{$page.params.locale === 'fr' ? 'Contributeurs' : 'Contributors'}</h3>
       {#each article.fields.contributors as contributor}
@@ -211,6 +224,25 @@
 
   footer > h2 {
     margin-bottom: 0;
+  }
+
+  div.big {
+    text-align: center;
+  }
+
+  div.big > div,
+  div.big > aside {
+    max-width: 50rem;
+    margin: 0 auto;
+  }
+
+  div.big > aside {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  div.big > div :global(p) {
+    font-size: 1.5em;
   }
 
   a.back,
