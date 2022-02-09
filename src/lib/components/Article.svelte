@@ -96,8 +96,14 @@
         {article.fields.title}
       </h1>
 
+      {#if article.fields.metaDescription}
+      <h3>{article.fields.metaDescription}</h3>
+      {/if}
+
       {#if article.fields.description}
+      <div>
       <Document body={article.fields.description} />
+      </div>
       {/if}
 
       {#if article.fields.tagsList}
