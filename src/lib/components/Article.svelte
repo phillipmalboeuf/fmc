@@ -110,7 +110,7 @@
       </h1>
 
       {#if article.fields.metaDescription}
-      <h4>{article.fields.metaDescription}</h4>
+      <h5>{article.fields.metaDescription}</h5>
       {/if}
 
       {#if article.fields.description}
@@ -205,6 +205,10 @@
     border-radius: 12px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+  }
+
+  header h5 {
+    text-transform: none;
   }
 
   footer {

@@ -121,13 +121,13 @@ export function createColumns(element: HTMLElement, seriesData: any[], vertical:
     rotation: -90,
     y: percent(50),
     centerX: percent(50),
-    fontSize: '0.75em'
+    fontSize: '1em'
   })) : chart.bottomAxesContainer.children.push(Label.new(root, {
     text: title,
     rotation: 0,
     x: percent(50),
     centerX: percent(50),
-    fontSize: '0.75em'
+    fontSize: '1em'
   })))
 
   let renderer = (vertical ? AxisRendererX : AxisRendererY).new(root, {
