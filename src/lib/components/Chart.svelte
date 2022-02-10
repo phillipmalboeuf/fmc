@@ -112,7 +112,7 @@ import Icon from './Icon.svelte'
   {#if title}<h3 use:slideIn>{title}</h3>{/if}
   {#if description}<aside use:slideIn><Document body={description} /></aside>{/if}
   {#if type === 'Table'}
-  <figure class="table {col({ span: 2 })}">
+  <figure class:wide={dataSource[0].length > 4} class="table {col({ span: 2 })}">
     <div>
       <table use:slideIn>
         {#each dataSource as row, ri}
@@ -192,7 +192,7 @@ import Icon from './Icon.svelte'
   }
 
   figure.arrow:after,
-  figure.table:after {
+  figure.table.wide:after {
     pointer-events: none;
 
     content: "→";
@@ -214,13 +214,17 @@ import Icon from './Icon.svelte'
     }
   }
 
-  figure.table > div {
+  figure.table.wide > div {
     width: 100%;
     overflow-x: scroll;
   }
 
   table {
+    width: 100%;
     border-collapse: collapse;
+  }
+
+  figure.wide table {
     width: 200%;
   }
 
