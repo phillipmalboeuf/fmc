@@ -180,7 +180,7 @@
 	</g>
 </g>
 </svg>
-{:else if title.includes('Smartphone') || title.includes('Téléphone intelligent') || title.includes('Téléphone portable')}
+{:else if title.includes('Mobile') || title.includes('Smartphone') || title.includes('Téléphone intelligent') || title.includes('Téléphone portable')}
 <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 127.2 247.5" style="enable-background:new 0 0 127.2 247.5;" xml:space="preserve">
 <style type="text/css">
