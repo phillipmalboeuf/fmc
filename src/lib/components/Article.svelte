@@ -274,7 +274,7 @@
   }
 
   figure {
-    padding: 4rem;
+    padding: 4rem 0;
     margin: 0;
   }
 
