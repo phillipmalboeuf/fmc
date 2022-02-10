@@ -51,11 +51,11 @@
   }}>
   <slot name="label" />
   </a>{/if}
-  {#if closeButtons}<a class="close" href={back} on:click={close}><span>CLOSE&nbsp;</span>×</a>{/if}
+  {#if closeButtons}<a class="close" href={back} on:click={close}><span>{$page.params.locale === 'fr' ? 'FERMER' : 'CLOSE'}&nbsp;</span>×</a>{/if}
 
   <slot></slot>
 
-  {#if !arrows}<a class="close second" href={back} on:click={close}><span>CLOSE&nbsp;</span>×</a>{/if}
+  {#if !arrows}<a class="close second" href={back} on:click={close}><span>{$page.params.locale === 'fr' ? 'FERMER' : 'CLOSE'}&nbsp;</span>×</a>{/if}
 </section>
 {:else}
 <a bind:this={button} use:slideIn class:arrows class:bold class={btn({ full: true, hover: !arrows && color, color: arrows ? color : bold ? color : tight ? 'none' : 'outline', size: tight ? 'tight' : 'small', arrows })} {href} on:click={(e) => {

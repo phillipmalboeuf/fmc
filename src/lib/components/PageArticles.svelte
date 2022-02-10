@@ -24,7 +24,7 @@ import { types } from '$lib/formatters';
   <div use:slideIn slot="label">
     <span class="{pill()}">{types(a.article.fields.type, $page.params.locale)}</span><br><br>
     <h3>{a.article.fields.title}</h3>
-    <h5>Learn More +</h5>
+    <h5>{$page.params.locale === 'fr' ? 'En apprendre plus' : 'Learn More'} +</h5>
   </div>
 
   <Article article={a.article} color={a.page.fields.color.toLowerCase()} />

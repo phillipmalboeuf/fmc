@@ -4,6 +4,7 @@
 
   import { slideIn } from '$lib/animations'
   import { onMount } from 'svelte'
+import { page } from '$app/stores';
 
   export let body: RichTextContent
   let element: HTMLElement
@@ -25,7 +26,7 @@
   <div style="max-height: {height}px;"><Document {body} /></div>
 
   {#if hasMore}
-  <button on:click={() => open = !open}>{#if open}Read Less ↑{:else}Read More ↓{/if}</button>
+  <button on:click={() => open = !open}>{#if open}{$page.params.locale === 'fr' ? 'En lire moins' : 'Read Less'} ↑{:else}{$page.params.locale === 'fr' ? 'En lire plus' : 'Read More'} ↓{/if}</button>
   {/if}
 </section>
 {/if}
