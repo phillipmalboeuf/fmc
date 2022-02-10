@@ -152,6 +152,7 @@
 
   <Content content={article.fields.content} {color} />
 
+  {#if article.fields.deeperNavigation || article.fields.recommended}
   <footer class="{grid({ columns: 2 })}" style="background: {vars.colors[backs(color)]}; color: {vars.colors[texts(backs(color))]}">
     {#if article.fields.deeperNavigation}
     <Title title={'Dive Deeper'} />
@@ -188,10 +189,11 @@
     {/each}
     {/if} -->
 
-    <center use:slideIn class="{col({ span: 2 })}">
+    <!-- <center use:slideIn class="{col({ span: 2 })}">
       <a class="back" href="{($page.params.locale === 'fr' ? "/fr" : "")}/{$page.params.page}" on:click={onBack}><h4>BACK <BackIcon /></h4></a>
-    </center>
+    </center> -->
   </footer>
+  {/if}
 </section>
 
 <style>
