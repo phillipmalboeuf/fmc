@@ -29,6 +29,7 @@
   import Document from './document/Document.svelte'
   import { slideIn } from '$lib/animations'
 import { map } from '@amcharts/amcharts5/.internal/core/util/Array';
+import Icon from './Icon.svelte'
   
   // import { Exporting, ExportingMenu } from '@amcharts/amcharts5/plugins/exporting'
 
@@ -134,7 +135,7 @@ import { map } from '@amcharts/amcharts5/.internal/core/util/Array';
     {#if ri > 0}
     <table class="icon_table" use:slideIn>
       <tr>
-        <th colspan="2">{row[0]}</th>
+        <th colspan="2">{row[0]} <Icon title={row[0]} /></th>
       </tr>
       {#each row as col, ci}
       {#if ci > 0}

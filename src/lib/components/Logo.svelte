@@ -20,9 +20,6 @@
 {#if locale === 'fr'}
 <svg class='fr' version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 396.25 225.31" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:none;}
-</style>
 <g id="Logo">
 	<g>
 		<g>
@@ -81,16 +78,10 @@
 			l-1.97-7.28h-0.45L263.91,189.01z"/>
 	</g>
 </g>
-<g id="Keepaway">
-	<rect x="0" class="st0" width="396" height="225.36"/>
-</g>
 </svg>
 {:else}
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 308.71 225.31" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:none;}
-</style>
 <g id="Logo">
 	<g>
 		<path d="M91.84,27.98v57.43l-63.99,53.21L98.9,197.7v-57.43l63.99-53.22L91.84,27.98z M91.84,136.97v45.7l-52.96-44.04L98.9,88.72
@@ -124,9 +115,6 @@
 				c-0.42-1-1.55-1.76-3.26-1.76h-2.99v12.97h2.99c1.71,0,2.83-0.76,3.26-1.76V183.72z"/>
 		</g>
 	</g>
-</g>
-<g id="Keepaway">
-	<rect x="0" class="st0" width="308.88" height="225.36"/>
 </g>
 </svg>
 {/if}
