@@ -36,7 +36,7 @@
   import { box } from '$lib/styles/box.css'
   import { vars } from '$lib/styles/styles.css'
   import { pill } from '$lib/styles/pill.css'
-  import { backs, texts } from '$lib/formatters'
+  import { backs, texts, types } from '$lib/formatters'
 
   import { getContext, onMount, setContext } from 'svelte'
   import { page } from '$app/stores'
@@ -95,7 +95,7 @@
 
       {#if article.fields.bigIntro}
       <aside>
-        {article.fields.type.toUpperCase()}<br>
+        {types(article.fields.type, $page.params.locale).toUpperCase()}<br>
         {#if article.fields.contributors}
         {$page.params.locale === 'fr' ? 'par ' : 'by '}
         {#each article.fields.contributors as contributor}
@@ -141,7 +141,7 @@
           {#if contributor.fields.description}<p>{contributor.fields.description}</p>{/if}
 
           {#if contributor.fields.contactLink}
-          <a href={contributor.fields.contactLink} target="_blank" rel="external">Contact →</a>
+          <a href={contributor.fields.contactLink} target="_blank" rel="external">{$page.params.locale === 'fr' ? 'À propos' : 'About'} →</a>
           {/if}
         </div>
       </div>

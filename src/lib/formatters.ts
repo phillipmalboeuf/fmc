@@ -17,6 +17,16 @@ export const date = (value: string | Date, time=false, lang='fr') =>
 export const money = (value: number | string) => 
   value !== undefined && value !== null ? `$${parseFloat(value as string).toFixed(2)}` : `–`
 
+export const types = (type: string, locale: string) => ({
+  'fr': {
+    'Signals': 'Signaux',
+    'Scenario': 'Scénario',
+    'Challenges & trailblazers': 'Opportunités'
+  }[type]
+}[locale] || {
+  'Challenges & trailblazers': 'Opportunities'
+}[type] || type)
+
 export const backs = (color: string) => ({
   'pink': 'coral',
   'green': 'yellow',

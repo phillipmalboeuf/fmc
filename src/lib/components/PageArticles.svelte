@@ -10,6 +10,7 @@
   import Article, { ArticleDocument } from './Article.svelte'
   import { slideIn } from '$lib/animations'
   import { pills, pill } from '$lib/styles/pill.css'
+import { types } from '$lib/formatters';
   
 	export let articles: {
     article: Entry<ArticleDocument>,
@@ -21,8 +22,7 @@
 {#each articles.filter(a => a.article?.fields && a.page?.fields) as a}
 <Expander href="{($page.params.locale === 'fr' ? "/fr" : "")}/{a.page.fields.id}/{a.article.fields.id}" back="{($page.params.locale === 'fr' ? "/fr" : "")}/{a.page.fields.id}" color={a.page.fields.color.toLowerCase()} bold>
   <div use:slideIn slot="label">
-    <!-- <Tags tags={[a.article.fields.type]} /> -->
-    <span class="{pill()}">{a.article.fields.type}</span><br><br>
+    <span class="{pill()}">{types(a.article.fields.type, $page.params.locale)}</span><br><br>
     <h3>{a.article.fields.title}</h3>
     <h5>Learn More +</h5>
   </div>
