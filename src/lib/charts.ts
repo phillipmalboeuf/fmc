@@ -429,22 +429,36 @@ export function createTarte(element: HTMLElement, seriesData: any[], vertical: b
 
   const keys = Object.keys(seriesData[0]).filter(key => !['Category'].includes(key))
 
+  let legend = root.container.children.push(Legend.new(root, {
+    layout: root.verticalLayout,
+    y: percent(100),
+    centerY: percent(100)
+  }))
+
   keys.forEach((name, i) => {
     let chart = root.container.children.push(
       PieChart.new(root, {
         layout: root.verticalLayout,
         // innerRadius: percent(10),
         // paddingTop: 10,
-        paddingLeft: 10,
-        paddingRight: 10,
-        width: percent(100/keys.length),
-        x: percent((100/keys.length)*i)
+        paddingLeft: 20,
+        paddingRight: 20,
+        ...window.innerWidth < 888 
+        ? {
+          height: percent((100 - (5*seriesData.length))/keys.length),
+          y: percent(((100 - (5*seriesData.length))/keys.length)*i)
+        }
+        : {
+          paddingBottom: seriesData.length * 23,
+          width: percent(100/keys.length),
+          x: percent((100/keys.length)*i)
+        }
       })
     )
 
     chart.children.unshift(Label.new(root, {
       text: name,
-      y: -10,
+      y: 0,
       textAlign: 'center',
       x: percent(50),
       fontSize: '1em'
@@ -458,18 +472,14 @@ export function createTarte(element: HTMLElement, seriesData: any[], vertical: b
       fontSize: '0.75em'
     }))
 
-    // let legend = chart.children.push(Legend.new(root, {
-    //   layout: root.verticalLayout,
-    //   paddingTop: 20
-    // }))
 
     let series = chart.series.push(PieSeries.new(root, {
       name,
       categoryField: "Category",
       valueField: name,
-      alignLabels: false,
+      // alignLabels: false,
       legendLabelText: "{category}",
-      // legendValueText: "{value}"
+      legendValueText: ""
     }))
 
     series.data.processor = DataProcessor.new(root, {
@@ -485,10 +495,10 @@ export function createTarte(element: HTMLElement, seriesData: any[], vertical: b
     })
 
     series.labels.template.setAll({
-      text: "{category}",
-      textType: "circular",
+      text: "{value}",
+      textType: "adjusted",
       inside: false,
-      radius: 15,
+      radius: 10,
     })
 
     series.data.setAll(seriesData.map((data, index) => ({
@@ -498,7 +508,7 @@ export function createTarte(element: HTMLElement, seriesData: any[], vertical: b
       }
     })))
 
-    // legend.data.pushAll(series.dataItems)
+    i === 0 && legend.data.pushAll(series.dataItems)
   })
 
   

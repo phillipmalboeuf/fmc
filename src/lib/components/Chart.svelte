@@ -163,16 +163,16 @@
   <figure class="icons {col({ span: 2 })} {grid({ columns: 3 })}">
     {#each dataSource as row, ri}
     {#if ri > 0}
-    <center>
+    <center use:slideIn>
       <p>{row[0]}<br><strong>{row.filter((r, i) => i).map(r => axeTitle ? r+axeTitle : r).join(' | ')}</strong></p>
     </center>
     {:else}
-    <center class="{col({ span: 3 })}"><strong>{row.filter((r, i) => i).map(r => r.replace(' (%, rounded)','').replace(' (%, arrondis)','')).join(' | ')}</strong></center>
+    <center use:slideIn class="{col({ span: 3 })}"><strong>{row.filter((r, i) => i).map(r => r.replace(' (%, rounded)','').replace(' (%, arrondis)','')).join(' | ')}</strong></center>
     {/if}
     {/each}
   </figure>
   {:else}
-  <figure class:arrow use:slideIn class="{col({ span: 2 })}" bind:this={element}></figure>
+  <figure class:arrow={type !== 'Pie'} use:slideIn class="{col({ span: 2 })}" bind:this={element}></figure>
   {/if}
 </section>
 
@@ -219,8 +219,17 @@
 
   @media (max-width: 888px) {
     figure {
-      padding-bottom: 133%;
-      width: 85vw;
+      padding-bottom: 100%;
+      /* width: 85vw; */
+    }
+
+    figure:not(.arrow) {
+      padding-bottom: 166%;
+    }
+
+    figure.table,
+    figure.icons {
+      padding-bottom: 0;
     }
   }
 
