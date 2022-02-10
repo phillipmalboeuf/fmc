@@ -115,7 +115,7 @@
 	</g>
 </g>
 </svg>
-{:else if title.includes('Stick') || title.includes('diffusion')}
+{:else if title.includes('Stick') || title.includes('stick') || title.includes('diffusion')}
 <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 174.5 257.1" style="enable-background:new 0 0 174.5 257.1;" xml:space="preserve">
 <style type="text/css">
@@ -155,7 +155,7 @@
 	</g>
 </g>
 </svg>
-{:else if title.includes('Smart TV') || title.includes('Téléviseur intelligent')}
+{:else if title.includes('Smart TV') || title.includes('TV set') || title.includes('Téléviseur intelligent')}
 <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 367.6 241.6" style="enable-background:new 0 0 367.6 241.6;" xml:space="preserve">
 <style type="text/css">
@@ -324,7 +324,7 @@
 			<rect id="Rectangle_1064" x="-1291.9" y="-1270.7" class="tab_st2" width="1.5" height="9.1"/>
 			<rect id="Rectangle_1065" x="-1291.9" y="-1260.1" class="tab_st2" width="1.5" height="9.1"/>
 			<rect id="Rectangle_1066" x="-1313.4" y="-1288.8" class="tab_st2" width="10.4" height="1.5"/>
-			<path id="Tracé_110" class="sttab_2" d="M-1275-1207.9c-1.1-2-3.7-2.8-5.7-1.6l0,0l-116.1,64.2c-0.9,0.5-1.8,1.1-2.6,1.8
+			<path id="Tracé_110" class="tab_st2" d="M-1275-1207.9c-1.1-2-3.7-2.8-5.7-1.6l0,0l-116.1,64.2c-0.9,0.5-1.8,1.1-2.6,1.8
 				c0,0-8.5,7.3-11.4,9.8c-0.4,0.2-0.5,0.7-0.3,1.1s0.7,0.5,1.1,0.3c3.7-1.1,14.4-4.5,14.4-4.5c1-0.3,2-0.7,2.9-1.2l116.1-64.2
 				C-1274.6-1203.3-1273.9-1205.9-1275-1207.9L-1275-1207.9"/>
 		</g>
