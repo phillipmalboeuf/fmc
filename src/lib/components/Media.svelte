@@ -17,7 +17,7 @@
     assets: Asset[]
   }>
 
-  // let play: string
+  let play: string
 </script>
 
 <article class="{box({ color: 'white' })} {grid({ columns: 2 })}">
@@ -26,9 +26,13 @@
   {#if entry.fields.assets}
   {#each entry.fields.assets as media}
   {#if media.fields.description?.startsWith('https://')}
-  <figure use:slideIn class="{col({ span: 2 })}">
+  <figure use:slideIn class="{col({ span: 2 })}" data-label="{$page.params.locale === 'fr' ? 'Écouter' : 'Play'}" class:play={play !== media.sys.id} on:click={() => play = media.sys.id}>
     <figcaption>{media.fields.title}</figcaption>
-    <iframe style="aspect-ratio: {media.fields.file.details.image.width} / {media.fields.file.details.image.height}" src={media.fields.description} title={media.fields.title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+    {#if play === media.sys.id}
+    <iframe style="aspect-ratio: {media.fields.file.details.image.width} / {media.fields.file.details.image.height}" src={media.fields.description.replace('/watch?v=', '/embed/')} title={media.fields.title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+    {:else}
+    <Picture {media} noDescription />
+    {/if}
   </figure>
   {:else}
   <figure use:slideIn class="{col({ span: 2 })} {!media.fields.file.contentType.startsWith('video/') && box({ color: 'outline' })}">
@@ -62,7 +66,7 @@
     position: relative;
     cursor: pointer;
   }
-
+/* 
   figure.play:after {
     content: attr(data-label);
     position: absolute;
@@ -81,7 +85,7 @@
       top: 60%;
       font-size: 6rem;
     }
-  }
+  } */
 
   figcaption {
     font-size: 1.5em;
@@ -92,5 +96,6 @@
     width: 100%;
     border: none;
     border-radius: 12px;
+    background-color: var(--color);
   }
 </style>
