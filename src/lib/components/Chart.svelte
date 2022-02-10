@@ -12,6 +12,7 @@
     min: number
     max: number
     axeTitle: string
+    tableColumnSpan: number
   }
 
 </script>
@@ -28,8 +29,7 @@
   
   import Document from './document/Document.svelte'
   import { slideIn } from '$lib/animations'
-import { map } from '@amcharts/amcharts5/.internal/core/util/Array';
-import Icon from './Icon.svelte'
+  import Icon from './Icon.svelte'
   
   // import { Exporting, ExportingMenu } from '@amcharts/amcharts5/plugins/exporting'
 
@@ -42,7 +42,7 @@ import Icon from './Icon.svelte'
 
   export let entry: Entry<ChartDocument>
 
-  const { fields: { title, description, type, alignment, data, min, max, axeTitle, stacked } } = entry
+  const { fields: { title, description, type, alignment, data, min, max, axeTitle, stacked, tableColumnSpan } } = entry
 
   let arrow: boolean
 
@@ -119,9 +119,19 @@ import Icon from './Icon.svelte'
         <tr class:highlight={row[1] === ""}>
           {#each row as col, ci}
           {#if ri === 0 || ci === 0}
+          {#if tableColumnSpan}
+          {#if ci === 0}
           <th>{col}</th>
           {:else}
-          <td>{col}</td>
+          {#if col !== ''}
+          <th class="bordered" colspan={tableColumnSpan}>{col}</th>
+          {/if}
+          {/if}
+          {:else}
+          <th>{col}</th>
+          {/if}
+          {:else}
+          <td class="{tableColumnSpan ? ci % tableColumnSpan  === 0 ? 'bordered' : '' : ''}">{col}</td>
           {/if}
           {/each}
         </tr>
@@ -241,6 +251,10 @@ import Icon from './Icon.svelte'
     padding: 0.5rem;
     border-top: 1px solid;
     border-bottom: 1px solid;
+  }
+
+  th.bordered, td.bordered {
+    border-right: 1px solid;
   }
 
   table.icon_table {
