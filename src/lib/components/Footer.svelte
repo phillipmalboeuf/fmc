@@ -11,7 +11,7 @@
   const { secondary, social, tertiary } = getContext<{ secondary: Entry<{ links: Entry<Lien>[] }>, social: Entry<{ links: Entry<Lien>[] }>, tertiary: Entry<{ links: Entry<Lien>[] }> }>('navigation')
 </script>
 
-<footer use:slideIn class="{box({ color: 'grey' })}">
+<footer id="contact" use:slideIn class="{box({ color: 'grey' })}">
   <nav>
     <h2><Link link={secondary.fields.links[0]} /></h2>
   </nav>

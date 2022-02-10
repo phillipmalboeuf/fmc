@@ -88,7 +88,7 @@
     <div class:big={article.fields.bigIntro} use:slideIn class="{article.fields.bigIntro ? '' : grid({ columns: 2, gap: 'horizontal' })}">
 
       {#if article.fields.image}
-      <figure class="{col({ span: 2 })}">
+      <figure class="banner {col({ span: 2 })}">
         <Picture media={article.fields.image} />
       </figure>
       {/if}
@@ -99,7 +99,7 @@
         {#if article.fields.contributors}
         {$page.params.locale === 'fr' ? 'par ' : 'by '}
         {#each article.fields.contributors as contributor}
-        {contributor.fields.title}{#if contributor.fields.job}, {contributor.fields.job}{/if}{#if contributor.fields.description}, {contributor.fields.description}{/if}
+        {contributor.fields.title}{#if contributor.fields.description}, {contributor.fields.description}{/if}
         {/each}
         {/if}
       </aside>
@@ -110,7 +110,7 @@
       </h1>
 
       {#if article.fields.metaDescription}
-      <h3>{article.fields.metaDescription}</h3>
+      <h4>{article.fields.metaDescription}</h4>
       {/if}
 
       {#if article.fields.description}
@@ -141,7 +141,7 @@
           {#if contributor.fields.description}<p>{contributor.fields.description}</p>{/if}
 
           {#if contributor.fields.contactLink}
-          <a href={contributor.fields.contactLink} target="_blank" rel="external">Contact {contributor.fields.title} →</a>
+          <a href={contributor.fields.contactLink} target="_blank" rel="external">Contact →</a>
           {/if}
         </div>
       </div>
@@ -153,7 +153,7 @@
   <Content content={article.fields.content} {color} />
 
   <footer class="{grid({ columns: 2 })}" style="background: {vars.colors[backs(color)]}; color: {vars.colors[texts(backs(color))]}">
-    {#if article.fields.recommended}
+    {#if article.fields.deeperNavigation}
     <Title title={'Dive Deeper'} />
 
     {#each article.fields.deeperNavigation as navigation, i}
@@ -168,10 +168,10 @@
     {/if}
 
     {#if article.fields.recommended}
-    <h2 class="{col({ span: 2 })}" use:slideIn>Recommended Articles</h2>
-    {#each article.fields.recommended as rec}
+    <h2 class="{col({ span: 2 })}" use:slideIn>Read more</h2>
+    {#each article.fields.recommended as rec, i}
     <a use:slideIn href="{($page.params.locale === 'fr' ? "/fr" : "")}/{$page.params.page}/{rec.fields.id}" class="{box({ color })} other">
-      <h4>Next Article</h4>
+      <h4>{#if i === 0}Previous Article{:else}Next Article{/if}</h4>
       <h2>{rec.fields.title}</h2>
       <small>Learn more +</small>
     </a>
@@ -273,9 +273,11 @@
     overflow: hidden;
   }
 
-  figure {
-    padding: 4rem 0;
-    margin: 0;
+  figure.banner {
+    padding: 0;
+    margin: 0 0 4rem;
+    border-radius: 12px;
+    overflow: hidden;
   }
 
   .contributor p:first-of-type,
@@ -330,7 +332,7 @@
     }
 
     figure {
-      padding: 1rem;
+      padding: 0;
     }
 
     .contributor figure {
