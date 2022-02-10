@@ -120,7 +120,7 @@
       {/if}
 
       {#if article.fields.tagsList}
-      <div style={article.fields.description && `grid-column-start: 1; grid-row-start: ${article.fields.image ? 3 : 2}`}>
+      <div class="tags" style={article.fields.description && `grid-column-start: 1; grid-row-start: ${article.fields.image ? 3 : 2}`}>
         <Tags tags={[...article.fields.tagsList]} />
       </div>
       {/if}
@@ -323,6 +323,10 @@
   }
 
   @media (max-width: 888px) {
+    .tags {
+      grid-row-start: auto !important;
+    }
+
     .contributors {
       margin-top: 2rem;
     }
