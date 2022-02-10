@@ -46,7 +46,7 @@
 
 <style>
   h2 {
-    color: var(--color);
+    /* color: var(--color); */
   }
 
   article {
@@ -54,7 +54,7 @@
   }
 
   figure {
-    color: var(--color);
+    /* color: var(--color); */
   }
 
   figure :global(img) {

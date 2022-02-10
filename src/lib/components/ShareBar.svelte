@@ -125,9 +125,9 @@
     text-decoration: none;
   }
 
-  a:hover,
-  a:focus {
-    color: var(--color);
+  a.back:hover,
+  a.back:focus {
+    text-decoration: underline;
   }
 
   a.back {

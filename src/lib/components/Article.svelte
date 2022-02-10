@@ -309,7 +309,7 @@
 
   .contributor a:hover,
   .contributor a:hover {
-    color: var(--color);
+    /* color: var(--color); */
   }
 
   @media (max-width: 1200px) {
