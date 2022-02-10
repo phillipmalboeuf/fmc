@@ -1,5 +1,6 @@
 import node from '@sveltejs/adapter-node';
-import vercel from '@sveltejs/adapter-vercel'
+import auto from '@sveltejs/adapter-auto';
+// import vercel from '@sveltejs/adapter-vercel'
 import preprocess from 'svelte-preprocess';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 
@@ -9,7 +10,7 @@ export default {
 	preprocess: preprocess(),
 
 	kit: {
-		adapter: vercel(),
+		adapter: auto(),
 
 		vite: {
 			optimizeDeps: {
