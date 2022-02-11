@@ -26,6 +26,6 @@
 <section class={grid({ columns: 4 })}>
   <Navigation contentHeight={offsetHeight} />
   <section bind:offsetHeight class="content {col({ span: 3 })} {box({ color: 'muted' })}">
-    <Article {article} color={page.fields.color.toLowerCase()} />
+    <Article {article} color={page?.fields.color.toLowerCase()} />
   </section>
 </section>

@@ -215,7 +215,6 @@
 
     content: "→";
     font-family: "Trim";
-    text-align: right;
     height: 100%;
     width: 6rem;
     background: linear-gradient(90deg, rgba(246,247,246,0) 0%, rgba(246,247,246,1) 100%);
@@ -223,6 +222,11 @@
     position: absolute;
     top: 0;
     right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 2rem;
   }
 
   @media (max-width: 888px) {

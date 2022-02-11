@@ -102,7 +102,7 @@ export function createColumns(element: HTMLElement, seriesData: any[], vertical:
       min,
       max,
       renderer: (vertical ? AxisRendererY : AxisRendererX).new(root, {
-        // minGridDistance: 100,
+        minGridDistance: 30,
       })
     })
   )
