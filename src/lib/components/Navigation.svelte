@@ -69,7 +69,7 @@
       <summary><span>Menu</span> <MenuIcon {open} /></summary>
       {#if main}
       {#each main.fields.links as link}
-      <Link {link} on:click={e => {
+      <Link external={link.fields.path.startsWith('/#')} {link} on:click={e => {
         if (index && !link.fields.path.startsWith('/#')) {
           e.preventDefault()
           history.pushState({}, null, ($page.params.locale === 'fr' ? "/fr" : "") + link.fields.path)
