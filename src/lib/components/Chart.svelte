@@ -233,7 +233,7 @@
     }
   }
 
-  figure.table.wide > div {
+  figure.table.wide {
     width: 100%;
     overflow-x: scroll;
   }
