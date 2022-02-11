@@ -174,7 +174,7 @@
     <a use:slideIn href="{($page.params.locale === 'fr' ? "/fr" : "")}/{$page.params.page}/{rec.fields.id}" class="{box({ color })} other">
       <h4>{#if i === 0}Previous Article{:else}Next Article{/if}</h4>
       <h2>{rec.fields.title}</h2>
-      <small>Learn more +</small>
+      <small>{$page.params.locale === 'fr' ? 'En apprendre plus' : 'Learn more'} +</small>
     </a>
     {/each}
     {/if}
