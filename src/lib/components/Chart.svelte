@@ -121,14 +121,14 @@
           {#if ri === 0 || ci === 0}
           {#if tableColumnSpan}
           {#if ci === 0}
-          <th>{col}</th>
+          <th>{col.replace(' (%', '\n(%')}</th>
           {:else}
           {#if col !== ''}
-          <th class="bordered" colspan={tableColumnSpan}>{col}</th>
+          <th class="bordered" colspan={tableColumnSpan}>{col.replace(' (%', '\n(%')}</th>
           {/if}
           {/if}
           {:else}
-          <th>{col}</th>
+          <th>{col.replace(' (%', '\n(%')}</th>
           {/if}
           {:else}
           <td class="{tableColumnSpan ? ci % tableColumnSpan  === 0 ? 'bordered' : '' : ''}">{col}</td>
@@ -260,6 +260,7 @@
     padding: 0.5rem;
     border-top: 1px solid;
     border-bottom: 1px solid;
+    white-space: pre-line;
   }
 
   th.bordered, td.bordered {
