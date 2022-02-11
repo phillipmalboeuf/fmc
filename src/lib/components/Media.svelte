@@ -29,7 +29,7 @@
   <figure use:slideIn class="{col({ span: 2 })}" data-label="{$page.params.locale === 'fr' ? 'Écouter' : 'Play'}" class:play={play !== media.sys.id} on:click={() => play = media.sys.id}>
     {#if media.fields.title}<figcaption>{media.fields.title}</figcaption>{/if}
     {#if play === media.sys.id}
-    <iframe style="aspect-ratio: {media.fields.file.details.image.width} / {media.fields.file.details.image.height}" src={media.fields.description.replace('/watch?v=', '/embed/')} title={media.fields.title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+    <iframe style="aspect-ratio: {media.fields.file.details.image.width} / {media.fields.file.details.image.height}" src={media.fields.description.replace('/watch?v=', '/embed/').replace('https://soundcloud.com/', 'https://w.soundcloud.com/player/?url=https://soundcloud.com/')} title={media.fields.title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
     {:else}
     <Picture {media} noDescription />
     {/if}
