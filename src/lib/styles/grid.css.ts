@@ -51,7 +51,10 @@ export const col = recipe({
         'screen and (max-width: 888px)': { gridColumn: 'span 1' },
         'print': { gridColumn: 'span 1' }
       } },
-      3: { gridColumn: 'span 3' },
+      3: { gridColumn: 'span 3', '@media': {
+        'screen and (max-width: 888px)': { gridColumn: 'span 2' },
+        'print': { gridColumn: 'span 2' }
+      } },
       4: { gridColumn: 'span 4' }
     },
     start: {

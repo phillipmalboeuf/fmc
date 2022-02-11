@@ -231,6 +231,10 @@
     figure.icons {
       padding-bottom: 0;
     }
+
+    figure.icons {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   figure.table.wide {
