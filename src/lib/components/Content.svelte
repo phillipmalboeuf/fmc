@@ -165,7 +165,7 @@
     figure {
       top: 0;
       height: 110vh;
-      overflow-x: hidden;
+      /* overflow-x: hidden; */
     }
 
     figure :global(img) {
