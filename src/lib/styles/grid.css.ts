@@ -32,6 +32,9 @@ export const grid = recipe({
       top: { alignItems: 'flex-start' },
       middle: { alignItems: 'center' },
       bottom: { alignItems: 'flex-end' }
+    },
+    center: {
+      true: { justifyContent: 'center' }
     }
   },
 

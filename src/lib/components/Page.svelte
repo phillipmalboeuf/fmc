@@ -94,7 +94,7 @@
     {/if}
     
     {#if !index && !landing}
-    <a class="back" href="{($p.params.locale === 'fr' ? "/fr" : "")}/"><h4>BACK <BackIcon /></h4></a>
+    <a class="back" href="{($p.params.locale === 'fr' ? "/fr" : "")}/"><h4>{$p.params.locale === 'fr' ? 'RETOUR' : 'BACK'} <BackIcon /></h4></a>
     {/if}
 
     {#if !landing}

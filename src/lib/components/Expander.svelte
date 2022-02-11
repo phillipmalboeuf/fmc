@@ -6,6 +6,7 @@
   import { box } from '$lib/styles/box.css'
   import { slideIn } from '$lib/animations'
   import { browser } from '$app/env'
+import BackIcon from './BackIcon.svelte';
 
   export let color: any = undefined
   export let href: string = undefined
@@ -55,7 +56,13 @@
 
   <slot></slot>
 
-  {#if !arrows}<a class="close second" href={back} on:click={close}><span>{$page.params.locale === 'fr' ? 'FERMER' : 'CLOSE'}&nbsp;</span>×</a>{/if}
+  {#if !arrows}<a class="close second" href={back} on:click={close}>
+    {#if bold}
+    {$page.params.locale === 'fr' ? 'RETOUR' : 'BACK'} <BackIcon />
+    {:else}
+    <span>{$page.params.locale === 'fr' ? 'FERMER' : 'CLOSE'}&nbsp;</span>×
+    {/if}
+  </a>{/if}
 </section>
 {:else}
 <a bind:this={button} use:slideIn class:arrows class:bold class={btn({ full: true, hover: !arrows && color, color: arrows ? color : bold ? color : tight ? 'none' : 'outline', size: tight ? 'tight' : 'small', arrows })} {href} on:click={(e) => {

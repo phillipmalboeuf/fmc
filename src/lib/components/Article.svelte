@@ -186,10 +186,6 @@
     </a>
     {/each}
     {/if} -->
-
-    <!-- <center use:slideIn class="{col({ span: 2 })}">
-      <a class="back" href="{($page.params.locale === 'fr' ? "/fr" : "")}/{$page.params.page}" on:click={onBack}><h4>BACK <BackIcon /></h4></a>
-    </center> -->
   </footer>
   {/if}
 </section>

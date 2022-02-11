@@ -160,7 +160,7 @@
     {/each}
   </figure>
   {:else if type === 'Labels'}
-  <figure class="icons {col({ span: 2 })} {grid({ columns: 3 })}">
+  <figure class="icons {col({ span: 2 })} {grid({ columns: 3, center: true })}">
     {#each dataSource as row, ri}
     {#if ri > 0}
     <center use:slideIn>
