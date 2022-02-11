@@ -27,7 +27,7 @@
   {#each entry.fields.assets as media}
   {#if media.fields.description?.startsWith('https://')}
   <figure use:slideIn class="{col({ span: 2 })}" data-label="{$page.params.locale === 'fr' ? 'Écouter' : 'Play'}" class:play={play !== media.sys.id} on:click={() => play = media.sys.id}>
-    <figcaption>{media.fields.title}</figcaption>
+    {#if media.fields.title}<figcaption>{media.fields.title}</figcaption>{/if}
     {#if play === media.sys.id}
     <iframe style="aspect-ratio: {media.fields.file.details.image.width} / {media.fields.file.details.image.height}" src={media.fields.description.replace('/watch?v=', '/embed/')} title={media.fields.title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
     {:else}
