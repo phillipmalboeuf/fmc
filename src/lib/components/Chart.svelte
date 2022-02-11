@@ -180,7 +180,7 @@
     {/each}
   </figure>
   {:else}
-  <figure class:arrow={type !== 'Pie'} use:slideIn class="{col({ span: 2 })}" bind:this={element}></figure>
+  <figure class:pie={type === 'Pie'} use:slideIn class="{col({ span: 2 })}" bind:this={element}></figure>
   {/if}
 </section>
 
@@ -235,7 +235,7 @@
       /* width: 85vw; */
     }
 
-    figure:not(.arrow) {
+    figure.pie {
       padding-bottom: 166%;
     }
 
