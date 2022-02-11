@@ -82,7 +82,7 @@
 	</g>
 </g>
 </svg>
-{:else if title.includes('Phone / Tablet')}
+{:else if title.includes('Phone / Tablet') || title.includes('Téléphone ou tablette')}
 <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 243 249.7" style="enable-background:new 0 0 243 249.7;" xml:space="preserve">
 <style type="text/css">
@@ -155,7 +155,7 @@
 	</g>
 </g>
 </svg>
-{:else if title.includes('Smart TV') || title.includes('TV set') || title.includes('Téléviseur intelligent')}
+{:else if title.includes('Smart TV') || title.includes('TV set') || title.includes('Téléviseur')}
 <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 367.6 241.6" style="enable-background:new 0 0 367.6 241.6;" xml:space="preserve">
 <style type="text/css">
