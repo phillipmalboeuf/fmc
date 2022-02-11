@@ -128,7 +128,7 @@
 
     {#if article.fields.contributors && !article.fields.bigIntro}
     <div use:slideIn class="contributors {grid({ columns: 2, gap: 'horizontal' })} {col({ span: 2 })}">
-      <h3 class="{col({ span: 2 })}">{$page.params.locale === 'fr' ? 'Contributeurs·trices' : 'Contributors'}</h3>
+      <h3 class="{col({ span: 2 })}">{$page.params.locale === 'fr' ? article.fields.contributors.length === 1 ? 'Contributeur·trice' : 'Contributeurs·trices' : article.fields.contributors.length === 1 ? 'Contributor' : 'Contributors'}</h3>
       {#each article.fields.contributors as contributor}
       <div class="contributor {box({ padding: 'tight' })} {grid({ columns: 2, gap: 'horizontal' })}">
         <figure class="">
@@ -275,14 +275,18 @@
     }
   } */
 
-  .contributor {
-    overflow: hidden;
-  }
-
   figure.banner {
     padding: 0;
     margin: 0 0 4rem;
     border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .contributors {
+    margin-top: 2rem;
+  }
+
+  .contributor {
     overflow: hidden;
   }
 
@@ -333,9 +337,7 @@
       grid-row-start: auto !important;
     }
 
-    .contributors {
-      margin-top: 2rem;
-    }
+    
 
     .contributor {
       display: block;
