@@ -119,11 +119,9 @@
       </div>
       {/if}
 
-      {#if article.fields.tagsList}
       <div class="tags" style={article.fields.description && `grid-column-start: 1; grid-row-start: ${article.fields.image ? 3 : 2}`}>
-        <Tags tags={[...article.fields.tagsList]} />
-      </div>
-      {/if}
+        {#if article.fields.tagsList}<Tags tags={[...article.fields.tagsList]} />{/if}
+      </div>      
     </div>
 
     {#if article.fields.contributors && !article.fields.bigIntro}
