@@ -162,6 +162,15 @@ globalStyle('p', {
   fontWeight: 'normal',
 })
 
+globalStyle('ul, ol', {
+  margin: '0 0 1em',
+  paddingLeft: '1.5em'
+})
+
+globalStyle('li', {
+  marginBottom: '0.5em'
+})
+
 globalStyle('a', {
   color: 'currentColor',
   textUnderlineOffset: '3px'

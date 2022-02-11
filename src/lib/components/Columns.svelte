@@ -79,7 +79,7 @@
 
   aside :global(h2),
   aside :global(h3) {
-    color: var(--color);
+    /* color: var(--color); */
   }
 
   aside :global(p:last-child) {
