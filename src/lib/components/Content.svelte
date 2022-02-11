@@ -20,6 +20,7 @@
   import NewsletterForm from './NewsletterForm.svelte'
   
   import { onMount } from 'svelte'
+  import Contributors from './Contributors.svelte'
 
   export let content: Entry<any>[]
   export let path: string = undefined
@@ -98,6 +99,10 @@
     {:else if entry.sys.contentType.sys.id === 'subSection'}
     <Expander arrows {color}>
       <span slot="label">{entry.fields.title}</span>
+
+      {#if entry.fields.contributors}
+      <Contributors contributors={entry.fields.contributors} />
+      {/if}
 
       <svelte:self content={entry.fields.content} />
     </Expander>
