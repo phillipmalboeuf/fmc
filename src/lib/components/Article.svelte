@@ -126,7 +126,7 @@
 
     {#if article.fields.contributors && !article.fields.bigIntro}
     <div use:slideIn class="contributors {grid({ columns: 2, gap: 'horizontal' })} {col({ span: 2 })}">
-      <h3 class="{col({ span: 2 })}">{$page.params.locale === 'fr' ? article.fields.contributors.length === 1 ? 'Contributeur·trice' : 'Contributeurs·trices' : article.fields.contributors.length === 1 ? 'Contributor' : 'Contributors'}</h3>
+      <h3 class="{col({ span: 2 })}">{$page.params.locale === 'fr' ? article.fields.contributors.length === 1 ? 'Contributeur' : 'Contributeurs·trices' : article.fields.contributors.length === 1 ? 'Contributor' : 'Contributors'}</h3>
       {#each article.fields.contributors as contributor}
       <div class="contributor {box({ padding: 'tight' })} {grid({ columns: 2, gap: 'horizontal' })}">
         <figure class="">
