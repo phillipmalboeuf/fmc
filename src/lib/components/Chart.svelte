@@ -164,10 +164,18 @@
     {#each dataSource as row, ri}
     {#if ri > 0}
     <center use:slideIn>
-      <p>{row[0]}<br><strong>{row.filter((r, i) => i).map(r => axeTitle ? r+axeTitle : r).join(' | ')}</strong></p>
+      <p>{row[0]}<br>
+      {#each row.filter((r, i) => i).map(r => axeTitle ? r+axeTitle : r) as t, index}
+      {#if index > 0}&nbsp;|&nbsp;{/if}<strong style="color: {Color.interpolate((row.length - index - 1) / (row.length), color('#044554'), color('#2BFFF5'))};">{t}</strong>
+      {/each}
+      </p>
     </center>
     {:else}
-    <center use:slideIn class="{col({ span: 3 })}"><strong>{row.filter((r, i) => i).map(r => r.replace(' (%, rounded)','').replace(' (%, arrondis)','')).join(' | ')}</strong></center>
+    <center use:slideIn class="{col({ span: 3 })}">
+      {#each row.filter((r, i) => i).map(r => r.replace(' (%, rounded)','').replace(' (%, arrondis)','')) as t, index}
+      {#if index > 0}&nbsp;|&nbsp;{/if}<strong style="color: {Color.interpolate((row.length - index - 1) / (row.length), color('#044554'), color('#2BFFF5'))};">{t}</strong>
+      {/each}
+    </center>
     {/if}
     {/each}
   </figure>
