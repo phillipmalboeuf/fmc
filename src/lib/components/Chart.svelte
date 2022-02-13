@@ -22,23 +22,20 @@
   import { page } from '$app/stores'
 
   import { col, grid } from '$lib/styles/grid.css'
-  import { createCurve, createColumns, csvToChartData, createPyramide, createTarte, csvToMatrix, transpose } from '$lib/charts'
+  import { slideIn } from '$lib/animations'
+  import { csvToChartData, csvToMatrix } from '$lib/formatters'
   
   import { color, Color, Root } from '@amcharts/amcharts5'
-  import type { Chart } from '@amcharts/amcharts5/.internal/core/render/Chart'
   
   import Document from './document/Document.svelte'
-  import { slideIn } from '$lib/animations'
   import Icon from './Icon.svelte'
   
-  // import { Exporting, ExportingMenu } from '@amcharts/amcharts5/plugins/exporting'
-
 
   let root: Root
   let element: HTMLElement
   let observer: IntersectionObserver
 
-  // export let exporting: Exporting
+
 
   export let entry: Entry<ChartDocument>
 
@@ -49,43 +46,45 @@
   const dataSource = (type === 'Table' || type === 'Icons' || type === 'Labels')
     ? csvToMatrix(data)
     : csvToChartData(data)
-
-  function createChart() {
-    observer?.disconnect()
-    switch (type) {
-      case 'Columns':
-        root = createColumns(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
-        // chart.appear(1000, 100)
-        break
-
-      case 'Curve':
-        root = createCurve(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
-        // chart.appear(1000, 100)
-        break
-
-      // case 'Big numbers':
-      //   chart = createPyramide(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
-      //   chart.appear(1000, 100)
-      //   break
-
-      case 'Pie':
-        root = createTarte(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
-        // chart.appear(1000, 100)
-        break
-    
-      default:
-        break
-    }
-
-    if (root) {
-      if (alignment !== 'Horizontal' && window.innerWidth < 888) {
-        arrow = true
-      }
-    }
-  }
   
 
-  onMount(() => {
+  onMount(async () => {
+    const { createCurve, createColumns, createPyramide, createTarte } = await import('$lib/charts')
+
+    function createChart() {
+      observer?.disconnect()
+      switch (type) {
+        case 'Columns':
+          root = createColumns(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
+          // chart.appear(1000, 100)
+          break
+
+        case 'Curve':
+          root = createCurve(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
+          // chart.appear(1000, 100)
+          break
+
+        // case 'Big numbers':
+        //   chart = createPyramide(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
+        //   chart.appear(1000, 100)
+        //   break
+
+        case 'Pie':
+          root = createTarte(element, dataSource, alignment !== 'Horizontal', stacked, min, max, axeTitle, '#2BFFF5', '#044554', $page.params.locale)
+          // chart.appear(1000, 100)
+          break
+      
+        default:
+          break
+      }
+
+      if (root) {
+        if (alignment !== 'Horizontal' && window.innerWidth < 888) {
+          arrow = true
+        }
+      }
+    }
+
     if (element) {
       observer = new IntersectionObserver( 
         (entries) => {
