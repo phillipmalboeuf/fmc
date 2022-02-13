@@ -10,7 +10,6 @@
   import Text from './Text.svelte'
   import Columns from './Columns.svelte'
   import Media from './Media.svelte'
-  import Chart from './Chart.svelte'
   import { highlights } from '$lib/formatters'
   
   let ready: boolean
@@ -46,8 +45,6 @@
       <Columns {entry} noCenter />
       {:else if entry.sys.contentType.sys.id === 'media'}
       <Media {entry} />
-      {:else if entry.sys.contentType.sys.id === 'chart'}
-      <Chart {entry} />
       {/if}
     </article>
     {/each}

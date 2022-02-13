@@ -7,7 +7,7 @@
   import PageIntro from './PageIntro.svelte'
   import Text from './Text.svelte'
   import Columns from './Columns.svelte'
-  import Chart from './Chart.svelte'
+  // import Chart from './Chart.svelte'
   import Media from './Media.svelte'
   import Picture from './Picture.svelte'
   import Slider from './Slider.svelte'
@@ -29,28 +29,13 @@
   export let index: boolean = false
   export let landing: boolean = false
 
+  let Chart
+
   let hero: HTMLDivElement
   let scrollY: number = 0
 
-  onMount(() => {
-    // if (color && hero && window.innerWidth > 888) {
-    //   const observer = new IntersectionObserver(
-    //     (entries) => {
-    //       entries.forEach(node => {
-    //         document.body.classList.toggle(`hero--${texts(backs(color))}`, node.isIntersecting)
-    //       })
-    //     },
-    //     {
-    //       rootMargin: '-49%'
-    //     }
-    //   )
-
-    //   observer.observe(hero)
-
-    //   return () => {
-    //     observer.disconnect()
-    //   }
-    // }
+  onMount(async () => {
+    Chart = (await import('./Chart.svelte')).default
   })
 </script>
 
@@ -73,7 +58,7 @@
     {:else if entry.sys.contentType.sys.id === 'media'}
     <Media {entry} />
     {:else if entry.sys.contentType.sys.id === 'chart'}
-    <Chart {entry} />
+    <svelte:component this={Chart} {entry} />
     {:else if entry.sys.contentType.sys.id === 'newsletterForm'}
     <NewsletterForm {entry} {color} />
     {:else if entry.sys.contentType.sys.id === 'slider'}
@@ -113,7 +98,7 @@
     {:else if entry.sys.contentType.sys.id === 'media'}
     <Media {entry} />
     {:else if entry.sys.contentType.sys.id === 'chart'}
-    <Chart {entry} />
+    <svelte:component this={Chart} {entry} />
     {:else if entry.sys.contentType.sys.id === 'newsletterForm'}
     <NewsletterForm {entry} {color} {landing} />
     {:else if entry.sys.contentType.sys.id === 'slider'}
@@ -179,10 +164,6 @@
       left: -30%;
       width: 160% !important;
       max-width: 160% !important;
-    }
-
-    span {
-      /* font-size: 2rem; */
     }
   }
 
