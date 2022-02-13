@@ -16,8 +16,8 @@
     <h2><Link link={secondary.fields.links[0]} /></h2>
   </nav>
 
-  <div class="{grid({ columns: 5 })}">
-    <nav class="{col({ align: 'bottom' })}">
+  <div class="{grid({ columns: 5, align: 'bottom' })}">
+    <nav class="{col({ })}">
       {#each secondary.fields.links as link, i}
       {#if i > 0}
       <Link {link} />
@@ -25,14 +25,14 @@
       {/each}
     </nav>
 
-    <nav class="social {col({span:2})}">
-      <strong>Connect with us</strong><br>
+    <nav class="social {col({span: 3})}">
+      <strong>Connect with us</strong>
       {#each social.fields.links as link}
       <Link {link} />
       {/each}
     </nav>
 
-    <nav class="tertiary {col({ span: 2, align: 'bottom' })}">
+    <nav class="tertiary {col({ })}">
       {#each tertiary.fields.links as link}
       <Link {link} />
       {/each}
@@ -53,9 +53,12 @@
     text-decoration: none;
     margin-right: 1em;
     font-size: 0.9em;
-    margin-bottom: 0.5em;
+    margin-top: 0.5em;
   }
 
+  h2 :global(a) {
+    margin-top: 0;
+  }
 
   strong {
     text-transform: uppercase;
@@ -79,6 +82,7 @@
 
   .tertiary {
     text-align: right;
+    font-size: 0.88em;
   }
 
   @media (max-width: 888px) {
