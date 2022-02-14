@@ -2,7 +2,7 @@
   import type { Entry } from 'contentful'
   import { slide } from 'svelte/transition'
 
-  import { page } from '$app/stores'
+  import { page, session } from '$app/stores'
   import { goto } from '$app/navigation'
   import { browser } from '$app/env'
 
@@ -11,6 +11,7 @@
   import { getContext, onMount, setContext } from 'svelte'
   import Logo from './Logo.svelte'
   import MenuIcon from './MenuIcon.svelte'
+  import { currentPage } from '$lib/history'
 
   export let contentHeight: number
   export let path: string = undefined
@@ -28,13 +29,6 @@
   let open: boolean = true
   let locale: string = $page.params.locale || 'en'
 
-  // onMount(() => {
-  //   innerHeight = window.innerHeight
-  //   if (window.innerWidth < 888) {
-  //     open = false
-  //   }
-  // })  
-
   async function change(l: string) {
     const href = await fetch(`${($page.params.locale === 'fr' ? "/fr" : "")}/switch.json?l=${l}&path=${window.location.pathname}`)
     window.location.assign((await href.json()).href)
@@ -46,6 +40,9 @@
   }
 
   $: browser && resize(innerWidth)
+  $: {
+    currentPage.set($page.params.page)
+  }
 </script>
 
 <svelte:window bind:scrollY bind:innerWidth />
@@ -69,7 +66,7 @@
       <summary><span>Menu</span> <MenuIcon {open} /></summary>
       {#if main}
       {#each main.fields.links as link}
-      <Link external={link.fields.path.startsWith('/#')} {link} on:click={e => {
+      <Link active={link.fields.path.includes($currentPage)} external={link.fields.path.startsWith('/#')} {link} on:click={e => {
         if (index && !link.fields.path.startsWith('/#')) {
           e.preventDefault()
           history.pushState({}, null, ($page.params.locale === 'fr' ? "/fr" : "") + link.fields.path)
@@ -160,7 +157,8 @@
   }
 
   nav :global(a:not(.logo):hover),
-  nav :global(a:not(.logo):focus) {
+  nav :global(a:not(.logo):focus),
+  nav :global(a.active) {
     color: black;
     background-color: white;
     opacity: 1;

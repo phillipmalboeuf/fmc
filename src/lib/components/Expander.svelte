@@ -7,6 +7,7 @@
   import { slideIn } from '$lib/animations'
   import { browser } from '$app/env'
   import BackIcon from './BackIcon.svelte'
+import { currentPage } from '$lib/history';
 
   export let color: any = undefined
   export let href: string = undefined
@@ -29,6 +30,7 @@
 
     if (back) {
       history.replaceState({}, '', back)
+      currentPage.set(back.split('/')[1])
     }
 
     await tick()
@@ -71,6 +73,7 @@
 
   if (href) {
     history.replaceState({}, '', href)
+    currentPage.set(href.split('/')[1])
 
     // @ts-ignore
 		if (typeof gtag !== "undefined"){
