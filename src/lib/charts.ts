@@ -447,7 +447,8 @@ export function createTarte(element: HTMLElement, seriesData: any[], vertical: b
       stroke: color('#0E0E0E'),
       strokeWidth: 1,
       strokeOpacity: 0,
-      templateField: 'sliceSettings'
+      templateField: 'sliceSettings',
+      tooltipText: "{category}: {value}"
     })
 
     series.labels.template.setAll({
