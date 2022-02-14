@@ -8,7 +8,7 @@ export const contentful = createClient({
   host: preview ? 'preview.contentful.com' : undefined
 })
 
-const limit = 12
+const limit = 80
 
 export async function entry<T>(id: string, locale: string, query: {[key: string]: any}={}, include=3) {
   return (await contentful.getEntry<T>(id, { include, locale: {'fr': 'fr-CA'}[locale], ...query }))
