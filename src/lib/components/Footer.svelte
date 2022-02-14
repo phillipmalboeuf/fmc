@@ -7,6 +7,7 @@
   import { col, grid } from '$lib/styles/grid.css'
   import { box } from '$lib/styles/box.css'
   import { slideIn } from '$lib/animations'
+  import { page } from '$app/stores'
 
   const { secondary, social, tertiary } = getContext<{ secondary: Entry<{ links: Entry<Lien>[] }>, social: Entry<{ links: Entry<Lien>[] }>, tertiary: Entry<{ links: Entry<Lien>[] }> }>('navigation')
 </script>
@@ -26,7 +27,7 @@
     </nav>
 
     <nav class="social {col({span: 3})}">
-      <strong>Connect with us</strong>
+      <strong>{$page.params.locale === 'fr' ? 'Retrouvez-nous sur' : 'Connect with us'}</strong>
       {#each social.fields.links as link}
       <Link {link} />
       {/each}
