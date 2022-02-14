@@ -21,7 +21,7 @@
     main, secondary, social, tertiary
   })
 
-  const ga = $page.params.locale === 'fr' ? 'G-2DSGH4HS2M' : 'G-K7F8NWXYL1'
+  const ga = 'G-R4NBBMK66N'
 
   if (typeof window !== "undefined") {
 		// @ts-ignore

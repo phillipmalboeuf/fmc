@@ -6,7 +6,7 @@
   import { box } from '$lib/styles/box.css'
   import { slideIn } from '$lib/animations'
   import { browser } from '$app/env'
-import BackIcon from './BackIcon.svelte';
+  import BackIcon from './BackIcon.svelte'
 
   export let color: any = undefined
   export let href: string = undefined
@@ -71,6 +71,14 @@ import BackIcon from './BackIcon.svelte';
 
   if (href) {
     history.replaceState({}, '', href)
+
+    // @ts-ignore
+		if (typeof gtag !== "undefined"){
+			// @ts-ignore
+			window.gtag("config", 'G-R4NBBMK66N', {
+				page_path: href,
+			})
+		}
   }
 
   onOpen && onOpen()
