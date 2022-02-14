@@ -10,7 +10,7 @@ export default {
 	preprocess: preprocess(),
 
 	kit: {
-		adapter: auto(),
+		adapter: process.env.VERCEL ? auto() : node(),
 
 		vite: {
 			optimizeDeps: {
