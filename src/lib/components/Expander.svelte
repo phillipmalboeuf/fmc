@@ -30,7 +30,7 @@ import { currentPage } from '$lib/history';
 
     if (back) {
       history.replaceState({}, '', back)
-      currentPage.set(back.split('/')[1])
+      currentPage.set(back.replace('/fr', '').split('/')[1])
     }
 
     await tick()
@@ -73,7 +73,7 @@ import { currentPage } from '$lib/history';
 
   if (href) {
     history.replaceState({}, '', href)
-    currentPage.set(href.split('/')[1])
+    currentPage.set(href.replace('/fr', '').split('/')[1])
 
     // @ts-ignore
 		if (typeof gtag !== "undefined"){

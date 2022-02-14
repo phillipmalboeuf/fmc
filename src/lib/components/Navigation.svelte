@@ -12,6 +12,7 @@
   import Logo from './Logo.svelte'
   import MenuIcon from './MenuIcon.svelte'
   import { currentPage } from '$lib/history'
+import { replace } from '@amcharts/amcharts5/.internal/core/util/Array';
 
   export let contentHeight: number
   export let path: string = undefined
@@ -72,7 +73,7 @@
           history.pushState({}, null, ($page.params.locale === 'fr' ? "/fr" : "") + link.fields.path)
           window.scrollTo({ top: document.getElementById(link.fields.path.replace('/', '')).offsetTop, behavior: 'smooth' })
           path = link.fields.path
-          currentPage.set(link.fields.path.split('/')[1])
+          currentPage.set(link.fields.path.replace('/fr', '').split('/')[1])
 
           if (window.innerWidth < 888) {
             open = false
