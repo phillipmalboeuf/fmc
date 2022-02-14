@@ -72,6 +72,7 @@
           history.pushState({}, null, ($page.params.locale === 'fr' ? "/fr" : "") + link.fields.path)
           window.scrollTo({ top: document.getElementById(link.fields.path.replace('/', '')).offsetTop, behavior: 'smooth' })
           path = link.fields.path
+          currentPage.set(link.fields.path.split('/')[1])
 
           if (window.innerWidth < 888) {
             open = false
