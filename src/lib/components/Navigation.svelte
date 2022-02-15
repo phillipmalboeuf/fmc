@@ -51,7 +51,7 @@ import { replace } from '@amcharts/amcharts5/.internal/core/util/Array';
 <div class="spacer" />
 <nav class:black class:landing class:scrolled={scrollY > 0}>
   <div bind:offsetHeight={navHeight}>
-    <a class="logo" href="{($page.params.locale === 'fr' ? "/fr" : "/")}">
+    <a class="logo" href="{($page.params.locale === 'fr' ? "/fr" : "/")}" aria-label="{($page.params.locale === 'fr' ? "Page d'accueil" : "Home page")}">
       <Logo {locale} />
     </a>
 
