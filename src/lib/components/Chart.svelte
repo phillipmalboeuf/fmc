@@ -26,6 +26,7 @@
   import { csvToChartData, csvToMatrix } from '$lib/formatters'
   
   import { color, Color, Root } from '@amcharts/amcharts5'
+  import { Exporting } from '@amcharts/amcharts5/plugins/exporting'
   
   import Document from './document/Document.svelte'
   import Icon from './Icon.svelte'
@@ -36,6 +37,7 @@
 
 
   export let entry: Entry<ChartDocument>
+  let exporting: Exporting
 
   const { fields: { title, description, type, alignment, data, min, max, axeTitle, stacked, tableColumnSpan } } = entry
 
@@ -80,6 +82,11 @@
         if (alignment !== 'Horizontal' && window.innerWidth < 888) {
           arrow = true
         }
+
+        exporting = Exporting.new(root, {
+          filePrefix: entry.fields.id,
+          dataSource
+        })
       }
     }
 
@@ -178,11 +185,13 @@
   </figure>
   {:else}
   <figure class:pie={type === 'Pie'} use:slideIn class="{col({ span: 2 })}" bind:this={element}></figure>
+  {#if exporting}<button use:slideIn on:click={() => exporting.download('png')}>Export&nbsp;&nbsp;↓</button>{/if}
   {/if}
 </section>
 
 <style>
   section {
+    position: relative;
     margin: 5rem 0 6rem;
   }
 
@@ -224,6 +233,14 @@
     align-items: center;
     justify-content: flex-end;
     font-size: 2rem;
+  }
+
+  button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border: none;
+    background: transparent;
   }
 
   @media (max-width: 888px) {
