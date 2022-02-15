@@ -8,6 +8,12 @@
     height: 15rem;
     padding: 2rem 2rem 0;
   }
+
+	@media print {
+    svg {
+      display: none;
+    }
+  }
 </style>
 
 {#if title.includes('Console') || title.includes('console')}

@@ -58,7 +58,12 @@ globalFontFace('Trim Poster', {
 })
 
 globalStyle('*', {
-	boxSizing: 'border-box'
+	boxSizing: 'border-box',
+  '@media': {
+    'print': {
+      color: 'black'
+    }
+  }
 })
 
 globalStyle('html', {

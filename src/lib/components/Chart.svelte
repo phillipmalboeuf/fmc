@@ -30,11 +30,9 @@
   import Document from './document/Document.svelte'
   import Icon from './Icon.svelte'
   
-
   let root: Root
   let element: HTMLElement
   let observer: IntersectionObserver
-
 
 
   export let entry: Entry<ChartDocument>

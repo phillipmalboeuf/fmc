@@ -38,7 +38,7 @@
   import { pill } from '$lib/styles/pill.css'
   import { backs, texts, types } from '$lib/formatters'
 
-  import { getContext, onMount, setContext } from 'svelte'
+  import { getContext, onMount, setContext, tick } from 'svelte'
   import { page } from '$app/stores'
 
   import Content from './Content.svelte'
@@ -53,12 +53,18 @@
 
   import { slideIn } from '$lib/animations'
   import Contributors from './Contributors.svelte'
+  import { goto } from '$app/navigation'
 
 	export let article: Entry<ArticleDocument>
   // export let others: Entry<ArticleDocument>[] = undefined
   export let color: any
   
   let onBack: svelte.JSX.MouseEventHandler<HTMLAnchorElement> = getContext('close')
+
+  async function onPrint() {
+    await goto(window.location.pathname)
+    window.print()
+  }
 </script>
 
 <svelte:head>
@@ -84,7 +90,7 @@
 <section style="--color: {vars.colors[color]}; --text-color: {vars.colors[texts(color)]}; --back-color: {vars.colors[backs(color)]}; --back-text-color: {vars.colors[texts(backs(color))]}">
   
   <header style="background: var(--back-color); color: var(--back-text-color)">
-    <ShareBar {article} {onBack} />
+    <ShareBar {article} {onBack} {onPrint} />
 
     <div class:big={article.fields.bigIntro} use:slideIn class="{article.fields.bigIntro ? '' : grid({ columns: 2, gap: 'horizontal' })}">
 
@@ -257,7 +263,6 @@
     border-radius: 12px;
     overflow: hidden;
   }
-
 
   @media (max-width: 888px) {
     .tags {

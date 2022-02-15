@@ -11,10 +11,11 @@
   import type { Lien } from './Link.svelte'
   import { page } from '$app/stores'
   import BackIcon from './BackIcon.svelte'
-import { types } from '$lib/formatters';
+  import { types } from '$lib/formatters'
 
 	export let article: Entry<ArticleDocument>
   export let onBack: svelte.JSX.MouseEventHandler<HTMLAnchorElement>
+  export let onPrint: svelte.JSX.MouseEventHandler<HTMLButtonElement>
 
   let url: string
 
@@ -45,7 +46,7 @@ import { types } from '$lib/formatters';
     </ul>
   </div>
 
-  <button class="{pill({ corner: 'thick', clickable: true })}" on:click={() => window.print()}><h4>{$page.params.locale === 'fr' ? 'IMPRIMER' : 'PRINT'}&nbsp;&nbsp;&nbsp;&nbsp;↓</h4></button>
+  <button class="{pill({ corner: 'thick', clickable: true })}" on:click={onPrint}><h4>{$page.params.locale === 'fr' ? 'IMPRIMER' : 'PRINT'}&nbsp;&nbsp;&nbsp;&nbsp;↓</h4></button>
 
   <a class="back" href="{($page.params.locale === 'fr' ? "/fr" : "")}/{$page.params.page}" on:click={onBack}><h4>{$page.params.locale === 'fr' ? 'RETOUR' : 'BACK'}&nbsp;&nbsp;<BackIcon /></h4></a>
 </nav>
@@ -109,6 +110,12 @@ import { types } from '$lib/formatters';
     width: 1px;
     background-color: currentColor;
     margin: -2em 0.5em;
+  }
+
+  @media print {
+    nav {
+      display: none;
+    }
   }
 
   @media (max-width: 888px) {

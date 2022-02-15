@@ -35,6 +35,14 @@
   audio::-webkit-media-controls-enclosure {
     background-color: var(--color);
   }
+
+  @media print {
+    img,
+    video,
+    audio {
+      display: none;
+    }
+  }
 </style>
 
 {#if media}
