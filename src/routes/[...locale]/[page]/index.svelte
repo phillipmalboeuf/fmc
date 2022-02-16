@@ -3,7 +3,7 @@
   import { respond } from '$lib/responses'
   
   export const load: Load = async ({ params, fetch, session, stuff }) => {
-    if (params.page === 'fr' || params.page === 'en') { return }
+    if (params.page === 'fr' || params.page === 'en') { return { fallthrough: true } }
 		return respond(fetch, `/${params.page}/page.json`, params.locale)
 	}
 </script>
