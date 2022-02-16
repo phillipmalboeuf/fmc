@@ -1,13 +1,12 @@
 <script lang="ts">
   import type { Asset, Entry } from 'contentful'
 
-  import Document from './document/Document.svelte'
   import Expander from './Expander.svelte'
   import PageArticles from './PageArticles.svelte'
   import PageIntro from './PageIntro.svelte'
   import Text from './Text.svelte'
   import Columns from './Columns.svelte'
-  // import Chart from './Chart.svelte'
+  import Chart from './Chart.svelte'
   import Media from './Media.svelte'
   import Picture from './Picture.svelte'
   import Slider from './Slider.svelte'
@@ -29,14 +28,8 @@
   export let index: boolean = false
   export let landing: boolean = false
 
-  let Chart
-
   let hero: HTMLDivElement
   let scrollY: number = 0
-
-  onMount(async () => {
-    Chart = (await import('./Chart.svelte')).default
-  })
 </script>
 
 <svelte:window bind:scrollY />
@@ -58,7 +51,7 @@
     {:else if entry.sys.contentType.sys.id === 'media'}
     <Media {entry} />
     {:else if entry.sys.contentType.sys.id === 'chart'}
-    <svelte:component this={Chart} {entry} />
+    <Chart {entry} />
     {:else if entry.sys.contentType.sys.id === 'newsletterForm'}
     <NewsletterForm {entry} {color} />
     {:else if entry.sys.contentType.sys.id === 'slider'}
@@ -98,7 +91,7 @@
     {:else if entry.sys.contentType.sys.id === 'media'}
     <Media {entry} />
     {:else if entry.sys.contentType.sys.id === 'chart'}
-    <svelte:component this={Chart} {entry} />
+    <Chart {entry} />
     {:else if entry.sys.contentType.sys.id === 'newsletterForm'}
     <NewsletterForm {entry} {color} {landing} />
     {:else if entry.sys.contentType.sys.id === 'slider'}
@@ -155,6 +148,7 @@
     figure {
       top: 0;
       height: 110vh;
+      transform: none !important;
       /* overflow-x: hidden; */
     }
 
