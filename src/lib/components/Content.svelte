@@ -37,7 +37,7 @@
 {#if content}
 {#each content as entry, i}
 {#if !landing && media && i === 0}
-<figure style="background-color: {vars.colors[backs(color)]}; transform: translate3d(0, -{scrollY*1.1}px, 0)">
+<figure style="transform: translate3d(0, -{scrollY*1.1}px, 0)">
   <Picture {media} eager />
 </figure>
 
@@ -148,7 +148,6 @@
     figure {
       top: 0;
       height: 110vh;
-      transform: none !important;
       /* overflow-x: hidden; */
     }
 
