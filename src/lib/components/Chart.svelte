@@ -26,7 +26,7 @@
   import { csvToChartData, csvToMatrix } from '$lib/formatters'
   
   import { color, Color, Root } from '@amcharts/amcharts5'
-  import { Exporting } from '@amcharts/amcharts5/plugins/exporting'
+  import type { Exporting } from '@amcharts/amcharts5/plugins/exporting'
   
   import Document from './document/Document.svelte'
   import Icon from './Icon.svelte'
@@ -50,6 +50,7 @@
 
   onMount(async () => {
     const { createCurve, createColumns, createPyramide, createTarte } = await import('$lib/charts')
+    const { Exporting } = await import('@amcharts/amcharts5/plugins/exporting')
 
     function createChart() {
       observer?.disconnect()

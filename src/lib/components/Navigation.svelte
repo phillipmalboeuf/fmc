@@ -12,7 +12,6 @@
   import Logo from './Logo.svelte'
   import MenuIcon from './MenuIcon.svelte'
   import { currentPage } from '$lib/history'
-import { replace } from '@amcharts/amcharts5/.internal/core/util/Array';
 
   export let contentHeight: number
   export let path: string = undefined
