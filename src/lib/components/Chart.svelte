@@ -26,7 +26,7 @@
   import { csvToChartData, csvToMatrix } from '$lib/formatters'
   
   import { color, Color, Root } from '@amcharts/amcharts5'
-  import type { Exporting } from '@amcharts/amcharts5/plugins/exporting'
+  // import type { Exporting } from '@amcharts/amcharts5/plugins/exporting'
   
   import Document from './document/Document.svelte'
   import Icon from './Icon.svelte'
@@ -37,7 +37,7 @@
 
 
   export let entry: Entry<ChartDocument>
-  let exporting: Exporting
+  // let exporting: Exporting
 
   const { fields: { title, description, type, alignment, data, min, max, axeTitle, stacked, tableColumnSpan } } = entry
 
@@ -50,7 +50,7 @@
 
   onMount(async () => {
     const { createCurve, createColumns, createPyramide, createTarte } = await import('$lib/charts')
-    const { Exporting } = await import('@amcharts/amcharts5/plugins/exporting')
+    // const { Exporting } = await import('@amcharts/amcharts5/plugins/exporting')
 
     function createChart() {
       observer?.disconnect()
@@ -84,10 +84,10 @@
           arrow = true
         }
 
-        exporting = Exporting.new(root, {
-          filePrefix: entry.fields.id,
-          dataSource
-        })
+        // exporting = Exporting.new(root, {
+        //   filePrefix: entry.fields.id,
+        //   dataSource
+        // })
       }
     }
 
@@ -186,7 +186,7 @@
   </figure>
   {:else}
   <figure class:pie={type === 'Pie'} use:slideIn class="{col({ span: 2 })}" bind:this={element}></figure>
-  {#if exporting}<button use:slideIn on:click={() => exporting.download('png')}>Export&nbsp;&nbsp;↓</button>{/if}
+  <!-- {#if exporting}<button use:slideIn on:click={() => exporting.download('png')}>Export&nbsp;&nbsp;↓</button>{/if} -->
   {/if}
 </section>
 
@@ -236,13 +236,13 @@
     font-size: 2rem;
   }
 
-  button {
+  /* button {
     position: absolute;
     bottom: 0;
     right: 0;
     border: none;
     background: transparent;
-  }
+  } */
 
   @media (max-width: 888px) {
     figure {
