@@ -115,7 +115,17 @@
     }
 
     .big :global(h1) {
-      font-size: 5.25rem;
+      font-size: 5rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .big :global(h1) {
+      font-size: 3.5rem;
+    }
+
+    .big :global(p) {
+      font-size: 1.25em;
     }
   }
 
