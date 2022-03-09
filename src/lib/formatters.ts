@@ -84,6 +84,10 @@ export function csvToMatrix(data: string) {
   return resultArray;
 }
 
+export function matrixToCSV(data: [][]) {
+  return data.map(d => d.join('\t')).join('\n');
+}
+
 export const transpose = matrix => {
   for (let row = 0; row < matrix.length; row++) {
     for (let column = 0; column < row; column++) {
@@ -93,4 +97,10 @@ export const transpose = matrix => {
     }
   }
   return matrix;
+}
+
+export function wait(ms: number) {
+  return new Promise(function(resolve, reject) {
+    setTimeout(resolve, ms);
+  })
 }

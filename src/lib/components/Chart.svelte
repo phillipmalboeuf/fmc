@@ -2,17 +2,17 @@
   import type { Asset, Entry, RichTextContent } from 'contentful'
 
   export interface ChartDocument {
-    title: string
-    id: string
-    description: RichTextContent
-    data: string
-    type: string
-    alignment: string
-    stacked: boolean
-    min: number
-    max: number
-    axeTitle: string
-    tableColumnSpan: number
+    title?: string
+    id?: string
+    description?: RichTextContent
+    data?: string
+    type?: string
+    alignment?: string
+    stacked?: boolean
+    min?: number
+    max?: number
+    axeTitle?: string
+    tableColumnSpan?: number
   }
 
 </script>
@@ -37,6 +37,7 @@
 
 
   export let entry: Entry<ChartDocument>
+  export let noMargin = false
   let exporting: Exporting
 
   const { fields: { title, description, type, alignment, data, min, max, axeTitle, stacked, tableColumnSpan } } = entry
@@ -113,7 +114,7 @@
   })
 </script>
 
-<section class="{grid({ columns: 2 })}">
+<section class:noMargin class="{grid({ columns: 2 })}">
   {#if title}<h3 use:slideIn>{title}</h3>{/if}
   {#if description}<aside use:slideIn><Document body={description} /></aside>{/if}
   {#if type === 'Table'}
@@ -194,6 +195,10 @@
   section {
     position: relative;
     margin: 5rem 0 6rem;
+  }
+
+  section.noMargin {
+    margin: 0;
   }
 
   aside {
