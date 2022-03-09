@@ -1,6 +1,6 @@
 import { createClient } from 'contentful'
 
-const preview = false
+const preview = true
 
 export const contentful = createClient({
   space: 'qmgotqwz3wgy',
