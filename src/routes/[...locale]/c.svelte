@@ -32,7 +32,12 @@
         //   }
         // } as any
 
-        field.onValueChanged(sdk.field.locale, value => {
+        field.onValueChanged({
+          title: sdk.field.locale,
+          id: sdk.field.locale,
+          description: sdk.field.locale,
+          axeTitle: sdk.field.locale,
+        }[field.id], value => {
           entry = {
             fields: {
               ...entry.fields,
