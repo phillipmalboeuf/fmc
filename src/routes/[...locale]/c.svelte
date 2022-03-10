@@ -37,6 +37,7 @@
           id: sdk.field.locale,
           description: sdk.field.locale,
           axeTitle: sdk.field.locale,
+          data: sdk.field.locale,
         }[field.id], value => {
           entry = {
             fields: {
