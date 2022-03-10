@@ -34,6 +34,7 @@
   let root: Root
   let element: HTMLElement
   let observer: IntersectionObserver
+  let container: HTMLElement
 
 
   export let entry: Entry<ChartDocument>
@@ -114,7 +115,8 @@
   })
 </script>
 
-<section class:noMargin class="{grid({ columns: 2 })}">
+<section class:noMargin>
+  <div class="{grid({ columns: 2 })}" bind:this={container}>
   {#if title}<h3 use:slideIn>{title}</h3>{/if}
   {#if description}<aside use:slideIn><Document body={description} /></aside>{/if}
   {#if type === 'Table'}
@@ -187,7 +189,18 @@
   </figure>
   {:else}
   <figure class:pie={type === 'Pie'} use:slideIn class="{col({ span: 2 })}" bind:this={element}></figure>
-  {#if exporting}<button use:slideIn on:click={() => exporting.download('png')}>Export&nbsp;&nbsp;↓</button>{/if}
+  {/if}
+  </div>
+
+  {#if container}
+  <button use:slideIn on:click={async () => {
+    const { saveAs } = await import('file-saver')
+    const { toPng } = await import('html-to-image')
+    container.setAttribute('style', 'padding: 1rem')
+    const blob = await toPng(container, { cacheBust: true, backgroundColor: '#F6F7F6', skipFonts: false, skipAutoScale: false })
+    container.setAttribute('style', '')
+    saveAs(blob, (entry.fields.id || 'chart')+'.png')
+  }}>Export&nbsp;&nbsp;↓</button>
   {/if}
 </section>
 
