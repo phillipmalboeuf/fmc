@@ -65,6 +65,7 @@
   })
 </script>
 
+<svelte:head></svelte:head>
 {@html '<script src="https://unpkg.com/@contentful/app-sdk@4"></script>'}
 
 <div bind:this={table}></div>
@@ -84,13 +85,13 @@
 
 <style>
   :global(main) {
-    padding: 0;
-    min-height: 0;
+    padding: 0 !important;
+    min-height: 0 !important;
   }
 
   :global(body) {
-    color: black;
-    background: #F6F7F6;
+    color: black !important;
+    background: #F6F7F6 !important;
   }
 
   .container {

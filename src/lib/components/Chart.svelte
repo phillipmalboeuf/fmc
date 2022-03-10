@@ -80,7 +80,7 @@
           break
       }
 
-      if (root) {
+      if (root && !noMargin) {
         if (alignment !== 'Horizontal' && window.innerWidth < 888) {
           arrow = true
         }
