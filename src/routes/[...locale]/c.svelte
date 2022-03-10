@@ -65,7 +65,6 @@
   })
 </script>
 
-<svelte:head></svelte:head>
 {@html '<script src="https://unpkg.com/@contentful/app-sdk@4"></script>'}
 
 <div bind:this={table}></div>
