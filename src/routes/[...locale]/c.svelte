@@ -74,13 +74,13 @@
 
 <div bind:this={table}></div>
 
-<div class="container" bind:this={container}>
 {#key entry}
+<div class="container" bind:this={container}>
   {#if entry && entry.fields.type && entry.fields.data}
   <Chart {entry} noMargin />
   {/if}
-{/key}
 </div>
+{/key}
 
 <button on:click={async () => {
   const blob = await toPng(container, { cacheBust: true, backgroundColor: '#F6F7F6', skipAutoScale: false })
