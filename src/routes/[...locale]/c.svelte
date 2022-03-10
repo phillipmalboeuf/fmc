@@ -32,7 +32,7 @@
         //   }
         // } as any
 
-        field.onValueChanged(value => {
+        field.onValueChanged(sdk.field.locale, value => {
           entry = {
             fields: {
               ...entry.fields,
