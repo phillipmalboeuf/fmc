@@ -81,15 +81,15 @@
           break
       }
 
-      if (root && !noMargin) {
+      if (root) {
         if (alignment !== 'Horizontal' && window.innerWidth < 888) {
           arrow = true
         }
 
-        exporting = Exporting.new(root, {
-          filePrefix: entry.fields.id,
-          dataSource
-        })
+        // exporting = Exporting.new(root, {
+        //   filePrefix: entry.fields.id,
+        //   dataSource
+        // })
       }
     }
 
@@ -196,9 +196,9 @@
   <button use:slideIn on:click={async () => {
     const { saveAs } = await import('file-saver')
     const { toPng } = await import('html-to-image')
-    container.setAttribute('style', 'padding: 1rem')
+    container.classList.add('export')
     const blob = await toPng(container, { cacheBust: true, backgroundColor: '#F6F7F6', skipFonts: false, skipAutoScale: false })
-    container.setAttribute('style', '')
+    container.classList.remove('export')
     saveAs(blob, (entry.fields.id || 'chart')+'.png')
   }}>Export&nbsp;&nbsp;↓</button>
   {/if}
@@ -254,7 +254,7 @@
     font-size: 2rem;
   }
 
-  button {
+  section:not(.noMargin) button {
     position: absolute;
     top: calc(100% + 1rem);
     right: 0;
@@ -294,6 +294,23 @@
 
   figure.wide table {
     width: 200%;
+  }
+
+  .export {
+    padding: 1rem;
+  }
+
+  .export figure.table.wide {
+    width: auto;
+    overflow-x: visible;
+  }
+
+  .export figure.table.wide table {
+    width: 100%;
+  }
+
+  .export figure.table.wide:after {
+    display: none;
   }
 
   tr.highlight {

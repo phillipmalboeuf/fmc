@@ -83,10 +83,10 @@
 </div>
 {/key}
 
-<button on:click={async () => {
+<!-- <button on:click={async () => {
   const blob = await toPng(container, { cacheBust: true, backgroundColor: '#F6F7F6', skipAutoScale: false })
   saveAs(blob, (sdk.entry.fields.id.getValue() || 'chart')+'.png')
-}} class="{btn({ hover: 'cyan' })}">Export</button>
+}} class="{btn({ hover: 'cyan' })}">Export</button> -->
 
 <style>
   :global(main) {
@@ -103,8 +103,8 @@
     padding: 2rem;
   }
 
-  button {
+  /* button {
     background: transparent;
     margin: 0 2rem 2rem;
-  }
+  } */
 </style>
