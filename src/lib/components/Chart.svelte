@@ -256,7 +256,7 @@
 
   button {
     position: absolute;
-    bottom: 0;
+    top: calc(100% + 1rem);
     right: 0;
     border: none;
     background: transparent;
