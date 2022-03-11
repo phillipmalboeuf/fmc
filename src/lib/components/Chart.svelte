@@ -193,7 +193,7 @@
   </div>
 
   {#if container}
-  <button use:slideIn on:click={async () => {
+  <button on:click={async () => {
     const { saveAs } = await import('file-saver')
     const { toPng } = await import('html-to-image')
     container.classList.add('export')
