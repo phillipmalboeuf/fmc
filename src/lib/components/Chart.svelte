@@ -214,6 +214,10 @@
     margin: 0;
   }
 
+  section.noMargin h3 {
+    margin-bottom: 0;
+  }
+
   aside {
     margin-top: 0.5rem;
   }
