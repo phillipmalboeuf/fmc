@@ -222,6 +222,10 @@
     margin-top: 0.5rem;
   }
 
+  section.noMargin aside {
+    margin-top: 0;
+  }
+
   aside :global(small) {
     font-size: 0.75em;
     vertical-align: top;
