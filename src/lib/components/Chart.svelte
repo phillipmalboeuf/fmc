@@ -2,17 +2,17 @@
   import type { Asset, Entry, RichTextContent } from 'contentful'
 
   export interface ChartDocument {
-    title: string
-    id: string
-    description: RichTextContent
-    data: string
-    type: string
-    alignment: string
-    stacked: boolean
-    min: number
-    max: number
-    axeTitle: string
-    tableColumnSpan: number
+    title?: string
+    id?: string
+    description?: RichTextContent
+    data?: string
+    type?: string
+    alignment?: string
+    stacked?: boolean
+    min?: number
+    max?: number
+    axeTitle?: string
+    tableColumnSpan?: number
   }
 
 </script>
@@ -34,9 +34,11 @@
   let root: Root
   let element: HTMLElement
   let observer: IntersectionObserver
+  let container: HTMLElement
 
 
   export let entry: Entry<ChartDocument>
+  export let noMargin = false
   let exporting: Exporting
 
   const { fields: { title, description, type, alignment, data, min, max, axeTitle, stacked, tableColumnSpan } } = entry
@@ -84,10 +86,10 @@
           arrow = true
         }
 
-        exporting = Exporting.new(root, {
-          filePrefix: entry.fields.id,
-          dataSource
-        })
+        // exporting = Exporting.new(root, {
+        //   filePrefix: entry.fields.id,
+        //   dataSource
+        // })
       }
     }
 
@@ -113,7 +115,8 @@
   })
 </script>
 
-<section class="{grid({ columns: 2 })}">
+<section class:noMargin>
+  <div class="{grid({ columns: 2 })}" bind:this={container}>
   {#if title}<h3 use:slideIn>{title}</h3>{/if}
   {#if description}<aside use:slideIn><Document body={description} /></aside>{/if}
   {#if type === 'Table'}
@@ -186,7 +189,18 @@
   </figure>
   {:else}
   <figure class:pie={type === 'Pie'} use:slideIn class="{col({ span: 2 })}" bind:this={element}></figure>
-  {#if exporting}<button use:slideIn on:click={() => exporting.download('png')}>Export&nbsp;&nbsp;↓</button>{/if}
+  {/if}
+  </div>
+
+  {#if container}
+  <button on:click={async () => {
+    const { saveAs } = await import('file-saver')
+    const { toPng } = await import('html-to-image')
+    container.classList.add('export')
+    const blob = await toPng(container, { cacheBust: true, backgroundColor: '#F6F7F6', skipFonts: false, skipAutoScale: false })
+    container.classList.remove('export')
+    saveAs(blob, (entry.fields.id || 'chart')+'.png')
+  }}>Export&nbsp;&nbsp;↓</button>
   {/if}
 </section>
 
@@ -194,6 +208,10 @@
   section {
     position: relative;
     margin: 5rem 0 6rem;
+  }
+
+  section.noMargin {
+    margin: 0;
   }
 
   aside {
@@ -236,9 +254,9 @@
     font-size: 2rem;
   }
 
-  button {
+  section:not(.noMargin) button {
     position: absolute;
-    bottom: 0;
+    top: calc(100% + 1rem);
     right: 0;
     border: none;
     background: transparent;
@@ -276,6 +294,23 @@
 
   figure.wide table {
     width: 200%;
+  }
+
+  .export {
+    padding: 1rem;
+  }
+
+  .export figure.table.wide {
+    width: auto;
+    overflow-x: visible;
+  }
+
+  .export figure.table.wide table {
+    width: 100%;
+  }
+
+  .export figure.table.wide:after {
+    display: none;
   }
 
   tr.highlight {
