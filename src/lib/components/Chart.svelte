@@ -214,8 +214,16 @@
     margin: 0;
   }
 
+  section.noMargin h3 {
+    margin-bottom: 0;
+  }
+
   aside {
     margin-top: 0.5rem;
+  }
+
+  section.noMargin aside {
+    margin-top: 0;
   }
 
   aside :global(small) {
