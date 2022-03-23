@@ -80,7 +80,7 @@
 <div bind:this={table}></div>
 
 {#key entry}
-<div class="container" bind:this={container}>
+<div style="--color: #2BFFF5;" class="container" bind:this={container}>
   {#if entry && entry.fields.type && entry.fields.data}
   <Chart {entry} noMargin />
   {/if}
