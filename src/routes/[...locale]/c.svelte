@@ -20,6 +20,8 @@
   let hot: Handsontable
 
   onMount(async () => {
+    window.innerWidth = 1400;
+
     // @ts-ignore
     (window.contentfulApp.init as typeof init)<FieldExtensionSDK>(async (_sdk) => {
       sdk = _sdk
@@ -70,10 +72,6 @@
     })
   })
 </script>
-
-<svelte:head>
-  <meta name="viewport" content="width=1400, initial-scale=1" />
-</svelte:head>
 
 {@html '<script src="https://unpkg.com/@contentful/app-sdk@4"></script>'}
 
