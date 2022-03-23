@@ -71,6 +71,10 @@
   })
 </script>
 
+<svelte:head>
+  <meta name="viewport" content="width=1400, initial-scale=1" />
+</svelte:head>
+
 {@html '<script src="https://unpkg.com/@contentful/app-sdk@4"></script>'}
 
 <div bind:this={table}></div>
