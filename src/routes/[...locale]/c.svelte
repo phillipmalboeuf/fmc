@@ -20,7 +20,6 @@
   let hot: Handsontable
 
   onMount(async () => {
-    window.innerWidth = 1400;
 
     // @ts-ignore
     (window.contentfulApp.init as typeof init)<FieldExtensionSDK>(async (_sdk) => {
