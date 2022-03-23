@@ -7,8 +7,8 @@
 
   import 'handsontable/dist/handsontable.full.css'
 
-  import { saveAs } from 'file-saver'
-  import { toSvg, toPng } from 'html-to-image'
+  // import { saveAs } from 'file-saver'
+  // import { toSvg, toPng } from 'html-to-image'
   import { csvToMatrix, matrixToCSV, wait } from '$lib/formatters'
   import { btn } from '$lib/styles/button.css'
 
