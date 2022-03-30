@@ -79,7 +79,7 @@
 {#key entry}
 <div style="--color: #2BFFF5;" class="container" bind:this={container}>
   {#if entry && entry.fields.type && entry.fields.data}
-  <Chart {entry} noMargin />
+  <Chart {entry} noMargin noExport />
   {/if}
 </div>
 {/key}

@@ -39,6 +39,7 @@
 
   export let entry: Entry<ChartDocument>
   export let noMargin = false
+  export let noExport = false
   let exporting: Exporting
 
   const { fields: { title, description, type, alignment, data, min, max, axeTitle, stacked, tableColumnSpan } } = entry
@@ -192,7 +193,7 @@
   {/if}
   </div>
 
-  {#if container}
+  {#if !noExport && container}
   <button on:click={async () => {
     const { saveAs } = await import('file-saver')
     const { toPng } = await import('html-to-image')
