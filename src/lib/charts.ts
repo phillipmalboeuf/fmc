@@ -387,7 +387,7 @@ export function createTarte(element: HTMLElement, seriesData: any[], vertical: b
 
   let legend = root.container.children.push(Legend.new(root, {
     layout: root.verticalLayout,
-    y: percent(95),
+    y: percent(97),
     centerY: percent(100)
   }))
 
