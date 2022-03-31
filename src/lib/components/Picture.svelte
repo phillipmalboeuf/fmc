@@ -45,7 +45,7 @@
   }
 </style>
 
-{#if media}
+{#if media && media.fields?.file}
 {#if media.fields.file.contentType.startsWith('video/')}
 <!-- svelte-ignore a11y-media-has-caption -->
 <video src="{media.fields.file.url}" controls />
