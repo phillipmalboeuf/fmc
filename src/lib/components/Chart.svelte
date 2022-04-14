@@ -289,6 +289,10 @@
     figure.icons {
       grid-template-columns: 1fr 1fr;
     }
+
+    button {
+      display: none;
+    }
   }
 
   figure.table.wide {

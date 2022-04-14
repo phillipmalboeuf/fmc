@@ -10,7 +10,7 @@
   import Article, { ArticleDocument } from './Article.svelte'
   import { slideIn } from '$lib/animations'
   import { pills, pill } from '$lib/styles/pill.css'
-import { types } from '$lib/formatters';
+  import { types } from '$lib/formatters'
   
 	export let articles: {
     article: Entry<ArticleDocument>,
