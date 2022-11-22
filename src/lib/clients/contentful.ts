@@ -5,7 +5,8 @@ const preview = true
 export const contentful = createClient({
   space: 'qmgotqwz3wgy',
   accessToken: preview ? 'oyU9lo5e7eX94FJYQupNQ9WPB5VAEXVYHal3xE4O6UA' : 'ErM-EnlSlznXnztNn_NRnMN0YejzhQSDRzHtDANKjpA',
-  host: preview ? 'preview.contentful.com' : undefined
+  host: preview ? 'preview.contentful.com' : undefined,
+  environment: '2023'
 })
 
 const limit = 80
