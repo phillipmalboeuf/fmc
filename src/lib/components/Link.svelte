@@ -3,7 +3,7 @@
     title: string
     path: string
     external: boolean
-    // sousLiens: Entry<Lien>[]
+    subLinks: Entry<Lien>[]
   }
 </script>
 

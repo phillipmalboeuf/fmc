@@ -66,19 +66,41 @@
       <summary><span>Menu</span> <MenuIcon {open} /></summary>
       {#if main}
       {#each main.fields.links as link}
-      <Link active={link.fields.path.includes($currentPage)} external={link.fields.path.startsWith('/#')} {link} on:click={e => {
-        if (index && !link.fields.path.startsWith('/#')) {
-          e.preventDefault()
-          history.pushState({}, null, ($page.params.locale === 'fr' ? "/fr" : "") + link.fields.path)
-          window.scrollTo({ top: document.getElementById(link.fields.path.replace('/', '')).offsetTop, behavior: 'smooth' })
-          path = link.fields.path
-          currentPage.set(link.fields.path.replace('/fr', '').split('/')[1])
+      <div>
+        <Link active={link.fields.path.includes($currentPage)} external={link.fields.path.startsWith('/#')} {link} on:click={e => {
+          if (index && !link.fields.path.startsWith('/#')) {
+            e.preventDefault()
+            history.pushState({}, null, ($page.params.locale === 'fr' ? "/fr" : "") + link.fields.path)
+            window.scrollTo({ top: document.getElementById(link.fields.path.replace('/', '')).offsetTop, behavior: 'smooth' })
+            path = link.fields.path
+            currentPage.set(link.fields.path.replace('/fr', '').split('/')[1])
 
-          if (window.innerWidth < 888) {
-            open = false
+            if (window.innerWidth < 888) {
+              open = false
+            }
           }
-        }
-      }} /><br>
+        }} />
+
+        {#if link.fields.subLinks}
+        <nav>
+        {#each link.fields.subLinks as subLink}
+        <Link active={subLink.fields.path.includes($currentPage)} external={link.fields.path.startsWith('/#')} link={subLink} on:click={e => {
+          if (index && !subLink.fields.path.startsWith('/#')) {
+            e.preventDefault()
+            history.pushState({}, null, ($page.params.locale === 'fr' ? "/fr" : "") + subLink.fields.path)
+            window.scrollTo({ top: document.getElementById(subLink.fields.path.replace('/', '')).offsetTop, behavior: 'smooth' })
+            path = subLink.fields.path
+            currentPage.set(subLink.fields.path.replace('/fr', '').split('/')[1])
+
+            if (window.innerWidth < 888) {
+              open = false
+            }
+          }
+        }} /><br>
+        {/each}
+        </nav>
+        {/if}
+      </div>
       {/each}
       {:else}
       <!-- {#if page.fields.content}
@@ -202,6 +224,29 @@
 
   div.spacer {
     display: none;
+  }
+
+  details div {
+    position: relative;
+  }
+
+  details div > nav {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    border: 1px solid;
+    border-radius: 9px;
+    width: 100%;
+    z-index: 1;
+  }
+
+    details div > nav :global(a) {
+      margin-bottom: 0 !important;
+    }
+
+  details div:hover > nav {
+    display: block;
   }
   
   @media (max-width: 888px) {
