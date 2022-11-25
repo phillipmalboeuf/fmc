@@ -130,15 +130,11 @@
         {#if article.fields.tagsList}<Tags tags={[...article.fields.tagsList]} />{/if}
       </div>      
     </div>
-
-    {#if article.fields.contributors && !article.fields.bigIntro}
-    <Contributors contributors={article.fields.contributors} />
-    {/if}
   </header>
 
   <Content content={article.fields.content} {color} />
 
-  {#if article.fields.deeperNavigation || article.fields.recommended}
+  {#if article.fields.deeperNavigation || article.fields.recommended || article.fields.contributors}
   <footer class="{grid({ columns: 2 })}" style="background: {vars.colors[backs(color)]}; color: {vars.colors[texts(backs(color))]}">
     {#if article.fields.deeperNavigation}
     <Title title={'Dive Deeper'} />
@@ -152,6 +148,10 @@
       {/each}
     </nav>
     {/each}
+    {/if}
+
+    {#if article.fields.contributors}
+    <Contributors contributors={article.fields.contributors} />
     {/if}
 
     {#if article.fields.recommended}

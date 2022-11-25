@@ -78,11 +78,11 @@
     <Expander arrows {color}>
       <span slot="label">{entry.fields.title}</span>
 
+      <svelte:self content={entry.fields.content} />
+
       {#if entry.fields.contributors}
       <Contributors contributors={entry.fields.contributors} />
       {/if}
-
-      <svelte:self content={entry.fields.content} />
     </Expander>
     {:else if entry.sys.contentType.sys.id === 'text'}
     <Text {entry} {color} />

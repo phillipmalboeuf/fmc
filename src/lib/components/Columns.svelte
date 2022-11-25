@@ -29,7 +29,7 @@
   export let noCenter: boolean = false
 </script>
 
-<article style="--heading-color: {vars.colors[color]}" class="{grid({ columns: 2, gap: entry.fields.noSplit ? 'medium' : 'small' })}">
+<article style="--heading-color: {vars.colors[color]}; --padding: {vars.space.medium}" class="">
   {#if entry.fields.title && !entry.fields.hideTitle}<Title title={entry.fields.title} />{/if}
   {#if entry.fields.image}<figure use:slideIn class="{col({span: 2})}"><Picture media={entry.fields.image} /></figure>{/if}
   {#if entry.fields.body}<div use:slideIn><Document body={entry.fields.body} /></div>{/if}
@@ -47,6 +47,10 @@
   article {
     margin: 2rem 0;
     transform: translate3d(0,0,0);
+  }
+
+  div {
+    margin: var(--padding);
   }
 
   figure :global(img) {
