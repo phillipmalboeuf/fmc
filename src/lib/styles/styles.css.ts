@@ -100,6 +100,7 @@ globalStyle('main', {
   minHeight: '100vh',
   '@media': {
     'print': {
+      minHeight: 'none',
       padding: vars.space.small
     }
   }

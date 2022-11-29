@@ -109,6 +109,12 @@
     min-height: calc(100vh - 20rem);
   }
 
+  @media print {
+    section.landing {
+      min-height: 0;
+    }
+  }
+
   section.landing .content {
     margin: -4vh 0;
   }

@@ -5,6 +5,7 @@
     title?: string
     id?: string
     description?: RichTextContent
+    source?: RichTextContent
     data?: string
     type?: string
     alignment?: string
@@ -42,7 +43,7 @@
   export let noExport = false
   let exporting: Exporting
 
-  const { fields: { title, description, type, alignment, data, min, max, axeTitle, stacked, tableColumnSpan } } = entry
+  const { fields: { title, description, source, type, alignment, data, min, max, axeTitle, stacked, tableColumnSpan } } = entry
 
   let arrow: boolean
 
@@ -117,7 +118,7 @@
 </script>
 
 <section class:noMargin>
-  <div class="{grid({ columns: 2 })}" bind:this={container}>
+  <div class="" bind:this={container}>
   {#if title}<h3 use:slideIn>{title}</h3>{/if}
   {#if description}<aside use:slideIn><Document body={description} /></aside>{/if}
   {#if type === 'Table'}
@@ -140,7 +141,7 @@
           <th>{col.replace(' (%', '\n(%')}</th>
           {/if}
           {:else}
-          <td class="{tableColumnSpan ? ci % tableColumnSpan  === 0 ? 'bordered' : '' : ''}">{col}</td>
+          <td class="{tableColumnSpan ? ci % tableColumnSpan  === 0 ? 'bordered' : '' : ''}">{@html col}</td>
           {/if}
           {/each}
         </tr>
@@ -191,7 +192,6 @@
   {:else}
   <figure class:pie={type === 'Pie'} use:slideIn class="{col({ span: 2 })}" bind:this={element}></figure>
   {/if}
-  </div>
 
   {#if !noExport && container}
   <button on:click={async () => {
@@ -203,6 +203,9 @@
     saveAs(blob, (entry.fields.id || 'chart')+'.png')
   }}>Export&nbsp;&nbsp;↓</button>
   {/if}
+  </div>
+
+  {#if source}<aside use:slideIn><Document body={source} /></aside>{/if}
 </section>
 
 <style>
@@ -221,6 +224,14 @@
 
   aside {
     margin-top: 0.5rem;
+  }
+
+  section > div {
+    position: relative;
+  }
+
+  section > aside {
+    margin-top: 2.5rem;
   }
 
   section.noMargin aside {

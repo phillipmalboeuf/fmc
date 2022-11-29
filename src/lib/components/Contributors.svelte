@@ -20,7 +20,7 @@
 </script>
 
 <div use:slideIn class="contributors {grid({ columns: 2, gap: 'horizontal' })} {col({ span: 2 })}">
-  <h3 class="{col({ span: 2 })}">{$page.params.locale === 'fr' ? contributors.length === 1 ? 'Contributeur' : 'Contributeur·trices' : contributors.length === 1 ? 'Contributor' : 'Contributors'}</h3>
+  <h3 class="{col({ span: 2 })}">{$page.params.locale === 'fr' ? contributors.length === 1 ? 'Écrit par' : 'Écrit par' : contributors.length === 1 ? 'Written by' : 'Written by'}</h3>
   {#each contributors as contributor}
   <div class="contributor {box({ padding: 'tight' })} {grid({ columns: 2, gap: 'horizontal' })}">
     <figure class="">
@@ -28,7 +28,7 @@
     </figure>
 
     <div>
-      {#if contributor.fields.job}<p>{contributor.fields.job}</p>{/if}
+      <!-- {#if contributor.fields.job}<p>{contributor.fields.job}</p>{/if} -->
       <h3>{contributor.fields.title}</h3>
       {#if contributor.fields.description}<p>{contributor.fields.description}</p>{/if}
 

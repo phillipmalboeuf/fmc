@@ -24,7 +24,7 @@
   let scrollY: number = 0
   let innerHeight: number
   let innerWidth: number
-  let navHeight: number
+  let nav: HTMLElement
 
   let open: boolean = true
   let locale: string = $page.params.locale || 'en'
@@ -36,6 +36,7 @@
 
   function resize(w: number) {
     innerHeight = window.innerHeight
+    
     open = w > 888
   }
 
@@ -49,7 +50,7 @@
 
 <div class="spacer" />
 <nav class:black class:landing class:scrolled={scrollY > 0}>
-  <div bind:offsetHeight={navHeight}>
+  <div bind:this={nav}>
     <a class="logo" href="{($page.params.locale === 'fr' ? "/fr" : "/")}" aria-label="{($page.params.locale === 'fr' ? "Page d'accueil" : "Home page")}">
       <Logo {locale} />
     </a>
@@ -115,7 +116,7 @@
 
   {#if !landing && scrollY !== undefined && innerHeight}
   <!-- <progress value={scrollY + 1} max={Math.max(offsetHeight - innerHeight, 1)} /> -->
-  <progress style="width: calc(90vh - {navHeight}px);" value={scrollY + innerHeight} max={Math.max(contentHeight, innerHeight)} />
+  <progress style={nav && `width: calc(90vh - ${nav.clientHeight}px);`} value={scrollY + innerHeight} max={Math.max(contentHeight, innerHeight)} />
   {/if}
 </nav>
 
@@ -125,7 +126,7 @@
     position: -webkit-sticky;
     top: max(2.5vw, 2.5vh);
     left: 0;
-    width: 8rem;
+    width: 12rem;
     z-index: 10;
     align-self: flex-start;
 
@@ -239,6 +240,7 @@
     border-radius: 9px;
     width: 100%;
     z-index: 1;
+    background-color: black;
   }
 
     details div > nav :global(a) {
@@ -349,7 +351,7 @@
 
   progress {
     -webkit-appearance: none;
-    -moz-appearance: none;
+    /* -moz-appearance: none; */
     appearance: none;
     border: none;
 
