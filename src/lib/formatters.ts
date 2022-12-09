@@ -41,7 +41,7 @@ export const texts = (color: string) => ({
   'green': 'black',
   'yellow': 'black',
   'blue': 'white',
-  'cyan': 'black',
+  'cyan': 'white',
   'marin': 'white',
   'moss': 'white',
   'violet': 'black',

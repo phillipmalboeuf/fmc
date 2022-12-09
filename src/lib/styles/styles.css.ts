@@ -15,14 +15,14 @@ const colors = {
   white: '#fff',
   grey: '#95999A',
   offwhite: '#F6F7F6',
-  pink: '#FF0063',
+  pink: '#FFABC7',
   coral: '#FEAAC7',
-  blue: '#0000FF',
-  cyan: '#2BFFF5',
+  blue: '#00004C',
+  cyan: '#054544',
   marin: '#01044c',
   moss: '#044554',
   violet: '#B3B2FE',
-  green: '#D5FF18',
+  green: '#E9FFBA',
   yellow: '#EBFEB9'
 }
 
@@ -88,8 +88,8 @@ globalStyle('html', {
 
 globalStyle('body', {
   margin: 0,
-  color: vars.colors.white,
-  background: vars.colors.black,
+  color: vars.colors.black,
+  background: vars.colors.white,
   overscrollBehaviorX: 'none'
 })
 

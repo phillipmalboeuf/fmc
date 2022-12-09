@@ -130,7 +130,7 @@
     z-index: 10;
     align-self: flex-start;
 
-    --color: white;
+    --color: black;
     color: var(--color);
   }
 
@@ -158,11 +158,11 @@
       grid-column: span 4;
     }
   }
-
+/* 
   :global(body.hero--black) nav,
   nav.black {
     --color: black;
-  }
+  } */
 
   nav :global(a) {
     text-decoration: none;
@@ -171,7 +171,7 @@
     margin-bottom: 0.33em;
     border-radius: 6px;
     color: var(--color);
-    transition: color 666ms;
+    /* transition: color 666ms; */
   }
 
   @media (max-width: 888px) {
@@ -183,8 +183,8 @@
   nav :global(a:not(.logo):hover),
   nav :global(a:not(.logo):focus),
   nav :global(a.active) {
-    color: black;
-    background-color: white;
+    color: white;
+    background-color: black;
     opacity: 1;
   }
 
@@ -212,16 +212,16 @@
   }
 
   input[type="radio"]:checked + label {
-    color: black;
-    background-color: white;
+    color: white;
+    background-color: black;
   }
 
-  :global(body.hero--black) input[type="radio"]:checked + label,
+  /* :global(body.hero--black) input[type="radio"]:checked + label,
   nav.black input[type="radio"]:checked + label {
     color: white;
     background-color: black;
     transition: color 666ms, background-color 666ms;
-  }
+  } */
 
   div.spacer {
     display: none;
@@ -240,7 +240,7 @@
     border-radius: 9px;
     width: 100%;
     z-index: 1;
-    background-color: black;
+    background-color: white;
   }
 
     details div > nav :global(a) {

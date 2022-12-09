@@ -8,7 +8,7 @@ export const box = recipe({
     borderRadius: 12,
     position: 'relative',
     marginBottom: '1rem',
-    // border: '1px solid transparent',
+    border: '1px solid',
     // overflow: 'hidden'
   }],
 
@@ -16,7 +16,7 @@ export const box = recipe({
     color: {
       white: fmc({ background: 'white' }),
       muted: fmc({ background: 'offwhite' }),
-      outline: { border: '1px solid', background: 'transparent' },
+      outline: { border: '1px solid', background: 'black' },
       green: { background: vars.colors['green'], color: vars.colors[texts('green')] },
       blue: { background: vars.colors['blue'], color: vars.colors[texts('blue')] },
       cyan: { background: vars.colors['cyan'], color: vars.colors[texts('cyan')] },
