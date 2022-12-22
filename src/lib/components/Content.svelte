@@ -37,11 +37,11 @@
 {#if content}
 {#each content as entry, i}
 {#if !landing && media && i === 0}
-<figure style="transform: translate3d(0, -{scrollY*1.1}px, 0)">
+<figure class:index style="transform: translate3d(0, -{scrollY*1.1}px, 0)">
   <Picture {media} eager />
 </figure>
 
-<div bind:this={hero} class:hero={!!media && i === 0} id={entry.fields.id} style={`padding-bottom: ${media.fields.file.details.image.height / media.fields.file.details.image.width * 90}%; --back: ${vars.colors[backs(color)]}; --text: ${vars.colors[texts(backs(color))]}`}>
+<div bind:this={hero} class:hero={!!media && i === 0} id={entry.fields.id} style={`padding-bottom: calc(${media.fields.file.details.image.height / media.fields.file.details.image.width * 110}% + 12rem); --back: ${vars.colors[backs(color)]}; --text: ${vars.colors[texts(backs(color))]}`}>
 
   <div>
     {#if entry.sys.contentType.sys.id === 'text'}
@@ -106,7 +106,7 @@
 <style>
   figure {
     position: fixed;
-    top: -20vw;
+    top: 12rem;
     left: 0;
     z-index: 0;
     width: 100vw;
@@ -117,7 +117,7 @@
 
   .hero {
     position: relative;
-    padding: 8rem 0 2vw 0;
+    padding: 2rem 0 2vw 0;
     /* margin-left: -10vw; */
     
     /* margin: -2vw 0 2rem calc(-8rem - 21vw);
@@ -126,6 +126,16 @@
 
     color: var(--text);
     /* background-color: var(--back); */
+  }
+
+  .index:before {
+    content: "";
+    position: absolute;
+    top: -12rem;
+    left: 0;
+    width: 100vw;
+    height: 12rem;
+    background-color: rgb(243, 240, 230);
   }
 
   @media print {

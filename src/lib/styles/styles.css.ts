@@ -15,6 +15,7 @@ const colors = {
   white: '#fff',
   grey: '#95999A',
   offwhite: '#F6F7F6',
+  beige: 'rgb(243, 240, 230)',
   pink: '#FFABC7',
   coral: '#FEAAC7',
   blue: '#00004C',
@@ -84,6 +85,10 @@ globalStyle('html', {
       fontSize: `${base}px`,
     }
   }
+})
+
+globalStyle('::selection', {
+  background: vars.colors.yellow,
 })
 
 globalStyle('body', {
