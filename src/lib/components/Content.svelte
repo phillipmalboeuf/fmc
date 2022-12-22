@@ -95,7 +95,7 @@
     {:else if entry.sys.contentType.sys.id === 'newsletterForm'}
     <NewsletterForm {entry} {color} {landing} />
     {:else if entry.sys.contentType.sys.id === 'slider'}
-    <Slider {entry} {color} />
+    <!-- <Slider {entry} {color} /> -->
     {/if}
   </div>
 </div>
