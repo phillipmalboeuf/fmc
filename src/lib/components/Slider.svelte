@@ -2,7 +2,7 @@
   import type { Asset, Entry, RichTextContent } from 'contentful'
   import { fade, fly, slide } from 'svelte/transition'
   import { onMount } from 'svelte'
-  import Carousel from 'svelte-carousel'
+  // import Carousel from 'svelte-carousel'
 
   import { box } from '$lib/styles/box.css'
   import { vars } from '$lib/styles/styles.css'
@@ -29,7 +29,7 @@
 <section style="--color: {vars.colors[highlights(color)]}" class="{box({ color: 'muted' })}" id={entry.fields.id}>
   {#if entry.fields.title}<h2>{entry.fields.title}</h2>{/if}
   {#if ready}
-  <Carousel
+  <!-- <Carousel
     {initialPageIndex}
     let:currentPageIndex
     let:pagesCount
@@ -60,7 +60,7 @@
         >{pageIndex + 1}</button>
       {/each}
     </div>
-  </Carousel>
+  </Carousel> -->
   {/if}
 </section>
 
