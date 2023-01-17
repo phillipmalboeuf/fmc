@@ -234,8 +234,8 @@
   details div > nav {
     display: none;
     position: absolute;
-    top: 0;
-    left: 100%;
+    top: 90%;
+    left: 1rem;
     border: 1px solid;
     border-radius: 9px;
     width: 100%;

@@ -33,6 +33,7 @@ export const backs = (color: string) => ({
   'blue': 'marin',
   'cyan': 'moss',
   'violet': 'coral',
+  'black': 'beige',
 }[color])
 
 export const texts = (color: string) => ({

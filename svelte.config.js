@@ -14,7 +14,7 @@ export default {
 
 		vite: {
 			optimizeDeps: {
-				include: ['lodash.get', 'lodash.isequal', 'lodash.clonedeep']
+				include: []
 			},
 			plugins: [vanillaExtractPlugin()],
 			...process.env.NODE_ENV !== 'development' && {

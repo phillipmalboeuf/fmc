@@ -90,7 +90,7 @@
   }
 
   .boxed > div {
-    columns: 2;
+    /* columns: 2; */
   }
 
   .boxed :global(a) {
@@ -101,6 +101,10 @@
     font-size: 1.5em;
     grid-column: span 2;
   }
+
+    .subbed > :global(p:first-child) {
+      grid-column: span 4;
+    }
 
   small em {
     display: block;

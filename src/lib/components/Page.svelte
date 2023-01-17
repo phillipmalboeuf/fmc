@@ -19,6 +19,8 @@
 <script lang="ts">
   import { page as p } from '$app/stores'
   import { col, grid } from '$lib/styles/grid.css'
+  import { vars } from '$lib/styles/styles.css'
+  import { backs, texts } from '$lib/formatters'
 
   import Content from './Content.svelte'
   import Document from './document/Document.svelte'
@@ -78,11 +80,10 @@
 
 
 
-<section class:landing class={grid({ columns: 4, align: 'middle' })}>
+<section class:landing class={grid({ columns: 4, align: 'middle' })} style="--back: {vars.colors[backs(page.fields.color?.toLowerCase())]}">
   <Navigation contentHeight={offsetHeight} {index} {landing} bind:path />
 
-  <section bind:offsetHeight class="content {col({ span: landing ? 4 : 3 })}{landing ? ' '+grid({ columns: 2, align: 'middle', gap: 'medium' }) : ''}{(!index && !landing) ? ' '+box({ color: 'white' }) : ''}">  
-
+  <section bind:offsetHeight class="content {col({ span: landing ? 4 : 3 })}{landing ? ' '+grid({ columns: 2, align: 'middle', gap: 'medium' }) : ''}{(!index && !landing) ? ' '+box({ color: 'white' }) : ''}">
     {#if !index && !landing}
     <PageIntro {page} h1 />
     {/if}

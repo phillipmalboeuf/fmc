@@ -92,10 +92,10 @@
   <header style="background: var(--back-color); color: var(--back-text-color)">
     <ShareBar {article} {onBack} {onPrint} />
 
-    <div class:big={article.fields.bigIntro} use:slideIn class="{article.fields.bigIntro ? '' : grid({ columns: 2, gap: 'horizontal' })}">
+    <div class:big={article.fields.bigIntro} use:slideIn class="{article.fields.bigIntro ? '' : grid({ columns: 1, gap: 'horizontal' })}">
 
       {#if article.fields.image}
-      <figure class="banner {col({ span: 2 })}">
+      <figure class="banner">
         <Picture media={article.fields.image} />
       </figure>
       {/if}
@@ -126,7 +126,7 @@
       </div>
       {/if}
 
-      <div class="tags" style={article.fields.description && `grid-column-start: 1; grid-row-start: ${article.fields.image ? 3 : 2}`}>
+      <div class="tags">
         {#if article.fields.tagsList}<Tags tags={[...article.fields.tagsList]} />{/if}
       </div>      
     </div>
