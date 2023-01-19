@@ -78,7 +78,7 @@ import { currentPage } from '$lib/history';
     // @ts-ignore
 		if (typeof gtag !== "undefined"){
 			// @ts-ignore
-			window.gtag("config", 'G-R4NBBMK66N', {
+			window.gtag("config", 'G-CGCHR59LH1', {
 				page_path: href,
 			})
 		}
