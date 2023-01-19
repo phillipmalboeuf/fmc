@@ -21,7 +21,7 @@
     main, secondary, social, tertiary
   })
 
-  const ga = 'G-R4NBBMK66N'
+  const ga = 'G-CGCHR59LH1'
 
   if (typeof window !== "undefined") {
 		// @ts-ignore
