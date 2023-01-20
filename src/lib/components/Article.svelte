@@ -100,8 +100,12 @@
       </figure>
       {/if}
 
+      <h1 class={"h3"}>
+        {article.fields.title}
+      </h1>
+
       <aside>
-        {types(article.fields.type, $page.params.locale).toUpperCase()}<br>
+        {#if article.fields.type === 'Scenario'}{types(article.fields.type, $page.params.locale).toUpperCase()}<br>{/if}
         {#if article.fields.contributors}
         {$page.params.locale === 'fr' ? 'par ' : 'by '}
         {#each article.fields.contributors as contributor, i}
@@ -115,10 +119,6 @@
         {/each}
         {/if}
       </aside>
-
-      <h1 class={"h3"}>
-        {article.fields.title}
-      </h1>
 
       {#if article.fields.metaDescription}
       <h5>{article.fields.metaDescription}</h5>
@@ -197,11 +197,12 @@
 
   header h1 {
     text-align: center;
+    margin-bottom: 0.1em;
   }
 
   header aside {
     text-align: center;
-    margin-bottom: 1em;
+    margin-bottom: max(2vw, 2vh);
   }
 
   header h5 {
