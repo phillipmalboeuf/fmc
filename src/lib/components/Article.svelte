@@ -154,9 +154,9 @@
     {/each}
     {/if}
 
-    <!-- {#if article.fields.contributors}
+    {#if article.fields.contributors}
     <Contributors contributors={article.fields.contributors} />
-    {/if} -->
+    {/if}
 
     {#if article.fields.recommended}
     <h2 class="{col({ span: 2 })}" use:slideIn>Read more</h2>
