@@ -58,8 +58,8 @@
   }
 
   aside {
-    width: 66%;
-    margin-bottom: 2.5rem;
+    width: 88%;
+    margin: 0 auto 2.5rem;
     border-color: var(--color);
   }
 

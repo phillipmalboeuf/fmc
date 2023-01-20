@@ -92,7 +92,7 @@
   <header style="background: var(--back-color); color: var(--back-text-color)">
     <ShareBar {article} {onBack} {onPrint} />
 
-    <div class:big={article.fields.bigIntro} use:slideIn class="{article.fields.bigIntro ? '' : grid({ columns: 1, gap: 'horizontal' })}">
+    <div use:slideIn class="{grid({ columns: 1, gap: 'horizontal' })}">
 
       {#if article.fields.image}
       <figure class="banner">
@@ -100,19 +100,23 @@
       </figure>
       {/if}
 
-      {#if article.fields.bigIntro}
       <aside>
         {types(article.fields.type, $page.params.locale).toUpperCase()}<br>
         {#if article.fields.contributors}
         {$page.params.locale === 'fr' ? 'par ' : 'by '}
-        {#each article.fields.contributors as contributor}
-        {contributor.fields.title}{#if contributor.fields.description}, {contributor.fields.description}{/if}
+        {#each article.fields.contributors as contributor, i}
+        {#if contributor.fields.contactLink}
+        <a href={contributor.fields.contactLink} target="_blank" rel="external">{contributor.fields.title}</a>
+        {:else}
+        {contributor.fields.title}
+        {/if}
+        {#if contributor.fields.description}, {contributor.fields.description}{/if}
+        {#if i < article.fields.contributors.length - 1},&nbsp;{/if}
         {/each}
         {/if}
       </aside>
-      {/if}
 
-      <h1 class={article.fields.bigIntro ? "h1" : "h3"}>
+      <h1 class={"h3"}>
         {article.fields.title}
       </h1>
 
@@ -150,9 +154,9 @@
     {/each}
     {/if}
 
-    {#if article.fields.contributors}
+    <!-- {#if article.fields.contributors}
     <Contributors contributors={article.fields.contributors} />
-    {/if}
+    {/if} -->
 
     {#if article.fields.recommended}
     <h2 class="{col({ span: 2 })}" use:slideIn>Read more</h2>
@@ -189,6 +193,15 @@
     border-radius: 12px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+  }
+
+  header h1 {
+    text-align: center;
+  }
+
+  header aside {
+    text-align: center;
+    margin-bottom: 1em;
   }
 
   header h5 {
