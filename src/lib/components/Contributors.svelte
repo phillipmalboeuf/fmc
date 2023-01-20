@@ -28,9 +28,8 @@
     </figure>
 
     <div>
-      <!-- {#if contributor.fields.job}<p>{contributor.fields.job}</p>{/if} -->
       <h3>{contributor.fields.title}</h3>
-      {#if contributor.fields.description}<p>{contributor.fields.description}</p>{/if}
+      {#if contributor.fields.job}<p>{contributor.fields.job}</p>{/if}
 
       {#if contributor.fields.contactLink}
       <a href={contributor.fields.contactLink} target="_blank" rel="external">{$page.params.locale === 'fr' ? 'À propos' : 'About'} →</a>

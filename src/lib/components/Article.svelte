@@ -109,12 +109,7 @@
         {#if article.fields.contributors}
         {$page.params.locale === 'fr' ? 'par ' : 'by '}
         {#each article.fields.contributors as contributor, i}
-        {#if contributor.fields.contactLink}
-        <a href={contributor.fields.contactLink} target="_blank" rel="external">{contributor.fields.title}</a>
-        {:else}
-        {contributor.fields.title}
-        {/if}
-        {#if contributor.fields.description}, {contributor.fields.description}{/if}
+        {#if contributor.fields.contactLink}<a href={contributor.fields.contactLink} target="_blank" rel="external">{contributor.fields.title}</a>{:else}{contributor.fields.title}{/if}{#if contributor.fields.description}, {contributor.fields.description}{/if}{#if contributor.fields.job}, {contributor.fields.job}{/if}
         {#if i < article.fields.contributors.length - 1},&nbsp;{/if}
         {/each}
         {/if}
