@@ -4,7 +4,7 @@
 
   import { slideIn } from '$lib/animations'
   import { onMount } from 'svelte'
-import { page } from '$app/stores';
+  import { page } from '$app/stores'
 
   export let body: RichTextContent
   let element: HTMLElement
@@ -13,6 +13,7 @@ import { page } from '$app/stores';
   let hasMore = true
 
   onMount(() => {
+    if (!element) return
     height = element.offsetHeight
     if (height && height > 210) {
       hasMore = true
