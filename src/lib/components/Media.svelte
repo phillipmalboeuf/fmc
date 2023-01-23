@@ -28,7 +28,7 @@
   {#if media.fields.description?.startsWith('https://')}
   <figure use:slideIn class="{col({ span: 2 })}">
     {#if media.fields.title}<figcaption>{media.fields.title}</figcaption>{/if}
-    <iframe style="aspect-ratio: {media.fields.file.details.image.width} / {media.fields.file.details.image.height}" src={media.fields.description.replace('/watch?v=', '/embed/').replace('https://soundcloud.com/', 'https://w.soundcloud.com/player/?url=https://soundcloud.com/')} title={media.fields.title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+    {#if media.fields.file}<iframe style="aspect-ratio: {media.fields.file.details.image.width} / {media.fields.file.details.image.height}" src={media.fields.description.replace('/watch?v=', '/embed/').replace('https://soundcloud.com/', 'https://w.soundcloud.com/player/?url=https://soundcloud.com/')} title={media.fields.title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />{/if}
   </figure>
   {:else}
   <figure use:slideIn class="{col({ span: 2 })} {!media.fields.file.contentType.startsWith('video/') && box({ color: 'outline' })}">
