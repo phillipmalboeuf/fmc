@@ -11,7 +11,7 @@
   import { getContext, onMount, setContext } from 'svelte'
   import Logo from './Logo.svelte'
   import MenuIcon from './MenuIcon.svelte'
-  import { currentPage } from '$lib/history'
+  import { currentArticle, currentPage } from '$lib/history'
 
   export let contentHeight: number
   export let path: string = undefined
@@ -43,6 +43,7 @@
   $: browser && resize(innerWidth)
   $: {
     currentPage.set($page.params.page)
+    currentArticle.set($page.params.article)
   }
 </script>
 
@@ -74,7 +75,7 @@
             history.pushState({}, null, ($page.params.locale === 'fr' ? "/fr" : "") + link.fields.path)
             window.scrollTo({ top: document.getElementById(link.fields.path.replace('/', '')).offsetTop, behavior: 'smooth' })
             path = link.fields.path
-            currentPage.set(link.fields.path.replace('/fr', '').split('/')[1])
+            // currentPage.set(link.fields.path.replace('/fr', '').split('/')[1])
 
             if (window.innerWidth < 888) {
               open = false
@@ -85,13 +86,13 @@
         {#if link.fields.subLinks}
         <nav>
         {#each link.fields.subLinks as subLink}
-        <Link active={subLink.fields.path.includes($currentPage)} external={link.fields.path.startsWith('/#')} link={subLink} on:click={e => {
+        <Link active={subLink.fields.path.includes($currentArticle)} external={link.fields.path.startsWith('/#')} link={subLink} on:click={e => {
           if (index && !subLink.fields.path.startsWith('/#')) {
             e.preventDefault()
             history.pushState({}, null, ($page.params.locale === 'fr' ? "/fr" : "") + subLink.fields.path)
             window.scrollTo({ top: document.getElementById(subLink.fields.path.replace('/', '')).offsetTop, behavior: 'smooth' })
             path = subLink.fields.path
-            currentPage.set(subLink.fields.path.replace('/fr', '').split('/')[1])
+            // currentPage.set(subLink.fields.path.replace('/fr', '').split('/')[1])
 
             if (window.innerWidth < 888) {
               open = false
