@@ -87,6 +87,7 @@
   {/if}
 </svelte:head>
 
+{#key article.fields.id}
 <section style="--color: {vars.colors[color]}; --text-color: {vars.colors[texts(color)]}; --back-color: {vars.colors[backs(color)]}; --back-text-color: {vars.colors[texts(backs(color))]}">
   
   <header style="background: var(--back-color); color: var(--back-text-color)">
@@ -175,6 +176,7 @@
   </footer>
   {/if}
 </section>
+{/key}
 
 <style>
   header,
