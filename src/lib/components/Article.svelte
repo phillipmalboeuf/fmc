@@ -207,7 +207,7 @@
     margin-top: max(2vw, 2vh);
   }
   
-  footer :global(a:not(.back):not(.other)) {
+  footer :global(a:not(.back):not(.other):not(.contact)) {
     display: inline-block;
     font-size: 1.5em;
     margin-bottom: 1em;
