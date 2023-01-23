@@ -20,7 +20,7 @@
   // let play: string
 </script>
 
-<article class="{box({ color: 'white' })} {grid({ columns: 2 })}">
+<article class="{grid({ columns: 2 })}">
   {#if entry.fields.title}<h2>{entry.fields.title}</h2>{/if}
   {#if entry.fields.body}<Document body={entry.fields.body} />{/if}
   {#if entry.fields.assets}
@@ -32,7 +32,7 @@
   </figure>
   {:else}
   <figure use:slideIn class="{col({ span: 2 })} {!media.fields.file.contentType.startsWith('video/') && box({ color: 'outline' })}">
-    <figcaption>{media.fields.title}</figcaption>
+    {#if media.fields.title}<figcaption>{media.fields.title}</figcaption>{/if}
     <Picture {media} />
   </figure>
   {/if}
