@@ -8,7 +8,7 @@
 
   import Link from './Link.svelte'
   import type { Lien } from './Link.svelte'
-  import { getContext, onMount, setContext } from 'svelte'
+  import { getContext, onMount, setContext, tick } from 'svelte'
   import Logo from './Logo.svelte'
   import MenuIcon from './MenuIcon.svelte'
   import { currentArticle, currentPage } from '$lib/history'
@@ -75,7 +75,6 @@
             history.pushState({}, null, ($page.params.locale === 'fr' ? "/fr" : "") + link.fields.path)
             window.scrollTo({ top: document.getElementById(link.fields.path.replace('/', '')).offsetTop, behavior: 'smooth' })
             path = link.fields.path
-            // currentPage.set(link.fields.path.replace('/fr', '').split('/')[1])
 
             if (window.innerWidth < 888) {
               open = false
@@ -86,18 +85,23 @@
         {#if link.fields.subLinks}
         <nav>
         {#each link.fields.subLinks as subLink}
-        <Link active={subLink.fields.path.includes($currentArticle)} external={link.fields.path.startsWith('/#')} link={subLink} on:click={e => {
-          if (index && !subLink.fields.path.startsWith('/#')) {
-            e.preventDefault()
-            history.pushState({}, null, ($page.params.locale === 'fr' ? "/fr" : "") + subLink.fields.path)
-            window.scrollTo({ top: document.getElementById(subLink.fields.path.replace('/', '')).offsetTop, behavior: 'smooth' })
-            path = subLink.fields.path
-            // currentPage.set(subLink.fields.path.replace('/fr', '').split('/')[1])
+        <Link active={subLink.fields.path.includes($currentArticle)} external={link.fields.path.startsWith('/#')} link={subLink} on:click={async e => {
+          // if (index && !subLink.fields.path.startsWith('/#')) {
+          //   e.preventDefault()
+          //   history.pushState({}, null, ($page.params.locale === 'fr' ? "/fr" : "") + subLink.fields.path)
+          //   window.scrollTo({ top: document.getElementById(link.fields.path.replace('/', '')).offsetTop, behavior: 'smooth' })
+          //   path = link.fields.path
 
-            if (window.innerWidth < 888) {
-              open = false
-            }
-          }
+          //   await tick()
+
+          //   console.log(subLink.fields.path.replace('/', ''))
+          //   window.scrollTo({ top: document.getElementById(subLink.fields.path.replace('/', '')).offsetTop, behavior: 'smooth' })
+          //   path = subLink.fields.path
+
+          //   if (window.innerWidth < 888) {
+          //     open = false
+          //   }
+          // }
         }} /><br>
         {/each}
         </nav>
